@@ -18,7 +18,6 @@ body {
     width: 100%;
     height: 100px;
     background-color: #4C91D4;
-    background-color: #4C91D4;
     border-bottom-width: 4px;
     border-bottom-style: solid;
     border-bottom-color: #000000;
@@ -218,34 +217,66 @@ b{
 
 /* Fim do Complemento01 */
 
+/* ---------------------------------------------------------------------------------------------------------------------------- */
+
 /* Inicio da solução */
 
 .solucao{
     display: flex;
     background-color: #41B8D5;
     flex-direction: column;
+    height: 650px;
 }
 
 .cards{
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 .solucao .cards img{
    height: 300px;
    width: 320px;
    border-radius: 20px;
+   border-width: 4px;
+   border-style: solid;
+   border-color:#34538D;
+
 }
 
 .card01{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .card02{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .card03{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
+.cards span{
+    display: flex;
+    width: 380px;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+
+.solucao b{
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    font-size: 30px;
+    
+}
+/* Fim da Solução */
+
+/* ___________________________________________________________________________________________________ */
+
