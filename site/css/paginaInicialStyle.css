@@ -89,16 +89,12 @@ li {
 }
 
 */
+
 .containerDois img {
-    /* display: flex; */
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
+    border-radius: 25px;
     height: 520px;
     width: 1100px;
     margin-left: 200px;
-    /* justify-content: flex-end; */
-
-
 }
 
 .card_bemVindo {
@@ -195,7 +191,7 @@ li {
     /* justify-content: space-between; */
 }
 
-.complemento01 .container .img03{
+.complemento01 .container .img03 {
     margin-top: 40px;
 }
 
@@ -205,11 +201,12 @@ li {
     font-size: 25px;
 }
 
-b{
+b {
     margin-top: 50px;
     margin-bottom: 20px;
 }
-.separarTexto{
+
+.separarTexto {
     display: flex;
     flex-direction: column;
     font-size: 25px;
@@ -221,45 +218,48 @@ b{
 
 /* Inicio da solução */
 
-.solucao{
+.solucao {
     display: flex;
     background-color: #41B8D5;
     flex-direction: column;
     height: 650px;
 }
 
-.cards{
+.cards {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
-.solucao .cards img{
-   height: 300px;
-   width: 320px;
-   border-radius: 20px;
-   border-width: 4px;
-   border-style: solid;
-   border-color:#34538D;
+
+.solucao .cards img {
+    height: 300px;
+    width: 320px;
+    border-radius: 20px;
+    border-width: 4px;
+    border-style: solid;
+    border-color: #34538D;
 
 }
 
-.card01{
+.card01 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.card02{
+.card02 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.card03{
+
+.card03 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.cards span{
+
+.cards span {
     display: flex;
     width: 380px;
     align-items: center;
@@ -269,14 +269,122 @@ b{
     color: white;
 }
 
-.solucao b{
+.solucao b {
     color: white;
     display: flex;
     justify-content: space-around;
     font-size: 30px;
-    
+
 }
+
 /* Fim da Solução */
 
 /* ___________________________________________________________________________________________________ */
+
+/* Ferramentas */
+
+.Ferramentas{
+    height: 700px;
+}
+.Ferramentas .container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Ferramentas .container .primeiraFileira {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.Ferramentas .container .primeiraFileira img{
+   margin-left: 10px;
+   margin-right: 10px;
+}
+
+/* .box{
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+} */
+
+.Ferramentas .container .imagem03 {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 570px;
+    height: 240px;
+}
+
+.Ferramentas .container button {
+    margin-top: 20px;
+    width: 150px;
+    height: 60px;
+    border-style: none;
+    font-size: 20px;
+    border-radius: 30px;
+    background-color: #34538D;
+    color: white;
+}
+
+.Ferramentas .container span {
+    margin-top: 20px;
+   font-size: 35px;
+}
+
+/* Fim Ferramentas */
+
+/* ___________________________________________________________________ */
+
+/* Inicio Sobre mim */
+
+.sobreMim{
+    display: flex;
+    background-color: #4C91D4;
+    height: 550px;
+}
+
+.sobreMim .container{
+    height: 500px;
+    flex-direction: column;
+}
+.sobreMim .container .tituloSM{
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.sobreMim .container .textoSM{
+    font-size: 28px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.sobreMim .container .textoSM img{
+    font-size: 28px;
+    height: 460px;
+    margin-right: 100px;
+}
+
+.btn{
+    margin-top: 20px;
+    margin-bottom: 25px;
+    width: 150px;
+    height: 60px;
+    border-style: none;
+    font-size: 20px;
+    border-radius: 30px;
+    background-color: #34538D;
+    color: white;
+    margin-left: 45%;
+}
+
+/* Inicio do Footer */
+
+
+
+
 
