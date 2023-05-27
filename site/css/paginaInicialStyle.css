@@ -111,8 +111,8 @@ li {
     color: white;
 }
 
-.card_bemVindo button {
-    font-size: 18px;
+.card_bemVindo .bannerButton {
+    /* font-size: 18px; */
     border-radius: 20px;
     height: 30px;
     width: 150px;
@@ -122,7 +122,10 @@ li {
     background-color: #34538D;
     color: white;
 }
-
+.card_bemVindo .bannerButton a{
+    font-size: 20px;
+    color: white;
+}
 /* Fim do banner */
 
 /* ---------------------------------------------- */
@@ -169,12 +172,17 @@ li {
 .saibaMais .container .dentro button {
     width: 140px;
     height: 30px;
-    font-size: 20px;
-    /* margin-top: 0px; */
+    /* font-size: 20px; */
     margin-left: 46%;
     border-style: none;
     border-radius: 20px;
     background-color: #34538D;
+
+}
+
+.saibaMais .container .dentro button a{
+    font-size: 20px;
+    /* margin-top: 0px; */
     color: white;
 
 }
@@ -323,9 +331,11 @@ b {
     width: 150px;
     height: 60px;
     border-style: none;
-    font-size: 20px;
     border-radius: 30px;
     background-color: #34538D;
+}
+.Ferramentas .container button a{
+    font-size: 20px;
     color: white;
 }
 
@@ -344,18 +354,21 @@ b {
     display: flex;
     background-color: #4C91D4;
     height: 550px;
+    width: 100%;
 }
 
 .sobreMim .container{
     height: 500px;
     flex-direction: column;
+    justify-content: space-around;
 }
-.sobreMim .container .tituloSM{
-    font-size: 35px;
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
+ .sobreMim .container .tituloSM{
+font-size: 35px;
+display: flex;
+justify-content: center;
+margin-top: 15px;
 }
+/*
 .sobreMim .container .textoSM{
     font-size: 28px;
     color: white;
@@ -367,7 +380,24 @@ b {
     font-size: 28px;
     height: 460px;
     margin-right: 100px;
+} */
+.sobreMim .container .linha img{
+    display: flex;
+    height: 450px;
 }
+.sobreMim .container .linha{
+    display: flex;
+    flex-direction: row;
+}
+.sobreMim .container .textoSM{
+    display: flex;
+    font-size: 25px;
+    width: 550px;
+    align-items: center;
+    margin-left: 10%;
+    color: white;
+}
+
 
 .btn{
     margin-top: 20px;
@@ -375,16 +405,77 @@ b {
     width: 150px;
     height: 60px;
     border-style: none;
-    font-size: 20px;
     border-radius: 30px;
     background-color: #34538D;
+    margin-left: 44%;
+}
+.btn a{
+    font-size: 20px;
     color: white;
-    margin-left: 45%;
 }
 
 /* Inicio do Footer */
 
+.footer{
+    display: flex;
+    background-color: #4C91D4;
+    height: 130px;
+    justify-content: space-around;
+}
+
+.footer .acessoRapido .lista{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+.footer .contato .lista{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
 
 
+
+
+.footer .acessoRapido{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.footer .acessoRapido a{
+    color: white;
+}
+.footer .acessoRapido .coluna{
+    font-size: 25px;
+    color: white;
+
+}
+
+
+
+.footer .contato{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.footer .contato a{
+    color: white;
+}
+
+.footer .contato .coluna{
+    font-size: 25px;
+    color: white;
+}
+
+.footer .editar img{
+    height: 70px;
+}
+
+.footer .editar{
+    display: flex;
+    align-items: center;
+   
+}
 
 
