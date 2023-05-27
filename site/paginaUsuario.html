@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="css/paginaUsuario.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -17,67 +19,218 @@
                 <img src="Img/tubarãozinho.png" alt="logo com um tubarãozinho lendo">
                 <span class="titulo">Dynamic Readers</span></span>
             <ul>
-                <li><a href="paginaInicial.html">Home</a></li>
+                <li><a href="resumo.html">Resumo</a></li>
                 <li>||</li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="paginaInicial.html">Sair</a></li>
             </ul>
         </div>
     </div>
     <!-- Final do Cabeçalho -->
-    <div class="ajustar">
+
+    <!-- Primeiro Pedaço da Página -->
+    <div class="conteudo01">
+
+        <!-- Primeira coluna -->
         <div class="primeira_coluna">
+            <div class="infoUsuario">
 
-            <div class="primeira_coluna01">
-                <div class="container02">
+                <div class="info">
+                    <div class="img01">
+                        <img src="img/foto_usuario.png" alt="">
+                    </div>
+                    <div class="dados">
+                        <span class="nomeUsuario">Nome Do usuário</span>
+                        <span>Mensagem <img class="img02" src="img/editar.png" alt=""></span>
+                    </div>
 
-                    <div class="primeiraParte">
-                        <img class="imagem01" src="img/foto_usuario.png" alt="" style="height: 130px;">
+                </div>
 
-                        <div class="infoUsuario">
-                            <span class="nomeUsuario">Nome do Usuário</span>
+            </div>
+            <div class="graficoLinha">
 
-                            <div class="boxMensagem">
-                                <span class="mensagem">Mensagem</span>
-                                <img src="img/editar.png" alt="">
-                            </div>
+                <div class="tituloProgresso">Progresso</div>
+                <!-- Organizar o datalist com gráfico -->
+                <div class="datalist_Grafico">
+
+                    <label for="messes">Mês:</label>
+                    <input list="mes" id="messes" name="messes">
+
+                    <datalist id="mes">
+                        <option value="Janeiro">
+                        <option value="Fevereiro">
+                        <option value="Março">
+                        <option value="Abril">
+                        <option value="Maio">
+                    </datalist>
+                    <button onclick="consultar()">conssultar</button>
+
+                    <div class="grafico01">
+                        <div id="tituloGrafico">Gráfico do mês de </div>
+                        <div class="chart-container">
+                            <canvas id="myChart"></canvas>
                         </div>
-
+                        <!-- <div id="graficos">
+                <div id="grafico1" class="display-block">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario1">123</span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas1"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura1" style="color: white"></p>
+                    </div>
+                </div> -->
                     </div>
 
-
-                    <!-- Fim da primeira parte da primeira coluna -->
-
-                    <!-- Inicio da segunda parte -->
-
                 </div>
+
             </div>
         </div>
 
 
-        <!-- Segunda Coluna -->
-
+        <!-- Segunda coluna -->
         <div class="segunda_coluna">
-            <div class="progresso">
-                <div class="container02">
-                    <span class="titulo01">Progresso</span>
-
-                    <div class="consulta">
-                        <label for="ice-cream-choice">Mês:</label>
-                        <input list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice">
-                        <datalist id="ice-cream-flavors">
-                            <option value="Janeiro">
-                            <option value="Fevereiro">
-                            <option value="Março">
-                            <option value="Abril">
-                            <option value="Maio">
-                        </datalist>
-                    </div>
-
-                    <button>consultar</button>
+            <div class="aviso">
+                <div class="card">
+                    <b>Você pode melhorar!</b>
+                    <span class="text">Você parece ler menos às segunda feira, se esforce para passar de 8 páginas todas
+                        as segundas do mês</span>
                 </div>
+
+
+            </div>
+            <div class="graficoPizza">
+                <div class="grafico02">
+                    <div id="tituloGrafico">Gráfico da Semana</div>
+                    <div class="chart-container">
+                        <canvas id="myChart02"></canvas>
+                    </div>
+                </div>
+
             </div>
         </div>
+        <!-- Teceira coluna -->
+        <div class="terceira_coluna">
+            <div class="conquistas">E</div>
+            <div class="dica">F</div>
+            <div class="tempoR">G</div>
+
+        </div>
+        <!-- Fim do Primeiro Pedaço -->
     </div>
+
+    <!-- Inicio da Segunda parte da Pagina -->
+    <span class="titulo02">REGISTRO</span>
+
+    <!-- Primeira coluna02 -->
+    <div class="conteudo02">
+        <div class="primeira_coluna02">
+            <div class="progressoDiario">A
+
+            </div>
+            <div class="registroDiario">B
+
+            </div>
+        </div>
+        <!-- Segunda coluna -->
+        <div class="segunda_coluna02">
+            <div class="livrosConcluidos">C</div>
+            <div class="totalPaginas">D</div>
+        </div>
+
+    </div>
+
 </body>
+<script>
+    const ctx = document.getElementById('myChart01');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        }
+    });
+
+
+    function consultar() {
+        var mes = messes.value;
+
+        const ctx = document.getElementById('myChart');
+        tituloGrafico.innerHTML = `Gráfico do mês de ${mes}`;
+
+        if (mes == 'Janeiro') {
+
+            const config = {
+                type: 'pie',
+                data: data,
+            };
+
+            new Chart(ctx, {
+                data: {
+                    labels: ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'final de semana'],
+                    datasets: [
+                        {
+                            label: `Páginas`,
+                            backgroundColor: 'rgb(50,153,204)',
+                            borderColor: 'rgb(50,153,204)',
+                            data: [80, 82, 80, 85, 80, 83],
+                            borderWidth: 2
+                        }
+                    ]
+                },
+
+                options: {
+                    scales: {
+                        y: {
+                            min: 20,
+                            max: 90,
+                            ticks: {
+                                stepSize: 10
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        // aparece de acordo com o mês
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Páginas',
+                data: [],
+                fill: false,
+                borderColor: 'red',
+                tension: 0.1
+            },
+            ]
+        };
+
+
+        let myChart = new Chart(
+            document.getElementById(`myChartCanvas${mes}`),
+            config
+        );
+
+    }
+</script>
 
 </html>
