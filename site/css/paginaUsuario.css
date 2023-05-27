@@ -1,0 +1,151 @@
+@import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+
+* {
+    font-family: 'Glacial Indifference', sans-serif;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+}
+
+.header {
+    width: 100%;
+    height: 100px;
+    background-color: #4C91D4;
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: #000000;
+    font-size: 25px;
+}
+
+.header .container {
+    justify-content: space-between;
+    /* font-size: 25px; */
+    align-items: center;
+}
+
+.inicio img {
+    height: 100px;
+}
+
+.inicio {
+    display: flex;
+    height: 100px;
+    width: 200px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.titulo {
+    display: flex;
+    /* font-size: 25px; */
+    width: 70px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    /* font-size: 26px; */
+}
+
+li {
+    margin-left: 10px;
+}
+
+/* Fim do Cabeçalho */
+/* ---------------------------------------------------------------------------------------------------------------------------------- */
+/* Primeira Coluna */
+
+.ajustar{
+    background-color: green;
+    height: 473px;
+}
+.container02 {
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+.primeira_coluna01 .container02{
+    background-color: #4C91D4;
+}
+.primeira_coluna01{
+    display: flex;
+    background-color: red;
+    width: 40%;
+    height: 230px;
+    /* margin-top: 20px; */
+    flex-direction: column;
+}
+
+.primeira_coluna01 .container02{
+    display: flex;
+    flex-direction: column;
+}
+
+.primeira_coluna01 .container02 .primeiraParte{
+    display: flex;
+ flex-direction: row;
+ /* justify-content: space-evenly; */
+}
+
+/* .primeira_coluna01 .container02 .primeiraParte .imagem01 img{
+    display: flex;
+    width: 20px;
+    height: 20px;
+} */
+
+.primeira_coluna01 .container02 .primeiraParte .infoUsuario img{
+    display: flex;
+    width: 20px;
+    margin-left: 10px;
+}
+
+.primeira_coluna01 .container02 .primeiraParte .infoUsuario .boxMensagem{
+    display: flex;
+    flex-direction: row;
+}
+.primeira_coluna01 .container02 .primeiraParte .infoUsuario{
+    display: flex;
+    flex-direction: column;
+}
+
+.nomeUsuario{
+    display: flex;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.mensagem{
+    display: flex;
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+/* Segunda parte */
+.progresso{
+    display: flex;
+    justify-content: center;
+}
+.progresso .titulo01{
+    display: flex;
+    font-size: 30px;
+}
+
+.segunda_coluna{
+    height: 350px;
+    width: 40%;
+    background-color: blue;
+}
