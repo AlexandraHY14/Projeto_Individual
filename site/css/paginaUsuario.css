@@ -67,85 +67,229 @@ li {
 
 /* Fim do Cabeçalho */
 /* ---------------------------------------------------------------------------------------------------------------------------------- */
-/* Primeira Coluna */
 
-.ajustar{
-    background-color: green;
-    height: 473px;
-}
-.container02 {
-    width: 80%;
-    margin: auto;
+/* Primeira Parte */
+.conteudo01{
     display: flex;
-}
-.primeira_coluna01 .container02{
-    background-color: #4C91D4;
-}
-.primeira_coluna01{
-    display: flex;
-    background-color: red;
-    width: 40%;
-    height: 230px;
-    /* margin-top: 20px; */
-    flex-direction: column;
-}
-
-.primeira_coluna01 .container02{
-    display: flex;
-    flex-direction: column;
-}
-
-.primeira_coluna01 .container02 .primeiraParte{
-    display: flex;
- flex-direction: row;
- /* justify-content: space-evenly; */
-}
-
-/* .primeira_coluna01 .container02 .primeiraParte .imagem01 img{
-    display: flex;
-    width: 20px;
-    height: 20px;
-} */
-
-.primeira_coluna01 .container02 .primeiraParte .infoUsuario img{
-    display: flex;
-    width: 20px;
-    margin-left: 10px;
-}
-
-.primeira_coluna01 .container02 .primeiraParte .infoUsuario .boxMensagem{
-    display: flex;
-    flex-direction: row;
-}
-.primeira_coluna01 .container02 .primeiraParte .infoUsuario{
-    display: flex;
-    flex-direction: column;
-}
-
-.nomeUsuario{
-    display: flex;
-    font-size: 25px;
-    margin-left: 10px;
-}
-
-.mensagem{
-    display: flex;
-    font-size: 13px;
-    margin-left: 10px;
-}
-
-/* Segunda parte */
-.progresso{
-    display: flex;
+    height: 680px;
+    width: 100%;
     justify-content: center;
 }
-.progresso .titulo01{
+
+.conteudo01 .primeira_coluna{
     display: flex;
-    font-size: 30px;
+    background-color: red;
+    height: 100%;
+    width: 460px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.conteudo01 .primeira_coluna .infoUsuario{
+    /* A */
+    display: flex;
+    background-color: yellow;
+    height: 36%;
+    width: 420px;
+    justify-content: center;
+}
+/* CAIXA A */
+.conteudo01 .primeira_coluna .infoUsuario .info{
+    background-color: aliceblue;
+    display: flex;
+     height:200px;
+     width: 400px;
+     margin-top: 20px;
+}
+.conteudo01 .primeira_coluna .infoUsuario .info .dados{
+    display: flex;
+     height: 20%;
+     width: 400px;
+     flex-direction: column;
+     margin-top: 20px;
+     margin-left: 7px;
+}
+.conteudo01 .primeira_coluna .infoUsuario .info .dados .nomeUsuario{
+   font-size: 20px;
+}
+.img01{
+    margin-top: 20px;
+    height: 200px;
+    margin-left: 15px;
+}
+.img02{
+    height: 15px;
 }
 
-.segunda_coluna{
-    height: 350px;
-    width: 40%;
-    background-color: blue;
+/* CAIXA B */
+.conteudo01 .primeira_coluna .graficoLinha{
+    /* B */
+    display: flex;
+    background-color: pink;
+    height: 58%;
+    width: 420px;
+    flex-direction: column;
+}
+
+.conteudo01 .primeira_coluna .graficoLinha .tituloProgresso{
+    /* B */
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.conteudo01 .primeira_coluna .graficoLinha .datalist_Grafico{
+    /* B */
+    display: flex;
+    /* height: 58%;
+    width: 420px; */
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.conteudo01 .primeira_coluna .graficoLinha .datalist_Grafico button{
+    border-style: none;
+    border-radius: 20px;
+    background-color: #65abf0;
+    margin-top: 15px;
+    font-size: 18px;
+    color: black;
+}
+
+.conteudo01 .primeira_coluna .graficoLinha .datalist_Grafico .grafico01{
+    /* B */
+    display: flex;
+    height: 58%;
+    width: 420px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+/* Fim da Primeira coluna */
+
+/* _______________________________________________________________________________________________ */
+
+/* Inicio da Segunda Coluna */
+.conteudo01 .segunda_coluna{
+    display: flex;
+    background-color: rgb(67, 196, 32);
+    height: 100%;
+    width: 470px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around;
+}
+
+.conteudo01 .segunda_coluna .aviso{
+    /* C */
+    display: flex;
+    background-color: #54BEC7;
+    height: 20%;
+    width: 350px;
+}
+.conteudo01 .segunda_coluna .aviso .card{
+    /* C */
+    display: flex;
+    border-width: 4px;
+    border-style: solid;
+    border-color: red;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.conteudo01 .segunda_coluna .aviso .card b{
+    /* C */
+    display: flex;
+    font-size: 25px;
+}
+
+.conteudo01 .segunda_coluna .aviso .card .text{
+    display: flex;
+    font-size: 20px;
+    margin-left: 5px;
+    text-align: center;
+}
+
+
+.conteudo01 .segunda_coluna .graficoPizza{
+     /* D */
+     display: flex;
+    background-color: rgb(191, 32, 196);
+    height: 60%;
+    width: 470px;
+}
+/* Fim da Segunda Coluna */
+
+/* _______________________________________________________________________________________________ */
+
+/* Inicio da Terceira Coluna */
+
+.conteudo01 .terceira_coluna{
+    display: flex;
+    background-color: rgb(64, 169, 255);
+    height: 100%;
+    width: 350px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.conteudo01 .terceira_coluna .conquistas{
+    display: flex;
+    background-color: rgb(155, 37, 92);
+    height: 32%;
+    width: 350px;
+}
+.conteudo01 .terceira_coluna .dica{
+    display: flex;
+    background-color: rgb(255, 105, 64);
+    height: 32%;
+    width: 350px;
+}
+.conteudo01 .terceira_coluna .tempoR{
+    display: flex;
+    background-color: rgb(111, 89, 120);
+    height: 32%;
+    width: 350px;
+}
+
+/* __________________________________________________________________________________________________ */
+/* Gráfico de linhas 1 */
+
+.chart-container {
+    margin: auto;
+    height: 800px;
+    width: 420px;
+}
+
+.label-captura {
+    height: 80px;
+}
+
+/* __________________________________________________________________________________________________ */
+
+/* Segunda Parte */
+.titulo02{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+.conteudo02{
+    display: flex;
+    height: 700px;
+    width: 100%;
+    justify-content: center;
+}
+
+.conteudo02 .primeira_coluna02{
+    background-color: red;
+    height: 100%;
+    width: 50%;
+}
+
+.conteudo02 .segunda_coluna02{
+    background-color: rgb(67, 196, 32);
+    height: 100%;
+    width: 50%;
 }
