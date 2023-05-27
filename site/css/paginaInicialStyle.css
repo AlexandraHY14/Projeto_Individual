@@ -76,7 +76,7 @@ li {
 
 .containerDois {
     display: flex;
-    width: 95%;
+    /* width: 95%; */
     height: 640px;
     align-items: center;
     margin-left: 5%;
@@ -91,10 +91,11 @@ li {
 */
 
 .containerDois img {
-    border-radius: 25px;
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
     height: 520px;
     width: 1100px;
-    margin-left: 200px;
+    margin-left: 20%;
 }
 
 .card_bemVindo {
@@ -103,7 +104,7 @@ li {
     width: 300px;
     height: 300px;
     border-radius: 25px;
-    margin-left: 40px;
+    margin-left: 5%;
     padding: 30px;
 }
 
@@ -289,36 +290,39 @@ b {
 
 /* ___________________________________________________________________________________________________ */
 
-/* Ferramentas */
+/* ferramentas */
 
-.Ferramentas{
+.ferramentas{
     height: 700px;
 }
-.Ferramentas .container {
+.ferramentas .container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
-.Ferramentas .container .primeiraFileira {
+.ferramentas .container .primeiraFileira {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     margin-top: 20px;
 }
-.Ferramentas .container .primeiraFileira img{
-   margin-left: 10px;
-   margin-right: 10px;
+.ferramentas .container .primeiraFileira img{
+    width: 600px;
+   margin-left: 2%;
+   margin-right: 2%;
 }
-
+.ferramentas .container .primeiraFileira img:hover{
+    transform: translateY(-6px)
+}
 /* .box{
     display: flex;
     flex-direction: column;
     height: 200px;
 } */
 
-.Ferramentas .container .imagem03 {
+.ferramentas .container .imagem03 {
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -326,7 +330,7 @@ b {
     height: 240px;
 }
 
-.Ferramentas .container button {
+.ferramentas .container button {
     margin-top: 20px;
     width: 150px;
     height: 60px;
@@ -334,17 +338,17 @@ b {
     border-radius: 30px;
     background-color: #34538D;
 }
-.Ferramentas .container button a{
+.ferramentas .container button a{
     font-size: 20px;
     color: white;
 }
 
-.Ferramentas .container span {
+.ferramentas .container span {
     margin-top: 20px;
    font-size: 35px;
 }
 
-/* Fim Ferramentas */
+/* Fim ferramentas */
 
 /* ___________________________________________________________________ */
 
