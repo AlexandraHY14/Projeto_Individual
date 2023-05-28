@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="css/paginaUsuario.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <!-- Inicio do Cabeçalho -->
+    <div class="header">
+        <div class="container">
+            <span class="inicio">
+                <img src="Img/tubarãozinho.png" alt="logo com um tubarãozinho lendo">
+                <span class="titulo">Dynamic Readers</span></span>
+            <ul>
+                <li><a href="resumo.html">Resumo</a></li>
+                <li>||</li>
+                <li><a href="paginaInicial.html">Sair</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Final do Cabeçalho -->
+
+    <!-- Primeiro Pedaço da Página -->
+    <div class="conteudo01">
+
+        <!-- Primeira coluna -->
+        <div class="primeira_coluna">
+            <div class="infoUsuario">
+
+                <div class="info">
+                    <div class="img01">
+                        <img src="img/foto_usuario.png" alt="">
+                    </div>
+                    <div class="dados">
+                        <span class="nomeUsuario">Nome Do usuário</span>
+                        <span>Mensagem <img class="img02" src="img/editar.png" alt=""></span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="graficoLinha">
+
+                <div class="tituloProgresso">Progresso</div>
+                <!-- Organizar o datalist com gráfico -->
+                <div class="datalist_Grafico">
+
+                    <label for="messes">Mês:</label>
+                    <input list="mes" id="messes" name="messes">
+
+                    <datalist id="mes">
+                        <option value="Janeiro">
+                        <option value="Fevereiro">
+                        <option value="Março">
+                        <option value="Abril">
+                        <option value="Maio">
+                    </datalist>
+                    <button onclick="consultar()">conssultar</button>
+
+                    <div class="grafico01">
+                        <div id="tituloGrafico01">Gráfico do mês de </div>
+                        <div class="chart-container">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                        <!-- <div id="graficos">
+                <div id="grafico1" class="display-block">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario1">123</span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas1"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura1" style="color: white"></p>
+                    </div>
+                </div> -->
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Segunda coluna -->
+        <div class="segunda_coluna">
+            <div class="aviso">
+                <div class="card">
+                    <b>Você pode melhorar!</b>
+                    <span class="text">Você está menos habituado a ler nas segunda, se esforce para passar de 8 páginas todas
+                        as segundas do mês. Você consegue!</span>
+                </div>
+
+
+            </div>
+            <div class="graficoPizza">
+                <div class="grafico02">
+                    <div id="tituloGrafico02">Gráfico dos dias da semana</div>
+                    <div class="chart-container" id="semana">
+                        <canvas id="graficoSemana"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Teceira coluna -->
+        <div class="terceira_coluna">
+            <div class="conquistas">E</div>
+            <div class="dica">F</div>
+            <div class="tempoR">G</div>
+
+        </div>
+        <!-- Fim do Primeiro Pedaço -->
+    </div>
+
+    <!-- Inicio da Segunda parte da Pagina -->
+    <span class="titulo02">REGISTRO</span>
+
+    <!-- Primeira coluna02 -->
+    <div class="conteudo02">
+        <div class="primeira_coluna02">
+            <div class="progressoDiario">A
+
+            </div>
+            <div class="registroDiario">B
+
+            </div>
+        </div>
+        <!-- Segunda coluna -->
+        <div class="segunda_coluna02">
+            <div class="livrosConcluidos">C</div>
+            <div class="totalPaginas">D</div>
+        </div>
+
+    </div>
+
+</body>
+<script>
+
+    function consultar(params) {
+        
+        const ctx = document.getElementById('myChart');
+        
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+        datasets: [
+        {
+            label: 'Umidade',
+            backgroundColor: 'rgb(50,153,204)',
+            borderColor: 'rgb(50,153,204)',
+            data: [80, 82, 80, 85, 80, 83],
+            borderWidth: 2
+        }
+        ]
+    },
+
+    options: {
+        scales: {
+            y: {
+                min: 20,
+                max: 90,
+                ticks: {
+                    stepSize: 10
+                }
+            }
+        }
+    }
+});
+}
+
+// Gráfico Pie ou pizza
+
+const modelos = [
+         "Segundas",
+         "Terças",
+         "Quartas",
+         "Quintas",
+         "Sextas",
+         "Fins de Semana",
+    ]
+    const dadosSemana = {
+        labels:modelos,
+        datasets: [{
+                data: [6,5,4,3,2,1],
+                backgroundColor: ['red','#65abf0', 'green', 'blue', 'purple','grey']
+            }
+        ]
+    }
+    const configGraficoSemana = {
+        type: "pie",
+        data: dadosSemana,
+        options: {
+            plugins: {
+                legend: {
+                    position: "bottom"
+                }
+            }
+        }
+    }
+    const graficoSemana = new Chart(
+        document.getElementById("graficoSemana"),
+        configGraficoSemana
+    );
+</script>
+
+</html>
