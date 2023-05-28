@@ -116,7 +116,7 @@
 
             </div>
 
-            <div class="tituloGrafico02">Gráfico paginas por dias da semana
+            <div class="tituloGrafico02">Gráfico de páginas por dia da semana
             </div>
             <details>
                 <summary>?</summary>
@@ -182,8 +182,29 @@
         </div>
         <!-- Segunda coluna -->
         <div class="segunda_coluna02">
-            <div class="livrosConcluidos">C</div>
-            <div class="totalPaginas">D</div>
+            <div class="livrosConcluidos">
+
+                <div class="tituloC">Lista de livros/folhetos concluídos</div>
+                <!-- <nav>
+                    <a href="#page-1">1</a>
+                    <a href="#page-2">2</a>
+                    <a href="#page-3">3</a>
+                  </nav> -->
+                  <div class="concluidos">
+                <scroll-container>
+                    <scroll-page id="page-1">1</scroll-page>
+                    <scroll-page id="page-2">2</scroll-page>
+                    <scroll-page id="page-3">3</scroll-page>
+                
+                  </scroll-container>
+
+                </div>
+            </div>
+            <div class="totalPaginas">
+                <div class="qtdPag">
+                    Total de páginas:<div id="totalP">500</div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -201,7 +222,7 @@
                 labels: ['Segundas', 'Terças', 'Quartas', 'Quintas', 'Sextas', 'FS'],
                 datasets: [
                     {
-                        label: 'Umidade',
+                        label: 'Total de páginas',
                         backgroundColor: 'rgb(50,153,204)',
                         borderColor: 'rgb(50,153,204)',
                         data: [80, 82, 80, 85, 80, 83],
