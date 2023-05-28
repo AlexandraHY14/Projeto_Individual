@@ -100,14 +100,15 @@ li {
 
 /* CAIXA A */
 .conteudo01 .primeira_coluna .infoUsuario .info {
-    /* background-color: aliceblue; */
+    background-color: rgb(197, 210, 221);
     display: flex;
     height: 200px;
     width: 90%;
-    margin-top: 10px;
-    /* border-width: 2px;
+    margin-top: 20px;
+    /* border-width: 0.4px;
     border-style: solid;
     border-color: #000000; */
+    border-radius: 10px;
 }
 
 .conteudo01 .primeira_coluna .infoUsuario .info .dados {
@@ -425,9 +426,122 @@ li {
 }
 
 .conteudo02 .primeira_coluna02 {
-    background-color: red;
+    display: flex;
+    /* background-color: pink; */
     height: 100%;
     width: 50%;
+    justify-content: space-around;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+
+.conteudo02 .primeira_coluna02 .progressoDiario {
+    display: flex;
+    height: 440px;
+    width: 90%;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+}
+.conteudo02 .primeira_coluna02 .progressoDiario button{
+    border-radius: 20px;
+    height: 30px;
+    width: 120px;
+    border-style: none;
+    margin-top: 13px;   
+    background-color: #34538D;
+    font-size: 20px;
+    color: white;
+}
+.conteudo02 .primeira_coluna02 .progressoDiario .tituloPD{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.conteudo02 .primeira_coluna02 .progressoDiario .formRegistrar{
+    background-color: #c5fafb;
+    padding: 10px;
+    display: flex;
+    height: 200px;
+    width: 350px;
+    flex-direction: column;
+    /* width: 100%; */
+    justify-content: center;
+    justify-content: space-evenly;
+    font-size: 18px;
+    border-radius: 10px;
+}
+.conteudo02 .primeira_coluna02 .progressoDiario .formRegistrar .tituloTexto input{
+    height: 15px;
+    width: 258px;
+
+}
+.conteudo02 .primeira_coluna02 .progressoDiario .formRegistrar .nomeAutor input{
+    height: 15px;
+    width: 189px;
+}
+
+.conteudo02 .primeira_coluna02 .progressoDiario .formRegistrar .paginas input{
+    height: 15px;
+    width: 65px;
+}
+.conteudo02 .primeira_coluna02 .progressoDiario .formRegistrar .data input{
+    height: 15px;
+    width: 80px;
+}
+
+.conteudo02 .primeira_coluna02 .registroDiario{
+    display: flex;
+    height: 440px;
+    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 40px;
+}
+
+.conteudo02 .primeira_coluna02 .registroDiario button{
+    border-radius: 20px;
+    height: 50px;
+    width: 300px;
+    border-style: none;
+    /* margin-top: 10px; */
+    background-color: #34538D;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 10px;
+}
+.concluidosI scroll-container {
+    display: flex;
+    flex-direction: column;
+    /* ou display: block */
+    width: 70%;
+    height: 270px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    /* border-width: 0.5px;
+    border-style: solid;
+    border-color: #000000; */
+}
+
+.concluidosI scroll-page {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 100%;
+    font-size: 18px;
+}
+
+.conteudo02 .primeira_coluna02 .concluidosI {
+    display: flex;
+    width: 100%;
+    /* margin: auto; */
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 /* _____________________Segunda coluna da 2ª PARTE _____________ */
@@ -439,7 +553,8 @@ li {
     justify-content: space-around;
     flex-direction: column;
 }
-.conteudo02 .segunda_coluna02 .livrosConcluidos .tituloC{
+
+.conteudo02 .segunda_coluna02 .livrosConcluidos .tituloC {
     display: flex;
     height: 45px;
     align-items: center;
@@ -447,7 +562,8 @@ li {
     font-size: 30px;
     margin-bottom: 30px;
 }
-.conteudo02 .segunda_coluna02 .concluidos{
+
+.conteudo02 .segunda_coluna02 .concluidos {
     display: flex;
     width: 100%;
     /* margin: auto; */
@@ -456,7 +572,7 @@ li {
     /* align-items: center; */
 }
 
-.conteudo02 .segunda_coluna02 .totalPaginas{
+.conteudo02 .segunda_coluna02 .totalPaginas {
     display: flex;
     justify-content: flex-end;
     /* width: 150px; */
@@ -464,7 +580,7 @@ li {
     margin-right: 30px;
 }
 
-.conteudo02 .segunda_coluna02 .totalPaginas .qtdPag{
+.conteudo02 .segunda_coluna02 .totalPaginas .qtdPag {
     display: flex;
     justify-content: flex-end;
     flex-direction: row;
@@ -486,7 +602,7 @@ li {
     border: 1px solid black;
   } */
 
-scroll-container {
+.concluidos scroll-container {
     display: flex;
     flex-direction: column;
     /* ou display: block */
@@ -499,7 +615,7 @@ scroll-container {
     border-color: #000000; */
 }
 
-scroll-page {
+.concluidos scroll-page {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;

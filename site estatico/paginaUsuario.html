@@ -58,7 +58,7 @@
                 <!-- Organizar o datalist com gráfico -->
                 <div class="datalist_Grafico">
 
-                    <div class ="camposDatalist">
+                    <div class="camposDatalist">
                         <label for="messes">Mês:</label>
                         <input list="mes" id="messes" name="messes">
 
@@ -139,13 +139,15 @@
 
             <div class="conquistas">
                 <div class="tituloM">Conquistas</div>
-                <div class="medalhas"><img src="img/star-medal.webp" alt=""><img src="img/star-medal.webp" alt=""><img src="img/star-medal.webp" alt="">
+                <div class="medalhas"><img src="img/star-medal.webp" alt=""><img src="img/star-medal.webp" alt=""><img
+                        src="img/star-medal.webp" alt="">
                 </div>
             </div>
 
             <div class="dica">
                 <div class="tituloD">Dica</div>
-                <div class="textoD">Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura, vá aumentando a velocidade que passa pelas linhas.
+                <div class="textoD">Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura, vá
+                    aumentando a velocidade que passa pelas linhas.
                 </div>
             </div>
 
@@ -173,13 +175,77 @@
     <!-- Primeira coluna02 -->
     <div class="conteudo02">
         <div class="primeira_coluna02">
-            <div class="progressoDiario">A
+            <div class="progressoDiario">
+                <div class="tituloPD">Insira aqui o seu progresso diário</div>
+
+                <div class="formRegistrar">
+
+                    <div class="tituloTexto">Título: <input id="ipt_titulo"></div>
+
+                    <div class="nomeAutor">Nome do autor:<input id="ipt_autor"></div>
+
+                    <div class="paginas">Total de páginas:<input id="ipt_totalPag"></div>
+
+                    <div class="paginas">Qtd páginas lidas hoje:<input id="ipt_lidas"></div>
+
+                    <div class="data">Data: <input id="ipt_dia" maxlength="2">
+
+                        <input list="mesR" id="messesR" name="messesR">
+                         
+                        <datalist id="mesR">
+                            <option value="Janeiro">
+                            <option value="Fevereiro">
+                            <option value="Março">
+                            <option value="Abril">
+                            <option value="Maio">
+                            <option value="Junho">
+                            <option value="Julho">
+                            <option value="Agosto">
+                            <option value="Setembro">
+                            <option value="Outubro">
+                            <option value="Novembro">
+                            <option value="Dezembro">
+                        </datalist>
+
+                        <input id="ipt_ano" maxlength="4">
+                        
+                    </div>
+
+                    <div class="diaSemana">Dia da semana
+                        <input list="diaR" id="diasR" name="diasR">
+
+                        <datalist id="diaR">
+                            <option value="Segunda">
+                            <option value="Terça">
+                            <option value="Quarta">
+                            <option value="Quinta">
+                            <option value="Sexta">
+                            <option value="Fim de Semana">
+                        </datalist>
+                    </div>
+
+                </div>
+                <button class="btnAdicionar">Adicionar +</button>
 
             </div>
-            <div class="registroDiario">B
 
+
+            <div class="registroDiario">
+
+                <div class="concluidosI">
+                    <scroll-container>
+                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data: 06/Fevereiro/2023 - Fim de Semana - 10 páginas (faltam 180 páginas)</scroll-page>
+                        <scroll-page id="page-2"> * Titulo: Nome do livro - Data: 07/Fevereiro/2023 - Segunda - 10 páginas (faltam 180 páginas)</scroll-page>
+                        <scroll-page id="page-3"> * Titulo: Nome do livro - Data: 08/Fevereiro/2023 - Terça - 10 páginas (faltam 180 páginas)</scroll-page>
+
+                    </scroll-container>
+
+                </div>
+                <button class="btnConcluido">Adicionar em Concluídos</button>
             </div>
         </div>
+
+
         <!-- Segunda coluna -->
         <div class="segunda_coluna02">
             <div class="livrosConcluidos">
@@ -190,13 +256,13 @@
                     <a href="#page-2">2</a>
                     <a href="#page-3">3</a>
                   </nav> -->
-                  <div class="concluidos">
-                <scroll-container>
-                    <scroll-page id="page-1">1</scroll-page>
-                    <scroll-page id="page-2">2</scroll-page>
-                    <scroll-page id="page-3">3</scroll-page>
-                
-                  </scroll-container>
+                <div class="concluidos">
+                    <scroll-container>
+                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final: 08/Janeiro/2023 - total de páginas: 240.</scroll-page>
+                        <scroll-page id="page-2">2</scroll-page>
+                        <scroll-page id="page-3">3</scroll-page>
+
+                    </scroll-container>
 
                 </div>
             </div>
