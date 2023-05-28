@@ -48,21 +48,35 @@
             </div>
             <div class="graficoLinha">
 
-                <div class="tituloProgresso">Progresso</div>
+                <div class="tituloProgresso">Progresso
+                    <details>
+                        <summary>?</summary>
+                        Você poderar visualizar aqui sua evolução mensal de acordo com os registros que fizer.
+                        <br>obs: FS = Finais de Semana
+                    </details>
+                </div>
                 <!-- Organizar o datalist com gráfico -->
                 <div class="datalist_Grafico">
 
-                    <label for="messes">Mês:</label>
-                    <input list="mes" id="messes" name="messes">
+                    <div class ="camposDatalist">
+                        <label for="messes">Mês:</label>
+                        <input list="mes" id="messes" name="messes">
 
-                    <datalist id="mes">
-                        <option value="Janeiro">
-                        <option value="Fevereiro">
-                        <option value="Março">
-                        <option value="Abril">
-                        <option value="Maio">
-                    </datalist>
-                    <button onclick="consultar()">conssultar</button>
+                        <datalist id="mes">
+                            <option value="Janeiro">
+                            <option value="Fevereiro">
+                            <option value="Março">
+                            <option value="Abril">
+                            <option value="Maio">
+                        </datalist>
+
+                        <label for="anos">Ano:</label>
+                        <input list="ano" id="anos" name="anos">
+                        <datalist id="ano">
+                            <option value="2023">
+                        </datalist>
+                        <button onclick="consultar()">conssultar</button>
+                    </div>
 
                     <div class="grafico01">
                         <div id="tituloGrafico01">Gráfico do mês de </div>
@@ -94,15 +108,23 @@
             <div class="aviso">
                 <div class="card">
                     <b>Você pode melhorar!</b>
-                    <span class="text">Você está menos habituado a ler nas segunda, se esforce para passar de 8 páginas todas
+                    <span class="text">Você está menos habituado a ler nas segunda, se esforce para passar de 8 páginas
+                        todas
                         as segundas do mês. Você consegue!</span>
                 </div>
 
 
             </div>
+
+            <div class="tituloGrafico02">Gráfico paginas por dias da semana
+            </div>
+            <details>
+                <summary>?</summary>
+                Aqui verá a media de páginas que lê em cada dia da semana.
+                <br>
+            </details>
             <div class="graficoPizza">
                 <div class="grafico02">
-                    <div id="tituloGrafico02">Gráfico dos dias da semana</div>
                     <div class="chart-container" id="semana">
                         <canvas id="graficoSemana"></canvas>
                     </div>
@@ -121,7 +143,7 @@
     </div>
 
     <!-- Inicio da Segunda parte da Pagina -->
-    <span class="titulo02">REGISTRO</span>
+    <span class="titulo02">Registros</span>
 
     <!-- Primeira coluna02 -->
     <div class="conteudo02">
@@ -145,54 +167,54 @@
 <script>
 
     function consultar(params) {
-        
-        const ctx = document.getElementById('myChart');
-        
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        datasets: [
-        {
-            label: 'Umidade',
-            backgroundColor: 'rgb(50,153,204)',
-            borderColor: 'rgb(50,153,204)',
-            data: [80, 82, 80, 85, 80, 83],
-            borderWidth: 2
-        }
-        ]
-    },
 
-    options: {
-        scales: {
-            y: {
-                min: 20,
-                max: 90,
-                ticks: {
-                    stepSize: 10
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Segundas', 'Terças', 'Quartas', 'Quintas', 'Sextas', 'FS'],
+                datasets: [
+                    {
+                        label: 'Umidade',
+                        backgroundColor: 'rgb(50,153,204)',
+                        borderColor: 'rgb(50,153,204)',
+                        data: [80, 82, 80, 85, 80, 83],
+                        borderWidth: 2
+                    }
+                ]
+            },
+
+            options: {
+                scales: {
+                    y: {
+                        min: 20,
+                        max: 90,
+                        ticks: {
+                            stepSize: 10
+                        }
+                    }
                 }
             }
-        }
+        });
     }
-});
-}
 
-// Gráfico Pie ou pizza
+    // Gráfico Pie ou pizza
 
-const modelos = [
-         "Segundas",
-         "Terças",
-         "Quartas",
-         "Quintas",
-         "Sextas",
-         "Fins de Semana",
+    const modelos = [
+        "Segundas",
+        "Terças",
+        "Quartas",
+        "Quintas",
+        "Sextas",
+        "Fins de Semana",
     ]
     const dadosSemana = {
-        labels:modelos,
+        labels: modelos,
         datasets: [{
-                data: [6,5,4,3,2,1],
-                backgroundColor: ['red','#65abf0', 'green', 'blue', 'purple','grey']
-            }
+            data: [6, 5, 4, 3, 2, 1],
+            backgroundColor: ['#6CE5E8', '#41B8D5', '#2D8BBA', '#2F5F98', '#31356E', '#A66C98']
+        }
         ]
     }
     const configGraficoSemana = {

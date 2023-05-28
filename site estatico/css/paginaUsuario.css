@@ -4,10 +4,13 @@
     font-family: 'Glacial Indifference', sans-serif;
     /* display: flex;
     flex-direction: column; */
+    
 }
 
 body {
     margin: 0;
+    background-color: aliceblue;
+
 }
 
 .container {
@@ -69,76 +72,102 @@ li {
 /* ---------------------------------------------------------------------------------------------------------------------------------- */
 
 /* Primeira Parte */
-.conteudo01{
+.conteudo01 {
     display: flex;
     height: 680px;
     width: 100%;
     justify-content: center;
 }
 
-.conteudo01 .primeira_coluna{
+.conteudo01 .primeira_coluna {
     display: flex;
-    background-color: red;
+    /* background-color: red; */
     height: 100%;
-    width: 460px;
+    width: 37%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.conteudo01 .primeira_coluna .infoUsuario{
+
+.conteudo01 .primeira_coluna .infoUsuario {
     /* A */
     display: flex;
-    background-color: yellow;
-    height: 36%;
-    width: 420px;
+    /* background-color: yellow; */
+    height: 40%;
+    width: 90%;
     justify-content: center;
 }
+
 /* CAIXA A */
-.conteudo01 .primeira_coluna .infoUsuario .info{
-    background-color: aliceblue;
+.conteudo01 .primeira_coluna .infoUsuario .info {
+    /* background-color: aliceblue; */
     display: flex;
-     height:200px;
-     width: 400px;
-     margin-top: 20px;
+    height: 200px;
+    width: 90%;
+    margin-top: 10px;
+    /* border-width: 2px;
+    border-style: solid;
+    border-color: #000000; */
 }
-.conteudo01 .primeira_coluna .infoUsuario .info .dados{
+
+.conteudo01 .primeira_coluna .infoUsuario .info .dados {
     display: flex;
-     height: 20%;
-     width: 400px;
-     flex-direction: column;
-     margin-top: 20px;
-     margin-left: 7px;
+    height: 20%;
+    width: 400px;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 7px;
 }
-.conteudo01 .primeira_coluna .infoUsuario .info .dados .nomeUsuario{
-   font-size: 20px;
+
+.conteudo01 .primeira_coluna .infoUsuario .info .dados .nomeUsuario {
+    font-size: 20px;
 }
-.img01{
+
+.img01 {
     margin-top: 20px;
     height: 200px;
     margin-left: 15px;
 }
-.img02{
+.conteudo01 .primeira_coluna .infoUsuario .info .img01 img{
+    border-radius: 15px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+}
+
+.img02 {
     height: 15px;
 }
 
 /* CAIXA B */
-.conteudo01 .primeira_coluna .graficoLinha{
+.conteudo01 .primeira_coluna .graficoLinha {
     /* B */
     display: flex;
-    background-color: pink;
+    background-color: rgb(194, 227, 255);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+    border-radius: 15px;
     height: 58%;
-    width: 420px;
+    width: 90%;
     flex-direction: column;
 }
 
-.conteudo01 .primeira_coluna .graficoLinha .tituloProgresso{
+.conteudo01 .primeira_coluna .graficoLinha .tituloProgresso {
     /* B */
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     font-size: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
-.conteudo01 .primeira_coluna .graficoLinha .datalist_Grafico{
+.conteudo01 .primeira_coluna .graficoLinha .tituloProgresso details {
+    /* B */
+    font-size: 13px;
+}
+
+.conteudo01 .primeira_coluna .graficoLinha .datalist_Grafico {
     /* B */
     display: flex;
     /* height: 58%;
@@ -148,7 +177,7 @@ li {
     margin-top: 15px;
 }
 
-.conteudo01 .primeira_coluna .graficoLinha .datalist_Grafico button{
+.conteudo01 .primeira_coluna .graficoLinha .datalist_Grafico button {
     border-style: none;
     border-radius: 20px;
     background-color: #65abf0;
@@ -157,7 +186,7 @@ li {
     color: black;
 }
 
-.conteudo01 .primeira_coluna .graficoLinha .datalist_Grafico .grafico01{
+.conteudo01 .primeira_coluna .graficoLinha .datalist_Grafico .grafico01 {
     /* B */
     display: flex;
     height: 58%;
@@ -166,30 +195,33 @@ li {
     align-items: center;
     margin-top: 40px;
 }
+
 /* Fim da Primeira coluna */
 
 /* _______________________________________________________________________________________________ */
 
 /* Inicio da Segunda Coluna */
-.conteudo01 .segunda_coluna{
+.conteudo01 .segunda_coluna {
     display: flex;
-    background-color: rgb(67, 196, 32);
+    /* background-color: rgb(67, 196, 32); */
     height: 100%;
-    width: 470px;
+    width: 38%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     justify-content: space-around;
 }
 
-.conteudo01 .segunda_coluna .aviso{
+.conteudo01 .segunda_coluna .aviso {
     /* C */
     display: flex;
-    background-color: #54BEC7;
+    background-color: #58cbd5;
     height: 30%;
-    width: 350px;
+    width: 80%;
+    margin-top: 10px;
 }
-.conteudo01 .segunda_coluna .aviso .card{
+
+.conteudo01 .segunda_coluna .aviso .card {
     /* C */
     display: flex;
     border-width: 4px;
@@ -199,13 +231,14 @@ li {
     justify-content: center;
     align-items: center;
 }
-.conteudo01 .segunda_coluna .aviso .card b{
+
+.conteudo01 .segunda_coluna .aviso .card b {
     /* C */
     display: flex;
     font-size: 25px;
 }
 
-.conteudo01 .segunda_coluna .aviso .card .text{
+.conteudo01 .segunda_coluna .aviso .card .text {
     display: flex;
     font-size: 20px;
     margin-left: 5px;
@@ -213,15 +246,27 @@ li {
 }
 
 
-.conteudo01 .segunda_coluna .graficoPizza .grafico02{
-     /* D */
-     display: flex;
-     background-color: rgb(191, 32, 196);
-     height: 400px;
-     width: 400px;
-     align-items: center;
-     flex-direction: column;
-     font-size: 20px;
+.conteudo01 .segunda_coluna .graficoPizza .grafico02 {
+    /* D */
+    display: flex;
+    background-color: rgb(215, 255, 247);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+    border-radius: 15px;
+    height: 360px;
+    width: 400px;
+    align-items: center;
+}
+
+.conteudo01 .segunda_coluna .tituloGrafico02 {
+    /* display: flex; */
+    font-size: 20px;
+}
+
+.conteudo01 .segunda_coluna details {
+    /* D */
+    font-size: 13px;
 }
 
 
@@ -231,32 +276,36 @@ li {
 
 /* Inicio da Terceira Coluna */
 
-.conteudo01 .terceira_coluna{
+.conteudo01 .terceira_coluna {
     display: flex;
     background-color: rgb(64, 169, 255);
     height: 100%;
-    width: 350px;
+    width: 30%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    justify-content: space-evenly;
 }
-.conteudo01 .terceira_coluna .conquistas{
+
+.conteudo01 .terceira_coluna .conquistas {
     display: flex;
     background-color: rgb(155, 37, 92);
-    height: 32%;
-    width: 350px;
+    height: 30%;
+    width: 90%;
 }
-.conteudo01 .terceira_coluna .dica{
+
+.conteudo01 .terceira_coluna .dica {
     display: flex;
     background-color: rgb(255, 105, 64);
-    height: 32%;
-    width: 350px;
+    height: 30%;
+    width: 90%;
 }
-.conteudo01 .terceira_coluna .tempoR{
+
+.conteudo01 .terceira_coluna .tempoR {
     display: flex;
     background-color: rgb(111, 89, 120);
-    height: 32%;
-    width: 350px;
+    height: 30%;
+    width: 90%;
 }
 
 /* __________________________________________________________________________________________________ */
@@ -277,25 +326,30 @@ li {
 /* __________________________________________________________________________________________________ */
 
 /* Segunda Parte */
-.titulo02{
+.titulo02 {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
     font-size: 30px;
+    height: 100px;
+    width: 95%;
+    margin: auto;
 }
-.conteudo02{
+
+.conteudo02 {
     display: flex;
     height: 700px;
     width: 100%;
     justify-content: center;
 }
 
-.conteudo02 .primeira_coluna02{
+.conteudo02 .primeira_coluna02 {
     background-color: red;
     height: 100%;
     width: 50%;
 }
 
-.conteudo02 .segunda_coluna02{
+.conteudo02 .segunda_coluna02 {
     background-color: rgb(67, 196, 32);
     height: 100%;
     width: 50%;
