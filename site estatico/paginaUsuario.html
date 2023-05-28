@@ -65,7 +65,7 @@
                     <button onclick="consultar()">conssultar</button>
 
                     <div class="grafico01">
-                        <div id="tituloGrafico">Gráfico do mês de </div>
+                        <div id="tituloGrafico01">Gráfico do mês de </div>
                         <div class="chart-container">
                             <canvas id="myChart"></canvas>
                         </div>
@@ -94,17 +94,17 @@
             <div class="aviso">
                 <div class="card">
                     <b>Você pode melhorar!</b>
-                    <span class="text">Você parece ler menos às segunda feira, se esforce para passar de 8 páginas todas
-                        as segundas do mês</span>
+                    <span class="text">Você está menos habituado a ler nas segunda, se esforce para passar de 8 páginas todas
+                        as segundas do mês. Você consegue!</span>
                 </div>
 
 
             </div>
             <div class="graficoPizza">
                 <div class="grafico02">
-                    <div id="tituloGrafico">Gráfico da Semana</div>
-                    <div class="chart-container">
-                        <canvas id="myChart02"></canvas>
+                    <div id="tituloGrafico02">Gráfico dos dias da semana</div>
+                    <div class="chart-container" id="semana">
+                        <canvas id="graficoSemana"></canvas>
                     </div>
                 </div>
 
@@ -143,94 +143,73 @@
 
 </body>
 <script>
-    const ctx = document.getElementById('myChart01');
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: [
-                'Red',
-                'Blue',
-                'Yellow'
-            ],
-            datasets: [{
-                label: 'My First Dataset',
-                data: [300, 50, 100],
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)'
-                ],
-                hoverOffset: 4
-            }]
-        }
-    });
 
-
-    function consultar() {
-        var mes = messes.value;
-
+    function consultar(params) {
+        
         const ctx = document.getElementById('myChart');
-        tituloGrafico.innerHTML = `Gráfico do mês de ${mes}`;
-
-        if (mes == 'Janeiro') {
-
-            const config = {
-                type: 'pie',
-                data: data,
-            };
-
-            new Chart(ctx, {
-                data: {
-                    labels: ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'final de semana'],
-                    datasets: [
-                        {
-                            label: `Páginas`,
-                            backgroundColor: 'rgb(50,153,204)',
-                            borderColor: 'rgb(50,153,204)',
-                            data: [80, 82, 80, 85, 80, 83],
-                            borderWidth: 2
-                        }
-                    ]
-                },
-
-                options: {
-                    scales: {
-                        y: {
-                            min: 20,
-                            max: 90,
-                            ticks: {
-                                stepSize: 10
-                            }
-                        }
-                    }
-                }
-            });
+        
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+        datasets: [
+        {
+            label: 'Umidade',
+            backgroundColor: 'rgb(50,153,204)',
+            borderColor: 'rgb(50,153,204)',
+            data: [80, 82, 80, 85, 80, 83],
+            borderWidth: 2
         }
-        // aparece de acordo com o mês
+        ]
+    },
 
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
-
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Páginas',
-                data: [],
-                fill: false,
-                borderColor: 'red',
-                tension: 0.1
-            },
-            ]
-        };
-
-
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas${mes}`),
-            config
-        );
-
+    options: {
+        scales: {
+            y: {
+                min: 20,
+                max: 90,
+                ticks: {
+                    stepSize: 10
+                }
+            }
+        }
     }
+});
+}
+
+// Gráfico Pie ou pizza
+
+const modelos = [
+         "Segundas",
+         "Terças",
+         "Quartas",
+         "Quintas",
+         "Sextas",
+         "Fins de Semana",
+    ]
+    const dadosSemana = {
+        labels:modelos,
+        datasets: [{
+                data: [6,5,4,3,2,1],
+                backgroundColor: ['red','#65abf0', 'green', 'blue', 'purple','grey']
+            }
+        ]
+    }
+    const configGraficoSemana = {
+        type: "pie",
+        data: dadosSemana,
+        options: {
+            plugins: {
+                legend: {
+                    position: "bottom"
+                }
+            }
+        }
+    }
+    const graficoSemana = new Chart(
+        document.getElementById("graficoSemana"),
+        configGraficoSemana
+    );
 </script>
 
 </html>

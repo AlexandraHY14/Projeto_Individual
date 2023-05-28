@@ -186,7 +186,7 @@ li {
     /* C */
     display: flex;
     background-color: #54BEC7;
-    height: 20%;
+    height: 30%;
     width: 350px;
 }
 .conteudo01 .segunda_coluna .aviso .card{
@@ -213,13 +213,18 @@ li {
 }
 
 
-.conteudo01 .segunda_coluna .graficoPizza{
+.conteudo01 .segunda_coluna .graficoPizza .grafico02{
      /* D */
      display: flex;
-    background-color: rgb(191, 32, 196);
-    height: 60%;
-    width: 470px;
+     background-color: rgb(191, 32, 196);
+     height: 400px;
+     width: 400px;
+     align-items: center;
+     flex-direction: column;
+     font-size: 20px;
 }
+
+
 /* Fim da Segunda Coluna */
 
 /* _______________________________________________________________________________________________ */
@@ -258,9 +263,11 @@ li {
 /* Gráfico de linhas 1 */
 
 .chart-container {
+    display: flex;
     margin: auto;
-    height: 800px;
-    width: 420px;
+    height: 300px;
+    width: 400px;
+    justify-content: center;
 }
 
 .label-captura {
