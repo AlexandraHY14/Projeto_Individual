@@ -46,27 +46,43 @@
                 </div>
 
             </div>
+
+            <details>
+                <summary>?</summary>
+                Você poderar visualizar aqui sua evolução mensal de acordo com os registros que fizer.
+                obs: FS = Finais de Semana
+            </details>
+            
             <div class="graficoLinha">
 
-                <div class="tituloProgresso">Progresso</div>
+                <div class="tituloProgresso">Progresso
+                </div>
                 <!-- Organizar o datalist com gráfico -->
                 <div class="datalist_Grafico">
 
-                    <label for="messes">Mês:</label>
-                    <input list="mes" id="messes" name="messes">
+                    <div class="camposDatalist">
+                        <label for="messes">Mês:</label>
+                        <input list="mes" id="messes" name="messes">
 
-                    <datalist id="mes">
-                        <option value="Janeiro">
-                        <option value="Fevereiro">
-                        <option value="Março">
-                        <option value="Abril">
-                        <option value="Maio">
-                    </datalist>
-                    <button onclick="consultar()">conssultar</button>
+                        <datalist id="mes">
+                            <option value="Janeiro">
+                            <option value="Fevereiro">
+                            <option value="Março">
+                            <option value="Abril">
+                            <option value="Maio">
+                        </datalist>
+
+                        <label for="anos">Ano:</label>
+                        <input list="ano" id="anos" name="anos">
+                        <datalist id="ano">
+                            <option value="2023">
+                        </datalist>
+                        <button onclick="consultar()">conssultar</button>
+                    </div>
 
                     <div class="grafico01">
                         <div id="tituloGrafico01">Gráfico do mês de </div>
-                        <div class="chart-container">
+                        <div class="chart-container01">
                             <canvas id="myChart"></canvas>
                         </div>
                         <!-- <div id="graficos">
@@ -94,15 +110,23 @@
             <div class="aviso">
                 <div class="card">
                     <b>Você pode melhorar!</b>
-                    <span class="text">Você está menos habituado a ler nas segunda, se esforce para passar de 8 páginas todas
+                    <span class="text">Você está menos habituado a ler nas segunda, se esforce para passar de 8 páginas
+                        todas
                         as segundas do mês. Você consegue!</span>
                 </div>
 
 
             </div>
+
+            <div class="tituloGrafico02">Gráfico de páginas por dia da semana
+            </div>
+            <details>
+                <summary>?</summary>
+                Aqui verá a media de páginas que lê em cada dia da semana.
+                <br>
+            </details>
             <div class="graficoPizza">
                 <div class="grafico02">
-                    <div id="tituloGrafico02">Gráfico dos dias da semana</div>
                     <div class="chart-container" id="semana">
                         <canvas id="graficoSemana"></canvas>
                     </div>
@@ -110,33 +134,145 @@
 
             </div>
         </div>
+
+
         <!-- Teceira coluna -->
         <div class="terceira_coluna">
-            <div class="conquistas">E</div>
-            <div class="dica">F</div>
-            <div class="tempoR">G</div>
+
+            <div class="conquistas">
+                <div class="tituloM">Conquistas</div>
+                <div class="medalhas"><img src="img/star-medal.webp" alt=""><img src="img/star-medal.webp" alt=""><img
+                        src="img/star-medal.webp" alt="">
+                </div>
+            </div>
+
+            <div class="dica">
+                <div class="tituloD">Dica</div>
+                <div class="textoD">Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura, vá
+                    aumentando a velocidade que passa pelas linhas.
+                </div>
+            </div>
+
+            <div class="tempoR">
+                <div>
+                    <div class="relogio"><img src="img/relogio.png" alt="">
+                    </div>
+                    <div class="tituloT">Tempo recorde</div>
+                    <ul>
+                        <li>Livro: Nome do livro</li>
+                        <li>Data Inicio: 01/01/2023</li>
+                        <li>Data final: 06/01/2023</li>
+                        <li>total de páginas: 500</li>
+                    </ul>
+                </div>
+            </div>
 
         </div>
         <!-- Fim do Primeiro Pedaço -->
     </div>
 
     <!-- Inicio da Segunda parte da Pagina -->
-    <span class="titulo02">REGISTRO</span>
+    <span class="titulo02">Registros</span>
 
     <!-- Primeira coluna02 -->
     <div class="conteudo02">
         <div class="primeira_coluna02">
-            <div class="progressoDiario">A
+            <div class="progressoDiario">
+                <div class="tituloPD">Insira aqui o seu progresso diário</div>
+
+                <div class="formRegistrar">
+
+                    <div class="tituloTexto">Título: <input id="ipt_titulo"></div>
+
+                    <div class="nomeAutor">Nome do autor:<input id="ipt_autor"></div>
+
+                    <div class="paginas">Total de páginas:<input id="ipt_totalPag"></div>
+
+                    <div class="paginas">Qtd páginas lidas hoje:<input id="ipt_lidas"></div>
+
+                    <div class="data">Data: <input id="ipt_dia" maxlength="2">
+
+                        <input list="mesR" id="messesR" name="messesR">
+                         
+                        <datalist id="mesR">
+                            <option value="Janeiro">
+                            <option value="Fevereiro">
+                            <option value="Março">
+                            <option value="Abril">
+                            <option value="Maio">
+                            <option value="Junho">
+                            <option value="Julho">
+                            <option value="Agosto">
+                            <option value="Setembro">
+                            <option value="Outubro">
+                            <option value="Novembro">
+                            <option value="Dezembro">
+                        </datalist>
+
+                        <input id="ipt_ano" maxlength="4">
+                        
+                    </div>
+
+                    <div class="diaSemana">Dia da semana
+                        <input list="diaR" id="diasR" name="diasR">
+
+                        <datalist id="diaR">
+                            <option value="Segunda">
+                            <option value="Terça">
+                            <option value="Quarta">
+                            <option value="Quinta">
+                            <option value="Sexta">
+                            <option value="Fim de Semana">
+                        </datalist>
+                    </div>
+
+                </div>
+                <button class="btnAdicionar">Adicionar +</button>
 
             </div>
-            <div class="registroDiario">B
 
+
+            <div class="registroDiario">
+
+                <div class="concluidosI">
+                    <scroll-container>
+                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data: 06/Fevereiro/2023 - Fim de Semana - 10 páginas (faltam 180 páginas)</scroll-page>
+                        <scroll-page id="page-2"> * Titulo: Nome do livro - Data: 07/Fevereiro/2023 - Segunda - 10 páginas (faltam 180 páginas)</scroll-page>
+                        <scroll-page id="page-3"> * Titulo: Nome do livro - Data: 08/Fevereiro/2023 - Terça - 10 páginas (faltam 180 páginas)</scroll-page>
+
+                    </scroll-container>
+
+                </div>
+                <button class="btnConcluido">Adicionar em Concluídos</button>
             </div>
         </div>
+
+
         <!-- Segunda coluna -->
         <div class="segunda_coluna02">
-            <div class="livrosConcluidos">C</div>
-            <div class="totalPaginas">D</div>
+            <div class="livrosConcluidos">
+
+                <div class="tituloC">Lista de livros/folhetos concluídos</div>
+                <!-- <nav>
+                    <a href="#page-1">1</a>
+                    <a href="#page-2">2</a>
+                    <a href="#page-3">3</a>
+                  </nav> -->
+                <div class="concluidos">
+                    <scroll-container>
+                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final: 08/Janeiro/2023 - total de páginas: 240.</scroll-page>
+                        <scroll-page id="page-2">2</scroll-page>
+                        <scroll-page id="page-3">3</scroll-page>
+
+                    </scroll-container>
+
+                </div>
+            </div>
+            <div class="totalPaginas">
+                <div class="qtdPag">
+                    Total de páginas:<div id="totalP">500</div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -145,54 +281,54 @@
 <script>
 
     function consultar(params) {
-        
-        const ctx = document.getElementById('myChart');
-        
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        datasets: [
-        {
-            label: 'Umidade',
-            backgroundColor: 'rgb(50,153,204)',
-            borderColor: 'rgb(50,153,204)',
-            data: [80, 82, 80, 85, 80, 83],
-            borderWidth: 2
-        }
-        ]
-    },
 
-    options: {
-        scales: {
-            y: {
-                min: 20,
-                max: 90,
-                ticks: {
-                    stepSize: 10
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Segundas', 'Terças', 'Quartas', 'Quintas', 'Sextas', 'FS'],
+                datasets: [
+                    {
+                        label: 'Total de páginas',
+                        backgroundColor: 'rgb(50,153,204)',
+                        borderColor: 'rgb(50,153,204)',
+                        data: [80, 82, 80, 85, 80, 83],
+                        borderWidth: 2
+                    }
+                ]
+            },
+
+            options: {
+                scales: {
+                    y: {
+                        min: 20,
+                        max: 90,
+                        ticks: {
+                            stepSize: 10
+                        }
+                    }
                 }
             }
-        }
+        });
     }
-});
-}
 
-// Gráfico Pie ou pizza
+    // Gráfico Pie ou pizza
 
-const modelos = [
-         "Segundas",
-         "Terças",
-         "Quartas",
-         "Quintas",
-         "Sextas",
-         "Fins de Semana",
+    const modelos = [
+        "Segundas",
+        "Terças",
+        "Quartas",
+        "Quintas",
+        "Sextas",
+        "Fins de Semana",
     ]
     const dadosSemana = {
-        labels:modelos,
+        labels: modelos,
         datasets: [{
-                data: [6,5,4,3,2,1],
-                backgroundColor: ['red','#65abf0', 'green', 'blue', 'purple','grey']
-            }
+            data: [6, 5, 4, 3, 2, 1],
+            backgroundColor: ['#6CE5E8', '#41B8D5', '#2D8BBA', '#2F5F98', '#31356E', '#A66C98']
+        }
         ]
     }
     const configGraficoSemana = {
