@@ -40,7 +40,8 @@
                     <input type="password" placeholder="*******">
                 </div>
 
-                <button>Cadastrar</button>
+                <button onclick="entrar()">Entrar</button>
+                
                 <span class="link">
                     <b>Não Possui um cadastro?</b><a href="cadastro.html">cadastrar.</a>
                 </span>
@@ -100,7 +101,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "paginaUsuario.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

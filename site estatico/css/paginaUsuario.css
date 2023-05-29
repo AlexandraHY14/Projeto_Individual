@@ -164,9 +164,11 @@ li {
     align-items: center;
 }
 
-.conteudo01 .primeira_coluna .graficoLinha .tituloProgresso details {
+.conteudo01 .primeira_coluna details {
     /* B */
-    font-size: 13px;
+    font-size: 12px;
+    width: 500px;
+    margin-bottom: 10px;
 }
 
 .conteudo01 .primeira_coluna .graficoLinha .datalist_Grafico {
