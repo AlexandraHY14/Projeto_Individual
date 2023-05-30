@@ -10,7 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-
+<!-- onload="validarSessao(), atualizacaoPeriodica()" -->
+<!-- onload="carregarUserLogado() , receberUserLogado(usuarioLogado)" -->
 <body>
     <!-- Inicio do Cabeçalho -->
     <div class="header">
@@ -21,7 +22,7 @@
             <ul>
                 <li><a href="resumo.html">Resumo</a></li>
                 <li>||</li>
-                <li><a href="paginaInicial.html">Sair</a></li>
+                <li onclick="sair()">Sair</a></li>
             </ul>
         </div>
     </div>
@@ -39,7 +40,7 @@
                         <img src="img/foto_usuario.png" alt="">
                     </div>
                     <div class="dados">
-                        <span class="nomeUsuario">Nome Do usuário</span>
+                        <span class="nomeUsuario" id="nomeDoUsuario">Nome Do usuário</span>
                         <span>Mensagem <img class="img02" src="img/editar.png" alt=""></span>
                     </div>
 
@@ -52,7 +53,7 @@
                 Você pode visualizar aqui sua evolução mensal de acordo com os registros que fizer.
                 obs: FS = Finais de Semana
             </details>
-            
+
             <div class="graficoLinha">
 
                 <div class="tituloProgresso">Progresso
@@ -193,7 +194,7 @@
                     <div class="data">Data: <input id="ipt_dia" maxlength="2">
 
                         <input list="mesR" id="messesR" name="messesR">
-                         
+
                         <datalist id="mesR">
                             <option value="Janeiro">
                             <option value="Fevereiro">
@@ -210,7 +211,7 @@
                         </datalist>
 
                         <input id="ipt_ano" maxlength="4">
-                        
+
                     </div>
 
                     <div class="diaSemana">Dia da semana
@@ -236,9 +237,12 @@
 
                 <div class="concluidosI">
                     <scroll-container>
-                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data: 06/Fevereiro/2023 - Fim de Semana - 10 páginas (faltam 180 páginas)</scroll-page>
-                        <scroll-page id="page-2"> * Titulo: Nome do livro - Data: 07/Fevereiro/2023 - Segunda - 10 páginas (faltam 180 páginas)</scroll-page>
-                        <scroll-page id="page-3"> * Titulo: Nome do livro - Data: 08/Fevereiro/2023 - Terça - 10 páginas (faltam 180 páginas)</scroll-page>
+                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data: 06/Fevereiro/2023 - Fim de Semana - 10
+                            páginas (faltam 180 páginas)</scroll-page>
+                        <scroll-page id="page-2"> * Titulo: Nome do livro - Data: 07/Fevereiro/2023 - Segunda - 10
+                            páginas (faltam 180 páginas)</scroll-page>
+                        <scroll-page id="page-3"> * Titulo: Nome do livro - Data: 08/Fevereiro/2023 - Terça - 10 páginas
+                            (faltam 180 páginas)</scroll-page>
 
                     </scroll-container>
 
@@ -260,7 +264,8 @@
                   </nav> -->
                 <div class="concluidos">
                     <scroll-container>
-                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final: 08/Janeiro/2023 - total de páginas: 240.</scroll-page>
+                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final:
+                            08/Janeiro/2023 - total de páginas: 240.</scroll-page>
                         <scroll-page id="page-2">2</scroll-page>
                         <scroll-page id="page-3">3</scroll-page>
 
@@ -278,7 +283,13 @@
     </div>
 
 </body>
+
+</html>
 <script>
+
+    
+//     var UsuarioLogado = [];
+// carregarUserLogado();
 
     function consultar(params) {
 
@@ -346,6 +357,48 @@
         document.getElementById("graficoSemana"),
         configGraficoSemana
     );
-</script>
 
-</html>
+
+
+//     function verificarSessao() {
+//     if (sessionStorage.ID_USUARIO == "null") {
+//       alert("Por favor, logue-se para continuar.");
+//       window.location = "index.html";
+//     }
+//   }
+
+
+//   function carregarUserLogado() {
+//     verificarSessao();
+//     fetch(`usuarios/listar/${sessionStorage.ID_USUARIO}`, {
+//       cache: "no-store",
+//     })
+//       .then(function (response) {
+//         if (response.ok) {
+//           response.json().then(function (resposta) {
+//             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+//             resposta.reverse();
+//             usuarioLogado = resposta;
+//             receberUserLogado(usuarioLogado);
+//           });
+//         } else {
+//           console.error("Nenhum dado encontrado na API");
+//         }
+//       })
+//       .catch(function (error) {
+//         console.error(`Erro na obtenção dos dados: ${error.message}`);
+//       });
+//   }
+
+//   function receberUserLogado(UsuarioLogado) {
+//     nomeDoUsuario.innerHTML = `
+//            ${sessionStorage.NOME_USUARIO}
+//         `;
+//   }
+
+
+    function sair() {
+        sessionStorage.ID_USUARIO = null;
+        window.location = "index.html";
+    }
+</script>

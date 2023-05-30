@@ -424,7 +424,7 @@ li {
 
 .conteudo02 {
     display: flex;
-    height: 700px;
+    height: 760px;
     width: 100%;
     justify-content: center;
 }
@@ -437,6 +437,10 @@ li {
     justify-content: space-around;
     flex-direction: column;
     /* justify-content: center; */
+    border-right-width: 2px;
+    border-right-style:dashed;
+    border-right-color: #19c1de;
+
 }
 
 .conteudo02 .primeira_coluna02 .progressoDiario {
@@ -515,7 +519,7 @@ li {
     background-color: #34538D;
     font-size: 20px;
     color: white;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 }
 .concluidosI scroll-container {
     display: flex;
