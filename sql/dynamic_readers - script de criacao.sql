@@ -30,5 +30,8 @@ create table usuarioLivro(
 fkUsuario int,
 fkLivro int,
 dataResumo date,
-resumo varchar(1500)
+hora time,
+resumo varchar(1500),
+primary key(fkUsuario ,fkLivro ,dataResumo ,hora)
 );
+
