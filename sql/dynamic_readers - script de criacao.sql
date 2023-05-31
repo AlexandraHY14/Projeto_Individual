@@ -12,6 +12,8 @@ email varchar(50),
 senha varchar(40)
 );
 
+select * from usuario;
+
 create table livro(
 idLivro int primary key auto_increment,
 nome varchar(50) not null,
@@ -26,12 +28,4 @@ finalizado char(1),
 constraint chkfinalizado check (finalizado in ('n','s'))
 );
 
-create table usuarioLivro(
-fkUsuario int,
-fkLivro int,
-dataResumo date,
-hora time,
-resumo varchar(1500),
-primary key(fkUsuario ,fkLivro ,dataResumo ,hora)
-);
-
+-- resumo varchar(1500)
