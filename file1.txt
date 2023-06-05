@@ -33,23 +33,8 @@ Os valores abaixo serão exibidos nos gráficos;
 
 -> a mensagem muda... -> if a media de cada dia do mês for a mesma -> nova mensagem: `Continue com o habito de ler ${quantia média} por dia!`;
 
-___________________________________________________________LEMBRAR___________________________________________________________________
+___________________________________________________________LEMBRAR_________________________________________________________
 
-mudar no css da paginaUsuario
-
-.conteudo01 .primeira_coluna details {
-    font-size: 12px;
-    width: 300px;
-    margin-bottom: 10px;
-}
-
-O width deve ser 300px
-
---------------------------------------
-
-adicionar checkbox no formulario de cadastro de livro -> para declarar inicio e finalização de um livro
-
---------------------------------------
 NA PARTE DO GRÁFICO DE LINHAS - O INPUT DO ANO
 
 <input list="ano" id="anos" name="anos">
