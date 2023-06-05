@@ -154,7 +154,12 @@ li {
     width: 90%;
     flex-direction: column;
 }
-
+.ipt_anoGL{
+width: 75px;
+}
+.ipt_mesGL{
+    width: 85px;
+    }
 .conteudo01 .primeira_coluna .graficoLinha .tituloProgresso {
     /* B */
     display: flex;
@@ -167,7 +172,7 @@ li {
 .conteudo01 .primeira_coluna details {
     /* B */
     font-size: 12px;
-    width: 500px;
+    width: 300px;
     margin-bottom: 10px;
 }
 

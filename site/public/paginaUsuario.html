@@ -12,6 +12,7 @@
 </head>
 <!-- onload="validarSessao(), atualizacaoPeriodica()" -->
 <!-- onload="carregarUserLogado() , receberUserLogado(usuarioLogado)" -->
+
 <body>
     <!-- Inicio do Cabeçalho -->
     <div class="header">
@@ -63,7 +64,7 @@
 
                     <div class="camposDatalist">
                         <label for="messes">Mês:</label>
-                        <input list="mes" id="messes" name="messes">
+                        <input list="mes" id="messes" name="messes" class="ipt_mesGL">
 
                         <datalist id="mes">
                             <option value="Janeiro">
@@ -74,7 +75,7 @@
                         </datalist>
 
                         <label for="anos">Ano:</label>
-                        <input list="ano" id="anos" name="anos">
+                        <input list="ano" id="anos" name="anos" class="ipt_anoGL">
                         <datalist id="ano">
                             <option value="2023">
                         </datalist>
@@ -83,6 +84,7 @@
 
                     <div class="grafico01">
                         <div id="tituloGrafico01">Gráfico do mês de </div>
+
                         <div class="chart-container01">
                             <canvas id="myChart"></canvas>
                         </div>
@@ -183,15 +185,15 @@
 
                 <div class="formRegistrar">
 
-                    <div class="tituloTexto">Título: <input id="ipt_titulo"></div>
+                    <div class="tituloTexto">Título*: <input id="ipt_titulo"></div>
 
                     <div class="nomeAutor">Nome do autor:<input id="ipt_autor"></div>
 
-                    <div class="paginas">Total de páginas:<input id="ipt_totalPag"></div>
+                    <div class="paginas">Total de páginas*:<input id="ipt_totalPag"></div>
 
                     <div class="paginas">Qtd páginas lidas hoje:<input id="ipt_lidas"></div>
 
-                    <div class="data">Data: <input id="ipt_dia" maxlength="2">
+                    <div class="data">Data*: <input id="ipt_dia" maxlength="2">
 
                         <input list="mesR" id="messesR" name="messesR">
 
@@ -214,7 +216,7 @@
 
                     </div>
 
-                    <div class="diaSemana">Dia da semana
+                    <div class="diaSemana">Dia da semana*:
                         <input list="diaR" id="diasR" name="diasR">
 
                         <datalist id="diaR">
@@ -226,9 +228,15 @@
                             <option value="Fim de Semana">
                         </datalist>
                     </div>
-
+                    <div>
+                        <input list="condicao" id="cond" name="cond">
+                        <datalist id="condicao">
+                            <option value="Iniciado">
+                            <option value="Finalizado">
+                        </datalist>
+                    </div>
                 </div>
-                <button class="btnAdicionar">Adicionar +</button>
+                <button class="btnAdicionar" onclick="InserirRegistro()">Adicionar +</button>
 
             </div>
 
@@ -262,6 +270,7 @@
                     <a href="#page-2">2</a>
                     <a href="#page-3">3</a>
                   </nav> -->
+
                 <div class="concluidos">
                     <scroll-container>
                         <scroll-page id="page-1"> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final:
@@ -275,6 +284,7 @@
             </div>
             <div class="totalPaginas">
                 <div class="qtdPag">
+                    <div id="msg"></div>
                     Total de páginas:<div id="totalP">500</div>
                 </div>
             </div>
@@ -286,10 +296,101 @@
 
 </html>
 <script>
+    function InserirRegistro() {
+        var nomeLivro = ipt_titulo.value;
+        var nomeAutor = ipt_autor.value;
+        var totalPaginas = ipt_totalPag.value;
 
-    
-//     var UsuarioLogado = [];
-// carregarUserLogado();
+
+        var dia = ipt_dia.value;
+        var mes = messesR.value;
+        var ano = ipt_ano.value;
+        // Ajustar mes para numero para inserir na tabela livro
+        var totalPagLidasHoje = ipt_lidas.value;
+        var diaSemana = diasR.value;
+        var condicao = cond.value;
+
+        var continuar = true;
+
+        if (condicao == "Iniciado") {
+            condicao = "i";
+  
+        alert(`${dia}, ${mes}, ${ano}`)
+
+            insertTabelaLivro();
+
+        } else
+            if (condicao == "Finalizado") {
+                condicao = "f";
+            } else {
+                condição = "l";
+            }
+
+        alert(`${nomeLivro}, ${totalPaginas}, ${totalPagLidasHoje}, ${dia}, ${mes}, ${ano}, ${diaSemana}, ${condicao}`)
+
+
+
+    }
+
+    function insertTabelaLivro() {
+        var nomeLivro = ipt_titulo.value;
+        var nomeAutor = ipt_autor.value;
+        var totalPaginas = ipt_totalPag.value;
+
+        var dia = ipt_dia.value;
+        var mes = messesR.value;
+        var ano = ipt_ano.value;
+        
+        if (mes == "Janeiro") {
+            mes = "01";
+        }else if (mes == "Fevereiro") {
+            mes = "02";
+        }else if (mes == "Março") {
+            mes = "03";
+        }else if (mes == "Abril") {
+            mes = "04";
+        }else if (mes == "Maio") {
+            mes = "05";
+        }else if (mes == "Junho") {
+            mes = "06";
+        }
+        
+        // Enviando o valor da nova input
+        fetch("/livros/cadastrarLivro", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/livros.js
+                tituloServer: nomeLivro,
+                autorServer: nomeAutor,
+                totalPagServer: totalPaginas,
+                diaServer: dia,
+                mesServer: mes,
+                anoServer: ano
+
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                // cardErro.style.display = "block";
+
+                alert("Livro cadastrado com sucesso")
+                // limparFormulario();
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+    // ________________________________________________________________________________________________________________________
 
     function consultar(params) {
 
@@ -309,19 +410,19 @@
                     }
                 ]
             }
-        // ,
+            // ,
 
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 min: 20,
-        //                 max: 90,
-        //                 ticks: {
-        //                     stepSize: 10
-        //                 }
-        //             }
-        //         }
-        //     }
+            //     options: {
+            //         scales: {
+            //             y: {
+            //                 min: 20,
+            //                 max: 90,
+            //                 ticks: {
+            //                     stepSize: 10
+            //                 }
+            //             }
+            //         }
+            //     }
         });
     }
 
@@ -360,40 +461,9 @@
     );
 
 
-
-//     function verificarSessao() {
-//     if (sessionStorage.ID_USUARIO == "null") {
-//       alert("Por favor, logue-se para continuar.");
-//       window.location = "index.html";
-//     }
-//   }
-
-
-//   function carregarUserLogado() {
-//     verificarSessao();
-//     fetch(`usuarios/listar/${sessionStorage.ID_USUARIO}`, {
-//       cache: "no-store",
-//     })
-//       .then(function (response) {
-//         if (response.ok) {
-//           response.json().then(function (resposta) {
-//             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-//             resposta.reverse();
-//             usuarioLogado = resposta;
-//             receberUserLogado(usuarioLogado);
-//           });
-//         } else {
-//           console.error("Nenhum dado encontrado na API");
-//         }
-//       })
-//       .catch(function (error) {
-//         console.error(`Erro na obtenção dos dados: ${error.message}`);
-//       });
-//   }
-
-//   function receberUserLogado(UsuarioLogado) {
+    //   function receberUserLogado(UsuarioLogado) {
     nomeDoUsuario.innerHTML = `${sessionStorage.NOME_USUARIO}`;
-//   }
+    //   }
 
 
     function sair() {

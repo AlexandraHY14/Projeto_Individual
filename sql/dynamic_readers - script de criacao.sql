@@ -20,8 +20,7 @@ nome varchar(50) not null,
 nomeAutor varchar(50),
 qtdTotalPag int not null,
 dataInicial date, -- not null
-dataFinal date,
-texto varchar(1500)
+dataFinal date
 );
 
 create table usuarioLivro(
@@ -42,9 +41,9 @@ insert into usuario values (null, 'Alexandra Harumi', 'alexandra@gmail.com', '12
                            (null, 'Gustavo Pereira', 'gustavo@gmail.com', 'gustavo');
 
 
-insert into livro values (null, 'Tubarão', 'Peter Benchley', 335, '2020-02-01', '2020-02-04', null),
-                         (null, 'A Guerra dos Tronos - 1',	'George R.R. Martin', 587, '2023-05-10', null, null),
-						 (null, 'O cortiço', 'Aluísio Azevedo', 292, '2023-04-04', null, null);
+insert into livro values (null, 'Tubarão', 'Peter Benchley', 335, '2020-02-01', '2020-02-04'),
+                         (null, 'A Guerra dos Tronos - 1',	'George R.R. Martin', 587, '2023-05-10', null),
+						 (null, 'O cortiço', 'Aluísio Azevedo', 292, '2023-04-04', null);
                          
 insert into usuarioLivro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 75, 'i'),
                                (null, 1, 1, 02, 'Fevereiro', 2020, 'Fim de Semana', 75, 'l'),

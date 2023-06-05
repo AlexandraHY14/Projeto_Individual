@@ -5,7 +5,7 @@ function listar() {
     var instrucao = `
         SELECT * FROM usuario;
     `;
-    // SELECT * FROM usuario join livro on fkUsuario = idUsuario; -- where idUsuario = 'ID_USUARIO'; (isso seria no modelo de entrar logo a baixo)
+    // SELECT * FROM usuario join livro on fkUsuario = idUsuario; -- where idUsuario = 'ID_USUARIO'; (isso seria como em entrar logo)
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
