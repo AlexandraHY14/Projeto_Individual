@@ -229,9 +229,10 @@
                         </datalist>
                     </div>
                     <div>
-                        <input list="condicao" id="cond" name="cond">
+                        Status da leitura*: <input list="condicao" id="cond" name="cond">
                         <datalist id="condicao">
                             <option value="Iniciado">
+                            <option value="Lendo">
                             <option value="Finalizado">
                         </datalist>
                     </div>
@@ -314,10 +315,21 @@
 
         if (condicao == "Iniciado") {
             condicao = "i";
-  
-        alert(`${dia}, ${mes}, ${ano}`)
 
-            insertTabelaLivro();
+
+            selectLivroCadastrado();
+
+            var idLivro = sessionStorage.ID_LIVRO;
+            
+            alert(idLivro)
+
+            if ( idLivro == undefined) {
+                insertTabelaLivro();
+                alert(`${dia}, ${mes}, ${ano}`)
+
+            } else {
+                alert("Esse livro já foi iniciado e cadstrado na tabela livro")
+            }
 
         } else
             if (condicao == "Finalizado") {
@@ -329,7 +341,105 @@
         alert(`${nomeLivro}, ${totalPaginas}, ${totalPagLidasHoje}, ${dia}, ${mes}, ${ano}, ${diaSemana}, ${condicao}`)
 
 
+        cond.value = '';
+    }
 
+    function selectLivroCadastrado() {
+        var nomeLivro = ipt_titulo.value;
+        var nomeAutor = ipt_autor.value;
+        var totalPaginas = ipt_totalPag.value;
+
+        
+        var dia = ipt_dia.value;
+        var mes = messesR.value;
+        var ano = ipt_ano.value;
+
+        if (mes == "Janeiro") {
+            mes = "01";
+        } else if (mes == "Fevereiro") {
+            mes = "02";
+        } else if (mes == "Março") {
+            mes = "03";
+        } else if (mes == "Abril") {
+            mes = "04";
+        } else if (mes == "Maio") {
+            mes = "05";
+        } else if (mes == "Junho") {
+            mes = "06";
+        } else if (mes == "Julho") {
+            mes = "07";
+        } else if (mes == "Agosto") {
+            mes = "08";
+        } else if (mes == "Setembro") {
+            mes = "09";
+        } else if (mes == "Outubro") {
+            mes = "10";
+        } else if (mes == "Novembro") {
+            mes = "11";
+        } else if (mes == "Dezembro") {
+            mes = "12";
+        }
+
+        // Validar se o livro já foi inserido como iniciado, caso tenha sido iniciado 'i', deve ser tratado como 'l' na tabela de registro e não deve ser inserido novamente na tabela livro
+
+        // if (nomeLivro == "" || totalPaginas == "") {
+
+        //     return false;
+        // }
+
+
+        console.log("FORM Nome: ", nomeLivro);
+        console.log("FORM Nome Autor: ", nomeAutor);
+        console.log("FORM total de Páginas: ", totalPaginas);
+
+        console.log("FORM dia: ", dia);
+        console.log("FORM mes: ", mes);
+        console.log("FORM ano: ", ano);
+
+        fetch("/livros/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                tituloServer: nomeLivro,
+                autorServer: nomeAutor,
+                totalPagServer: totalPaginas,
+                diaServer: dia,
+                mesServer: mes,
+                anoServer: ano
+
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO selectLivroCadastrado()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.NOME_LIVRO = json.titulo;
+                    sessionStorage.TOTAL_PAGINAS = json.totalPag;
+                    sessionStorage.ID_LIVRO = json.idLivro;
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o select do livro cadastrado na tabela Livro!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
 
     function insertTabelaLivro() {
@@ -340,21 +450,33 @@
         var dia = ipt_dia.value;
         var mes = messesR.value;
         var ano = ipt_ano.value;
-        
+
         if (mes == "Janeiro") {
             mes = "01";
-        }else if (mes == "Fevereiro") {
+        } else if (mes == "Fevereiro") {
             mes = "02";
-        }else if (mes == "Março") {
+        } else if (mes == "Março") {
             mes = "03";
-        }else if (mes == "Abril") {
+        } else if (mes == "Abril") {
             mes = "04";
-        }else if (mes == "Maio") {
+        } else if (mes == "Maio") {
             mes = "05";
-        }else if (mes == "Junho") {
+        } else if (mes == "Junho") {
             mes = "06";
+        } else if (mes == "Julho") {
+            mes = "07";
+        } else if (mes == "Agosto") {
+            mes = "08";
+        } else if (mes == "Setembro") {
+            mes = "09";
+        } else if (mes == "Outubro") {
+            mes = "10";
+        } else if (mes == "Novembro") {
+            mes = "11";
+        } else if (mes == "Dezembro") {
+            mes = "12";
         }
-        
+
         // Enviando o valor da nova input
         fetch("/livros/cadastrarLivro", {
             method: "POST",
@@ -390,6 +512,8 @@
             console.log(`#ERRO: ${resposta}`);
         });
     }
+
+
     // ________________________________________________________________________________________________________________________
 
     function consultar(params) {

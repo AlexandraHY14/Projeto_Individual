@@ -15,6 +15,9 @@ router.get("/listar", function (req, res) {
 router.post("/cadastrarLivro", function (req, res) {
     livroController.cadastrarLivro(req, res);
 });
+router.post("/autenticar", function (req, res) {
+    livroController.selectLivroCadastrado(req, res);
+});
 
 // router.post("/autenticar", function (req, res) {
 //     livroController.entrar(req, res);

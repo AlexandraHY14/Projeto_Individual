@@ -72,6 +72,13 @@ insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 
                                select * from usuario;
                                select * from livro;
                                
+                               delete from livro where idLivro = 10;
+                               delete from livro where idLivro in (5,6,7,8,9);
+                               SELECT * FROM livro WHERE nome = 'A' AND qtdTotalPag = 200 AND dataInicial = '2023-06-08';
+        ;
+                               
+-- select para ver se o livro existe e caso exista não deixar inserir novamente o mesmo livro;
+-- pode ser tratado no banco com o unique.
 
 							
 -- levar para a coluna de concluidos dos registros
@@ -80,7 +87,7 @@ select * from usuario join registro on fkUsuario = idUsuario where condicao = "f
 
 -- Para colocar os dados nos não concluidos
 select fkUsuario,fklivro from registro join livro on fkLivro = idLivro where fkUsuario = 1;
-select * from usuarioLivro join livro on fkLivro = idLivro where fkUsuario = 1 and dataFinal is null;
+select * from registro join livro on fkLivro = idLivro where fkUsuario = 1 and dataFinal is null;
 
 insert into registro values (null, 1, 2, 14, 'Maio', 2023, 'Fim de Semana', 23, 'l',null);
 
