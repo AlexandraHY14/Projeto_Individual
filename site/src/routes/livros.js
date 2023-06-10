@@ -15,10 +15,13 @@ router.get("/listar", function (req, res) {
 router.post("/cadastrarLivro", function (req, res) {
     livroController.cadastrarLivro(req, res);
 });
-router.post("/autenticar", function (req, res) {
-    livroController.selectLivroCadastrado(req, res);
+router.get("/autenticar/:nome", function (req, res) {
+    livroController.selectLivro(req, res);
 });
 
+router.get("/lendo/:idUsuario", function (req, res) {
+    livroController.selectIniciadoLendo(req, res);
+});
 // router.post("/autenticar", function (req, res) {
 //     livroController.entrar(req, res);
 // });

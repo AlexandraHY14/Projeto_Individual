@@ -8,7 +8,7 @@ var sessoes = [];
 // }
 
 function listar(req, res) {
-    usuarioModel.listar()
+    livroModel.listar()
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -25,58 +25,89 @@ function listar(req, res) {
         );
 }
 
-function selectLivroCadastrado(req, res) {
-    var nomeLivro = req.body.tituloServer;
-    var nomeAutor = req.body.autorServer;
-    var totalPag = req.body.totalPagServer;
+// function autenticar(req, res) {
+//     var titulo = req.params.idLivro;
+  
+//     livroModel
+//     .autenticar(titulo)
+//     .then(function (resultado) {
+//       // console.log(`\nResultados encontrados: ${resultado.length}`);
+//       // console.log(`Resultados: ${JSON.stringify(resultado)}`); //TRANSFORMA JSON EM STRING
 
-    var dia = req.body.diaServer;
-    var mes = req.body.mesServer;
-    var ano = req.body.anoServer;
+//       if (resultado.length == 1) {
+//         console.log(resultado);
+//         res.json(resultado[0]);
+//       } else if (resultado.length == 0) {
+//         res.status(403).send("Nome do Livro INVÁLIDO");
+//       } else {
+//         res.status(403).send("Mais de um LIVRO com o mesmo NOME");
+//       }
+//     })
+//     .catch(function (erro) {
+//       console.log(erro);
+//       console.log(
+//         "\nHouve um erro ao selecionar o Livro! ERRO: ",
+//         erro.sqlMessage
+//       );
+//       res.status(500).json(erro.sqlMessage);
+//     });
+// }
+function selectLivro(req, res) {
+    var titulo = req.params.nome;
+  
+    livroModel
+      .autenticar(titulo)
+      .then(function (resultado) {
+        // console.log(`\nResultados encontrados: ${resultado.length}`);
+        // console.log(`Resultados: ${JSON.stringify(resultado)}`); //TRANSFORMA JSON EM STRING
+  
+        if (resultado.length == 1) {
+          console.log(resultado);
+          res.json(resultado[0]);
+        } else if (resultado.length == 0) {
+          res.status(403).send("Nome do Livro INVÁLIDO");
+        } else {
+          res.status(403).send("Mais de um LIVRO com o mesmo NOME");
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+            "\nHouve um erro ao selecionar o Livro! ERRO: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
 
-
-    if (titulo == undefined) {
-        res.status(400).send("O titulo do livro está undefined!");
-    } else if (autor == undefined) {
-        res.status(400).send("O autor está undefined!");
-    } else if (totalPag == undefined) {
-        res.status(400).send("O total de Páginas está undefined!");
-    } else if (dia == undefined) {
-        res.status(400).send("O dia está undefined!");
-    } else if (mes == undefined) {
-        res.status(400).send("O mes está undefined!");
-    } else if (ano == undefined) {
-        res.status(400).send("O ano está undefined!");
-    } else {
-        
-        usuarioModel.selectLivroCadastrado(titulo, autor, totalPag, ano, mes, dia)
-            .then(
-                function (resultado) {
-                    console.log(`\nResultados encontrados: ${resultado.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
-
-                    if (resultado.length == 1) {
-                        console.log(resultado);
-                        res.json(resultado[0]);
-
-                    } else if (resultado.length == 0) {
-                        res.status(403).send("titulo inválido");
-
-                    } else {
-                        res.status(403).send("Mais de um idLivro com o mesmo nome e qtdTotalDePag!");
-                    }
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log("\nHouve um erro ao realizar o cadastro do livro! Erro: ", erro.sqlMessage);
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
-
-}
-
+// ---\\---
+function selectIniciadoLendo(req, res) {
+    var Usuario = req.params.idUsuario;
+  
+    livroModel
+      .lendo(Usuario)
+      .then(function (resultado) {
+        // console.log(`\nResultados encontrados: ${resultado.length}`);
+        // console.log(`Resultados: ${JSON.stringify(resultado)}`); //TRANSFORMA JSON EM STRING
+  
+        if (resultado.length == 1) {
+          console.log(resultado);
+          res.json(resultado[0]);
+        } else if (resultado.length == 0) {
+          res.status(403).send("Nome do Livro INVÁLIDO");
+        } else {
+          res.status(403).send("Mais de um LIVRO com o mesmo NOME");
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+            "\nHouve um erro ao selecionar o Livro! ERRO: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
 
 function cadastrarLivro(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -84,9 +115,6 @@ function cadastrarLivro(req, res) {
     var titulo = req.body.tituloServer;
     var autor = req.body.autorServer;
     var totalPag = req.body.totalPagServer;
-    var dia = req.body.diaServer;
-    var mes = req.body.mesServer;
-    var ano = req.body.anoServer;
 
     // Faça as validações dos valores
     if (titulo == undefined) {
@@ -95,16 +123,10 @@ function cadastrarLivro(req, res) {
         res.status(400).send("O autor está undefined!");
     } else if (totalPag == undefined) {
         res.status(400).send("O total de Páginas está undefined!");
-    } else if (dia == undefined) {
-        res.status(400).send("O dia está undefined!");
-    } else if (mes == undefined) {
-        res.status(400).send("O mes está undefined!");
-    } else if (ano == undefined) {
-        res.status(400).send("O ano está undefined!");
-    } else {
+    } else{
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        livroModel.cadastrarLivro(titulo, autor, totalPag, ano, mes, dia)
+        livroModel.cadastrarLivro(titulo, autor, totalPag)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -123,7 +145,8 @@ function cadastrarLivro(req, res) {
 }
 
 module.exports = {
-    selectLivroCadastrado,
+    selectIniciadoLendo,
+    selectLivro,
     cadastrarLivro,
     listar,
     // testar
