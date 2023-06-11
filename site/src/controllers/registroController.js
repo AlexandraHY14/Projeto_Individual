@@ -8,7 +8,10 @@ var sessoes = [];
 // }
 
 function listar(req, res) {
-  registroModel.listar()
+  var idUsuario = req.params.idUsuario;
+  var idLivro = req.params.idLivro;
+
+  registroModel.listar(idUsuario, idLivro)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);

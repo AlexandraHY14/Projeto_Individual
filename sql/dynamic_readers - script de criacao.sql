@@ -77,17 +77,18 @@ insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 
 -- SELECT distinct idLivro, nome, dataInicial FROM registro JOIN livro ON fkLivro = idLivro WHERE condicao <> 'f' AND fkUsuario = 1;
                                SELECT * FROM livro WHERE nome = 'Tubarão';
                                
--- delete from registro where idRegistro = 13;
+-- delete from registro where idRegistro = 16;
 -- delete from livro where idLivro in (5,6,7,8,9);
                                SELECT * FROM livro WHERE nome = 'A' AND qtdTotalPag = 200 AND dataInicial = '2023-06-08';
                                
                                select * from registro where condicao <> 'f' and fkLivro = 2 and fkUsuario = 1;
-                               SELECT * FROM registro WHERE condicao = 'i' AND fkUsuario = 1 AND fkLivro = 2;
+                               SELECT * FROM registro WHERE condicao = 'i' AND fkUsuario = 1 AND fkLivro = 3;
                                
                                -- selectLivroNaoFinalizado();
                                select distinct(idlivro), nome, dataInicial from registro join livro on fkLivro = idLivro where condicao <> 'f' and fkUsuario = 1;
                                
-                               select * from registro where condicao = 'i' and fkLivro = 2 and fkUsuario = 1;
+                               -- APARECER DEBAIXO DO FORMULÀRIO APÒS REGISTRO REALIZADO
+                               select * from registro join livro on fkLivro = idLivro where condicao <> 'f' and fkLivro = 3 and fkUsuario = 1;
                                -- se não houver a condição i para um determinado id\livro e id\usuario - emitir um alerta de que ainda não foi iniciado o livro, e não cadastrar;
                                
                                select * from registro where condicao = 'f' and fkLivro = 1 and fkUsuario = 1;
