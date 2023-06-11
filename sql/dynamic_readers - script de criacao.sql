@@ -21,14 +21,7 @@ create table livro (
 idLivro int primary key auto_increment,
 nome varchar(50) not null,
 nomeAutor varchar(50),
-qtdTotalPag int not null,
-dataInicial date, -- not null
-dataFinal date
-);
-
-create table resumo(
-idResumo int primary key auto_increment,
-texto varchar(1500) -- ou tipo text
+qtdTotalPag int not null
 );
 
 create table registro(
@@ -44,37 +37,65 @@ diaSemana varchar(15) not null, -- constraint para dias da semana...
 qtdPagDia int,
 condicao char(1) not null,
 constraint chkcondicao check (condicao = 'i' or condicao = 'l'  or condicao = 'f' ),
-fkResumo int,
-foreign key (fkResumo) references resumo(idResumo)
+dataInicial char(10), -- not null
+dataFinal char(10)
 );
+create table resumo(
+idResumo int primary key auto_increment,
+texto varchar(1500), -- ou tipo text
+fkRegistro int, -- O idRegistro onde  idUsuario e idLivro pertence a um determinado usuario e livro e a  data final é not null
+foreign key (fkRegistro) references registro(idRegistro)
+);
+
 insert into usuario values (null, 'Alexandra Harumi', 'alexandra@gmail.com', '1234'),
-                           (null, 'Gustavo Pereira', 'gustavo@gmail.com', 'gustavo');
+                           (null, 'Andreza Ayumi', 'andreza@gmail.com', 'ayumi');
 
 
-insert into livro values (null, 'Tubarão', 'Peter Benchley', 335, '2020-02-01', '2020-02-04'),
-                         (null, 'A Guerra dos Tronos - 1',	'George R.R. Martin', 587, '2023-05-10', null),
-						 (null, 'O cortiço', 'Aluísio Azevedo', 292, '2023-04-04', null);
+insert into livro values (null, 'Tubarão', 'Peter Benchley', 335),
+                         (null, 'A Guerra dos Tronos - 1',	'George R.R. Martin', 587),
+						 (null, 'O cortiço', 'Aluísio Azevedo', 292);
                          
-insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 75, 'i', null),
-                               (null, 1, 1, 02, 'Fevereiro', 2020, 'Fim de Semana', 75, 'l', null),
-                               (null, 1, 1, 03, 'Fevereiro', 2020, 'Segunda', 78, 'l', null),
-                               (null, 1, 1, 04, 'Fevereiro', 2020, 'Terça', 78, 'f', null),
-                               (null, 1, 2, 11, 'Maio', 2023, 'Quinta', 30, 'l', null),
-                               (null, 1, 2, 10, 'Maio', 2023, 'Quarta', 13, 'i', null),
-                               (null, 1, 2, 12, 'Maio', 2023, 'Sexta', 41, 'l', null),
-                               (null, 1, 2, 13, 'Maio', 2023, 'Fim de Semana', 22, 'l', null),
-                               (null, 2, 3, 04, 'Abril', 2023, 'Quinta', 10, 'i', null),
-                               (null, 2, 3, 05, 'Abril', 2023, 'Sexta', 12, 'l', null),
-                               (null, 2, 3, 06, 'Abril', 2023, 'Sabado', 20, 'l', null),
-                               (null, 2, 3, 07, 'Abril', 2023, 'Fim de Semana', 25, 'l', null);
+insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 75, 'i', '01-02-2020', '04-02-2020'),
+                               (null, 1, 1, 02, 'Fevereiro', 2020, 'Fim de Semana', 75, 'l', '01-02-2020', '04-02-2020'),
+                               (null, 1, 1, 03, 'Fevereiro', 2020, 'Segunda', 78, 'l', '01-02-2020', '04-02-2020'),
+                               (null, 1, 1, 04, 'Fevereiro', 2020, 'Terça', 78, 'f', '01-02-2020', '04-02-2020'),
+                               
+                               (null, 1, 2, 11, 'Maio', 2023, 'Quinta', 30, 'l', '10-05-2023', null),
+                               (null, 1, 2, 10, 'Maio', 2023, 'Quarta', 13, 'i', '10-05-2023', null),
+                               (null, 1, 2, 12, 'Maio', 2023, 'Sexta', 41, 'l', '10-05-2023', null),
+                               (null, 1, 2, 13, 'Maio', 2023, 'Fim de Semana', 22, 'l', '10-05-2023', null),
+                               
+                               (null, 2, 3, 04, 'Abril', 2023, 'Quinta', 10, 'i', '04-04-2023', null),
+                               (null, 2, 3, 05, 'Abril', 2023, 'Sexta', 12, 'l', '04-04-2023', null),
+                               (null, 2, 3, 06, 'Abril', 2023, 'Sabado', 20, 'l', '04-04-2023', null),
+                               (null, 2, 3, 07, 'Abril', 2023, 'Fim de Semana', 25, 'l', '04-04-2023', null);
                                
                                select * from registro;
                                select * from usuario;
                                select * from livro;
                                
-                               delete from livro where idLivro = 10;
-                               delete from livro where idLivro in (5,6,7,8,9);
+                               SELECT * FROM livro WHERE nome = 'Tubarão';
+                               
+-- delete from registro where idRegistro = 13;
+-- delete from livro where idLivro in (5,6,7,8,9);
                                SELECT * FROM livro WHERE nome = 'A' AND qtdTotalPag = 200 AND dataInicial = '2023-06-08';
+                               
+                               select * from registro where condicao <> 'f' and fkLivro = 2 and fkUsuario = 1;
+                               SELECT * FROM registro WHERE condicao = 'i' AND fkUsuario = 1 AND fkLivro = 2;
+                               
+                               -- selectLivroNaoFinalizado();
+                               select distinct(idlivro), nome, dataInicial from registro join livro on fkLivro = idLivro where condicao <> 'f' and fkUsuario = 1;
+                               
+                               select * from registro where condicao = 'i' and fkLivro = 2 and fkUsuario = 1;
+                               -- se não houver a condição i para um determinado id\livro e id\usuario - emitir um alerta de que ainda não foi iniciado o livro, e não cadastrar;
+                               
+                               select * from registro where condicao = 'f' and fkLivro = 1 and fkUsuario = 1;
+                               -- se houver 1 registro de um idlivro atual e idusuario com condição 'f'
+                               -- fazer os dois updates a baixo
+                               update registro set dataFinal = '2020-02-04' where condicao <> 'f' and  fkUsuario = 1 and fkLivro = 2;
+                               update registro set condicao = 'f' where condicao <> 'f' and fkLivro = 1 and fkUsuario = 1;
+                               -- 
+                                select * from registro where condicao = 'f';
         ;
                                
 -- select para ver se o livro existe e caso exista não deixar inserir novamente o mesmo livro;
@@ -92,7 +113,7 @@ select * from registro join livro on fkLivro = idLivro where fkUsuario = 1 and d
 insert into registro values (null, 1, 2, 14, 'Maio', 2023, 'Fim de Semana', 23, 'l',null);
 
 -- Contar quantas vezes vai se repetir para exibir antes de ser concluido
-select count(idUsuarioLivro) from registro join livro on fkLivro = idLivro where fkUsuario = 1 and dataFinal is null;
+select count(idRegistro) from registro join livro on fkLivro = idLivro where fkUsuario = 1 and dataFinal is null;
 
 -- Grafico Pie
 select avg(qtdPagDia) from registro where fkUsuario = 1 and diaSemana = 'Fim de Semana'; 

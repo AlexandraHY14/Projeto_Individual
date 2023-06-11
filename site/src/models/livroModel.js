@@ -22,7 +22,7 @@ function autenticar(titulo) {
 function lendo(Usuario) {
     console.log("ACESSEI O LIVRO MODEL \n", Usuario)
     var instrucao =
-        `SELECT distinct(idLivro), nome FROM registro JOIN livro ON fkLivro = idLivro WHERE condicao <> 'f' AND fkUsuario = ${Usuario};
+        `SELECT distinct(idLivro), nome, dataInicial FROM registro JOIN livro ON fkLivro = idLivro WHERE condicao <> 'f' AND fkUsuario = ${Usuario};
 
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);

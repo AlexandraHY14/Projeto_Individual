@@ -13,6 +13,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 // var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var livrosRouter = require("./src/routes/livros");
+var registrosRouter = require("./src/routes/registros");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,8 +24,9 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 // app.use("/avisos", avisosRouter);
-app.use("/medidas", medidasRouter)
-app.use("/livros", livrosRouter)
+app.use("/medidas", medidasRouter);
+app.use("/livros", livrosRouter);
+app.use("/registros", registrosRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

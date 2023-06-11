@@ -1,0 +1,89 @@
+var database = require("../database/config")
+
+function listar() {
+    console.log("ACESSEI O REGISTRO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+        SELECT * FROM livro;
+    `;
+    // SELECT * FROM usuario join livro on fkUsuario = idUsuario; -- where idUsuario = 'ID_USUARIO'; (isso seria como em entrar logo)
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+// Esse autenticar checa se o livro foi registrado como iniciado antes de ser registrado como lendo ou finalizado - data inicial
+function autenticar(idUsuario, idLivro) {
+    console.log("ACESSEI O REGISTRO MODEL \n", idUsuario, idLivro)
+    var instrucao =
+        `SELECT * FROM registro WHERE condicao = 'i' AND fkUsuario = ${idUsuario} AND fkLivro = ${idLivro};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function lendo(Usuario) {
+    console.log("ACESSEI O REGISTRO MODEL \n", Usuario)
+    var instrucao =
+        `SELECT distinct(idLivro), nome FROM registro JOIN livro ON fkLivro = idLivro WHERE condicao <> 'f' AND fkUsuario = ${Usuario};
+
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+// Coloque os mesmos parâmetros aqui. Vá para a var instrucao
+function inserirRegistroI(idUsuario, idLivro, dia, mes, ano, diaSemana, totalPagLidasHoje, condicao, mesNumerico) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function inserirRegistroI():", idUsuario, idLivro, dia, mes, ano, diaSemana, totalPagLidasHoje, condicao, mesNumerico);
+
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO registro VALUES  (null, ${idUsuario}, ${idLivro}, ${dia}, '${mes}', ${ano}, '${diaSemana}', ${totalPagLidasHoje}, '${condicao}', '${dia}-${mesNumerico}-${ano}', null);
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function inserirRegistroL(idUsuario, idLivro, dia, mes, ano, diaSemana, totalPagLidasHoje, condicao, dataInicial) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function inserirRegistroL():", idUsuario, idLivro, dia, mes, ano, diaSemana, totalPagLidasHoje, condicao, dataInicial);
+    var instrucao = `
+        INSERT INTO registro VALUES  (null, ${idUsuario}, ${idLivro}, ${dia}, '${mes}', ${ano}, '${diaSemana}', ${totalPagLidasHoje}, '${condicao}', '${dataInicial}', null);
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function inserirRegistroF(idUsuario, idLivro, dia, mes, ano, diaSemana, totalPagLidasHoje, condicao, dataInicial, mesNumerico) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function inserirRegistroF():", idUsuario, idLivro, dia, mes, ano, diaSemana, totalPagLidasHoje, condicao, dataInicial);
+
+    var instrucao = `
+        INSERT INTO registro VALUES  (null, ${idUsuario}, ${idLivro}, ${dia}, '${mes}', ${ano}, '${diaSemana}', ${totalPagLidasHoje}, '${condicao}', '${dataInicial}', '${dia}-${mesNumerico}-${ano}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function updateDataFinal(idUsuario, idLivro, dia, mesNumerico, ano) {
+    var instrucao = ` UPDATE registro SET dataFinal = '${dia}-${mesNumerico}-${ano}' where condicao <> 'f' and fkUsuario = ${idUsuario} and fkLivro = ${idLivro};
+    `;
+  
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+  }
+
+  function updateCondicaoFinal(idUsuario, idLivro) {
+    var instrucao = ` UPDATE registro SET condicao = 'f' where fkUsuario = ${idUsuario} AND fkLivro = ${idLivro} AND condicao <> 'f';
+    `;
+  
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+  }
+module.exports = {
+    lendo,
+    autenticar,
+    inserirRegistroI,
+    inserirRegistroL,
+    inserirRegistroF,
+    updateDataFinal,
+    updateCondicaoFinal,
+    listar
+};
