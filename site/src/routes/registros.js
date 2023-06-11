@@ -26,18 +26,19 @@ router.post("/inserirRegistroF", function (req, res) {
 
 router.put("/updateDataFinal/:idUsuario/:idLivro", function (req, res) {
     registroController.updateDataFinal(req, res);
-})
+});
 router.put("/updateCondicaoFinal/:idUsuario/:idLivro", function (req, res) {
     registroController.updateCondicaoFinal(req, res);
-})
-
-router.get("/autenticar/:idUsuario/:idLivro", function (req, res) {
-    registroController.selectRegistro(req, res);
 });
 
-router.get("/lendo/:idUsuario", function (req, res) {
-    registroController.selectIniciadoLendo(req, res);
+router.get("/pegarId/:idUsuario/:idLivro", function (req, res) {
+    registroController.selectRegistroInicial(req, res);
 });
+
+router.get("/lendo/:usuario", function (req, res) {
+    registroController.selectIL(req, res);
+});
+
 // router.post("/autenticar", function (req, res) {
 //     registroController.entrar(req, res);
 // });

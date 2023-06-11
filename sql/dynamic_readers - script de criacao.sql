@@ -73,7 +73,8 @@ insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 
                                select * from registro;
                                select * from usuario;
                                select * from livro;
-                               
+						
+-- SELECT distinct idLivro, nome, dataInicial FROM registro JOIN livro ON fkLivro = idLivro WHERE condicao <> 'f' AND fkUsuario = 1;
                                SELECT * FROM livro WHERE nome = 'Tubarão';
                                
 -- delete from registro where idRegistro = 13;
@@ -92,7 +93,7 @@ insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 
                                select * from registro where condicao = 'f' and fkLivro = 1 and fkUsuario = 1;
                                -- se houver 1 registro de um idlivro atual e idusuario com condição 'f'
                                -- fazer os dois updates a baixo
-                               update registro set dataFinal = '2020-02-04' where condicao <> 'f' and  fkUsuario = 1 and fkLivro = 2;
+                               update registro set dataFinal = '04-02-2020' where condicao <> 'f' and  fkUsuario = 1 and fkLivro = 1;
                                update registro set condicao = 'f' where condicao <> 'f' and fkLivro = 1 and fkUsuario = 1;
                                -- 
                                 select * from registro where condicao = 'f';
@@ -110,7 +111,7 @@ select * from usuario join registro on fkUsuario = idUsuario where condicao = "f
 select fkUsuario,fklivro from registro join livro on fkLivro = idLivro where fkUsuario = 1;
 select * from registro join livro on fkLivro = idLivro where fkUsuario = 1 and dataFinal is null;
 
-insert into registro values (null, 1, 2, 14, 'Maio', 2023, 'Fim de Semana', 23, 'l',null);
+insert into registro values (null, 1, 2, 14, 'Maio', 2023, 'Fim de Semana', 23, 'l','10-05-2023', null);
 
 -- Contar quantas vezes vai se repetir para exibir antes de ser concluido
 select count(idRegistro) from registro join livro on fkLivro = idLivro where fkUsuario = 1 and dataFinal is null;

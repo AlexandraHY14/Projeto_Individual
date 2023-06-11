@@ -11,19 +11,20 @@ function listar() {
 }
 
 // Esse autenticar checa se o livro foi registrado como iniciado antes de ser registrado como lendo ou finalizado - data inicial
-function autenticar(idUsuario, idLivro) {
+function pegarId(idUsuario, idLivro) {
     console.log("ACESSEI O REGISTRO MODEL \n", idUsuario, idLivro)
     var instrucao =
-        `SELECT * FROM registro WHERE condicao = 'i' AND fkUsuario = ${idUsuario} AND fkLivro = ${idLivro};
+        `SELECT * FROM registro JOIN livro ON fkLivro = idLivro WHERE condicao = 'i' AND fkUsuario = ${idUsuario} AND fkLivro = ${idLivro};
+
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function lendo(Usuario) {
-    console.log("ACESSEI O REGISTRO MODEL \n", Usuario)
+function lendo(idUsuario) {
+    console.log("ACESSEI O REGISTRO MODEL \n", idUsuario)
     var instrucao =
-        `SELECT distinct(idLivro), nome FROM registro JOIN livro ON fkLivro = idLivro WHERE condicao <> 'f' AND fkUsuario = ${Usuario};
+        `SELECT distinct idLivro, nome, dataInicial FROM registro JOIN livro ON fkLivro = idLivro WHERE condicao <> 'f' AND fkUsuario = ${idUsuario};
 
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -79,11 +80,11 @@ function updateDataFinal(idUsuario, idLivro, dia, mesNumerico, ano) {
   }
 module.exports = {
     lendo,
-    autenticar,
     inserirRegistroI,
     inserirRegistroL,
     inserirRegistroF,
     updateDataFinal,
     updateCondicaoFinal,
+    pegarId,
     listar
 };

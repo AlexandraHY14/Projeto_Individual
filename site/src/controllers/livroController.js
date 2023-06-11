@@ -81,26 +81,6 @@ function selectLivro(req, res) {
   }
 
 // ---\\---
-function selectIniciadoLendo(req, res) {
-    var Usuario = req.params.idUsuario;
-  
-    livroModel
-      .lendo(Usuario)
-      .then(function (resultado) {
-        // console.log(`\nResultados encontrados: ${resultado.length}`);
-        // console.log(`Resultados: ${JSON.stringify(resultado)}`); //TRANSFORMA JSON EM STRING
-  
-
-      })
-      .catch(function (erro) {
-        console.log(erro);
-        console.log(
-            "\nHouve um erro ao selecionar o Livro! ERRO: ",
-          erro.sqlMessage
-        );
-        res.status(500).json(erro.sqlMessage);
-      });
-  }
 
 function cadastrarLivro(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -138,7 +118,7 @@ function cadastrarLivro(req, res) {
 }
 
 module.exports = {
-    selectIniciadoLendo,
+    
     selectLivro,
     cadastrarLivro,
     listar,

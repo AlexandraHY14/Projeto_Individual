@@ -25,83 +25,58 @@ function listar(req, res) {
     );
 }
 
-// function autenticar(req, res) {
-//     var titulo = req.params.idregistro;
-
-//     registroModel
-//     .autenticar(titulo)
-//     .then(function (resultado) {
-//       // console.log(`\nResultados encontrados: ${resultado.length}`);
-//       // console.log(`Resultados: ${JSON.stringify(resultado)}`); //TRANSFORMA JSON EM STRING
-
-//       if (resultado.length == 1) {
-//         console.log(resultado);
-//         res.json(resultado[0]);
-//       } else if (resultado.length == 0) {
-//         res.status(403).send("Nome do registro INVÁLIDO");
-//       } else {
-//         res.status(403).send("Mais de um registro com o mesmo NOME");
-//       }
-//     })
-//     .catch(function (erro) {
-//       console.log(erro);
-//       console.log(
-//         "\nHouve um erro ao selecionar o registro! ERRO: ",
-//         erro.sqlMessage
-//       );
-//       res.status(500).json(erro.sqlMessage);
-//     });
-// }
-function selectRegistro(req, res) {
+function selectIL(req, res) {
+  var idUsuario = req.params.usuario;
+  
+    registroModel.lendo(idUsuario)
+      .then(function (resultado) {
+        // console.log(`\nResultados encontrados: ${resultado.length}`);
+        // console.log(`Resultados: ${JSON.stringify(resultado)}`); //TRANSFORMA JSON EM STRING
+  
+        if (resultado.length == 1) {
+          console.log(resultado);
+          res.json(resultado[0]);
+        } else if (resultado.length == 0) {
+          res.status(403).send("Nome do Livro INVÁLIDO");
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+            "\nHouve um erro ao selecionar o Livro! ERRO: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+// ---\\---
+function selectRegistroInicial(req, res) {
   var idUsuario = req.params.idUsuario;
   var idLivro = req.params.idLivro;
 
   registroModel
-    .autenticar(idUsuario,idLivro)
+    .pegarId(idUsuario, idLivro)
     .then(function (resultado) {
       // console.log(`\nResultados encontrados: ${resultado.length}`);
       // console.log(`Resultados: ${JSON.stringify(resultado)}`); //TRANSFORMA JSON EM STRING
-
-    })
-    .catch(function (erro) {
-      console.log(erro);
-      console.log(
-        "\nHouve um erro ao selecionar o registro! ERRO: ",
-        erro.sqlMessage
-      );
-      res.status(500).json(erro.sqlMessage);
-    });
-}
-
+  
+        if (resultado.length == 1) {
+          console.log(resultado);
+          res.json(resultado[0]);
+        } else if (resultado.length == 0) {
+          res.status(403).send("Nome do Livro INVÁLIDO");
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+            "\nHouve um erro ao selecionar o Livro! ERRO: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
 // ---\\---
-function selectIniciadoLendo(req, res) {
-  var Usuario = req.params.idUsuario;
-
-  registroModel
-    .lendo(Usuario)
-    .then(function (resultado) {
-      // console.log(`\nResultados encontrados: ${resultado.length}`);
-      // console.log(`Resultados: ${JSON.stringify(resultado)}`); //TRANSFORMA JSON EM STRING
-
-      if (resultado.length == 1) {
-        console.log(resultado);
-        res.json(resultado[0]);
-      } else if (resultado.length == 0) {
-        res.status(403).send("Nome do registro INVÁLIDO");
-      } else {
-        res.status(403).send("Mais de um registro com o mesmo NOME");
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro);
-      console.log(
-        "\nHouve um erro ao selecionar o registro! ERRO: ",
-        erro.sqlMessage
-      );
-      res.status(500).json(erro.sqlMessage);
-    });
-}
-
 function inserirRegistroI(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
 
@@ -348,8 +323,8 @@ function updateCondicaoFinal(req, res) {
   }
 }
 module.exports = {
-  selectIniciadoLendo,
-  selectRegistro,
+  selectIL,
+  selectRegistroInicial,
   inserirRegistroI,
   inserirRegistroL,
   inserirRegistroF,

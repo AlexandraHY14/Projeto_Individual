@@ -19,15 +19,6 @@ function autenticar(titulo) {
     return database.executar(instrucao);
 }
 
-function lendo(Usuario) {
-    console.log("ACESSEI O LIVRO MODEL \n", Usuario)
-    var instrucao =
-        `SELECT distinct(idLivro), nome, dataInicial FROM registro JOIN livro ON fkLivro = idLivro WHERE condicao <> 'f' AND fkUsuario = ${Usuario};
-
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
 function cadastrarLivro(titulo, autor, totalPag) {
@@ -43,7 +34,6 @@ function cadastrarLivro(titulo, autor, totalPag) {
 }
 
 module.exports = {
-    lendo,
     autenticar,
     cadastrarLivro,
     listar,

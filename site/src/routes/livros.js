@@ -19,9 +19,6 @@ router.get("/autenticar/:nome", function (req, res) {
     livroController.selectLivro(req, res);
 });
 
-router.get("/lendo/:idUsuario", function (req, res) {
-    livroController.selectIniciadoLendo(req, res);
-});
 // router.post("/autenticar", function (req, res) {
 //     livroController.entrar(req, res);
 // });

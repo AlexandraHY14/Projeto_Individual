@@ -301,43 +301,9 @@
 <script>
 
     selectLivrosExistentes();
-    selectID_REGISTROIniciado();
-
     selectLendo();
 
-    function selectLendo() {
-        var idUsuario = sessionStorage.ID_USUARIO;
-        //    id e titulo do livro que o usuario não finalizou
-        // Tabela livro com tabela registro para puxar a informação
-
-        fetch(`/livros/lendo/${idUsuario}`, {
-            cache: "no-store",
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO SELECT Lendo()!!!!!!!!!!!")
-            //   alert(idUsuario)
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.ID_LENDO = json.idLivro;
-                    sessionStorage.TITULO = json.nome;
-                    sessionStorage.DATA_INICIAL = json.dataInicial;
-                });
-            } else {
-                console.log("Houve um erro ao tentar realizar o SELECT!!!!!!!!!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-        return false;
-    }
+    selectID_REGISTROIniciado();
 
     function InserirDados() {
         // var nomeLivro = ipt_titulo.value;
@@ -357,43 +323,46 @@
         if (condicao == "Iniciado") {
             condição = true;
             selectLivroCadastrado()
-            
-            // Selecionar no gegistro se possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar
-            
-            // if (sessionStorage.ID_REGISTRO_I != null) {
-                
-                //     alert("Esse livro já foi iniciado");
-                //     continuar = false;
-                // }
-                
-                
-                // if (continuar == true) {
-                    if (sessionStorage.ID_LIVRO == null) {
-                        alert(`${nomeLivro}, ${nomeAutor} , ${totalPaginas}`)
-                        insertTabelaLivro();
-                        selectLendo();
-                        // selectLivroCadastrado()
-                        
-                    }
-                    if (sessionStorage.ID_LENDO == null || sessionStorage.ID_LIVRO != null) {
-                        alert("A")
-                        insertTabelaRegistroI();
-                        selectLendo();
-                        selectID_REGISTROIniciado();
-                    }
 
+            // Selecionar no gegistro se possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar
+
+            // if (sessionStorage.ID_REGISTRO_I != null) {
+            //     continuar = false;
+
+            //     alert("Esse livro já foi iniciado");
+            // }else{
+            //     continuar = true;
             // }
+
+
+            if (continuar == true) {
+                if (sessionStorage.ID_LIVRO == null) {
+                    alert(`${nomeLivro}, ${nomeAutor} , ${totalPaginas}`)
+                    insertTabelaLivro();
+                    // selectLendo();
+                    // selectLivroCadastrado()
+
+                }
+                if (sessionStorage.ID_LENDO == null || sessionStorage.ID_LIVRO != null) {
+                    alert("A")
+                    insertTabelaRegistroI();
+                }
+                selectLendo();
+                selectID_REGISTROIniciado();
+
+            }
         }
 
         // Lendo 2º
         if (condicao == "Lendo") {
-
+            
             condição = true;
-
+            
             // Se o idRegistro for = null, é porque não possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar.
-            // selectLivroCadastrado();
             selectLendo();
-
+            selectID_REGISTROIniciado();
+            selectLivroCadastrado();
+           
             if (sessionStorage.ID_LIVRO != sessionStorage.ID_LENDO) {
                 alert(`O titulo do livro que está tentando registrar não corresponde ao livro que estava lendo. Precisa terminar concluir o livro em andamento para iniciar outro :) - O livro não concluido é ${sessionStorage.TITULO}`)
                 continuar = false;
@@ -406,7 +375,6 @@
 
             if (continuar == true) {
                 insertTabelaRegistroL();
-                // selectLivroCadastrado();
 
                 // Utilizar idUsuario e idLlivro na condição lendo para adicionar a data inicial
                 // X Fazer update no registro inserido para colocar data inicial - A data Inicial está sendo inserida junto com os outros dados, pois foi alocada em um session storage chamado DATA_INICIAL e passado pela função insertTabelaRegistroL(); - portanto não precia de update
@@ -415,11 +383,14 @@
         }
         // Finalizado 3º
         if (condicao == "Finalizado") {
-            // selectLivroCadastrado();
+            selectLivroCadastrado();
             condição = true;
 
-            selectLendo();
-
+            // selectLendo();
+            if (sessionStorage.ID_LIVRO != sessionStorage.ID_LENDO) {
+                alert(`O titulo do livro que está tentando registrar não corresponde ao livro que estava lendo. Precisa terminar concluir o livro em andamento para iniciar outro :) - O livro não concluido é ${sessionStorage.TITULO}`)
+                continuar = false;
+            }
             if (sessionStorage.ID_LENDO == null || sessionStorage.ID_LENDO == undefined) {
                 alert(`esse titulo não foi iniciado para poder ser finalizado. Portanto não é possivel registrar sua conlusão:(`)
                 continuar = false;
@@ -887,7 +858,47 @@
         })
         return false;
     }
+    // alert(sessionStorage.ID_LENDO);
 
+
+    function selectLendo() {
+        var usuario = sessionStorage.ID_USUARIO;
+        // var nomeAutor = ipt_autor.value;
+        // var totalPaginas = ipt_totalPag.value;
+
+        fetch(`/registros/lendo/${usuario}`, {
+            cache: "no-store",
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO SELECT selectLendo()!!!!!!!!!!!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.ID_LENDO = json.idLivro;
+                    sessionStorage.TITULO = json.nome;
+                    sessionStorage.DATA_INICIAL = json.dataInicial;
+
+
+                });
+
+            } else {
+                console.log("Houve um erro ao tentar realizar o SELECT!!!!!!!!!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
+
+    // ---\\---
     function selectID_REGISTROIniciado() {
         var idUsuario = sessionStorage.ID_USUARIO;
         var idLivro = sessionStorage.ID_LIVRO;
@@ -895,7 +906,7 @@
         // var nomeAutor = ipt_autor.value;
         // var totalPaginas = ipt_totalPag.value;
 
-        fetch(`/registros/autenticar/${idUsuario}/${idLivro}`, {
+        fetch(`/registros/pegarId/${idUsuario}/${idLivro}`, {
             cache: "no-store",
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO selectID_REGISTROIniciado()!!!!!!!!!!!")
@@ -921,6 +932,7 @@
         })
         return false;
     }
+
     // ________________________________________________________________________________________________________________________
 
     function consultar(params) {
