@@ -10,6 +10,18 @@ function listar(idUsuario, idLivro) {
     return database.executar(instrucao);
 }
 
+function listarC(idUsuario) {
+    console.log("ACESSEI O REGISTRO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarC()", idUsuario);
+    var instrucao = `
+    SELECT distinct nome, dataInicial, dataFinal, qtdTotalPag FROM registro JOIN livro ON fkLivro = idLivro WHERE condicao = 'f' AND fkUsuario = ${idUsuario};
+    `;
+    // SELECT * FROM usuario join livro on fkUsuario = idUsuario; -- where idUsuario = 'ID_USUARIO'; (isso seria como em entrar logo)
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
 // Esse autenticar checa se o livro foi registrado como iniciado antes de ser registrado como lendo ou finalizado - data inicial
 function pegarId(idUsuario, idLivro) {
     console.log("ACESSEI O REGISTRO MODEL \n", idUsuario, idLivro)
@@ -86,5 +98,6 @@ module.exports = {
     updateDataFinal,
     updateCondicaoFinal,
     pegarId,
-    listar
+    listar,
+    listarC
 };

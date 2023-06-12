@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="css/paginaUsuario.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
 </head>
 <!-- onload="validarSessao(), atualizacaoPeriodica()" -->
 <!-- onload="carregarUserLogado() , receberUserLogado(usuarioLogado)" -->
@@ -250,8 +250,8 @@
 
                 <div class="concluidosI">
                     <scroll-container id="registrando">
-                        <scroll-page> * Titulo: Nome do livro - Data: 06/Fevereiro/2023 - Fim de Semana - 10
-                            páginas (faltam 180 páginas)</scroll-page>
+                        <!-- <scroll-page> * Titulo: Nome do livro - Data: 06/Fevereiro/2023 - Fim de Semana - 10
+                            páginas (faltam 180 páginas)</scroll-page> -->
 
                     </scroll-container>
 
@@ -273,11 +273,9 @@
                   </nav> -->
 
                 <div class="concluidos">
-                    <scroll-container>
-                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final:
+                    <scroll-container id="registroDosConcluidos">
+                        <scroll-page> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final:
                             08/Janeiro/2023 - total de páginas: 240.</scroll-page>
-                        <scroll-page id="page-2">2</scroll-page>
-                        <scroll-page id="page-3">3</scroll-page>
 
                     </scroll-container>
 
@@ -320,52 +318,53 @@
 
 </body>
 <script src="scriptJS/livro_registro.js"></script>
+
 </html>
 <script>
-oQueFazer();
-function oQueFazer(){
-       var vt_melhorar = ["Vejá o dia da semana em que lê menos e procure se desafiar a ler mais nesse dia.", "Vá checando seu progresso mensal, para ver sua evolução a cada mês"];
-    var NumSorteado = ((Math.random()* (2 - 1)) + 1).toFixed();
-    melhorar.innerHTML = vt_melhorar[NumSorteado - 1];
-   }
+    oQueFazer();
+    function oQueFazer() {
+        var vt_melhorar = ["Vejá o dia da semana em que lê menos e procure se desafiar a ler mais nesse dia.", "Vá checando seu progresso mensal, para ver sua evolução a cada mês"];
+        var NumSorteado = ((Math.random() * (2 - 1)) + 1).toFixed();
+        melhorar.innerHTML = vt_melhorar[NumSorteado - 1];
+    }
 
 
-   somaPaginas();
-   totalP.innerHTML = sessionStorage.TOTAL_LIDO;
-function somaPaginas() {
-    var idUsuario = sessionStorage.ID_USUARIO;
+    somaPaginas();
+    totalP.innerHTML = sessionStorage.TOTAL_LIDO;
+    function somaPaginas() {
+        var idUsuario = sessionStorage.ID_USUARIO;
 
-    fetch(`/graficos/pegarSomaPag/${idUsuario}`, {
-        cache: "no-store",
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO SELECT selectLendo()!!!!!!!!!!!")
+        fetch(`/graficos/pegarSomaPag/${idUsuario}`, {
+            cache: "no-store",
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO SELECT selectLendo()!!!!!!!!!!!")
 
-        if (resposta.ok) {
-            console.log(resposta);
+            if (resposta.ok) {
+                console.log(resposta);
 
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
 
-                sessionStorage.TOTAL_LIDO = json.total_lido;
-            });
+                    sessionStorage.TOTAL_LIDO = json.total_lido;
+                });
 
-        } else {
-            console.log("Houve um erro ao tentar realizar o SELECT!!!!!!!!!");
+            } else {
+                console.log("Houve um erro ao tentar realizar o SELECT!!!!!!!!!");
 
-            resposta.text().then(texto => {
-                console.error(texto);
-            });
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-    })
-    return false;
-}
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
 
-function conquistas() {
-    
-}
+    function conquistas() {
+
+    }
 
     // _______________________________________________________
 

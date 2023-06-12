@@ -1,55 +1,64 @@
-selectID_REGISTROIniciado();
 
 selectLivrosExistentes();
 selectRegistrosNAOfinalizados();
+selectID_REGISTROIniciado();
 
 selectLendo();
+
+selectLivroCadastrado();
+selectRegistrosCONCLUIDOS();
 
 
 
 function InserirDados() {
-    // var nomeLivro = ipt_titulo.value;
-    // var nomeAutor = ipt_autor.value;
-    // var totalPaginas = ipt_totalPag.value;
-    // var dia = ipt_dia.value;
-    // var mes = messesR.value;
-    // var ano = ipt_ano.value;
-    // var totalPagLidasHoje = ipt_lidas.value;
-    // var diaSemana = diasR.value;
+    var nomeLivro = ipt_titulo.value;
+    var nomeAutor = ipt_autor.value;
+    var totalPaginas = ipt_totalPag.value;
+    var dia = ipt_dia.value;
+    var mes = messesR.value;
+    var ano = ipt_ano.value;
+    var totalPagLidasHoje = ipt_lidas.value;
+    var diaSemana = diasR.value;
 
     var condicao = cond.value;
 
     var continuar = true;
+    
+    var idRegistroI = sessionStorage.ID_REGISTRO_I; 
 
+    var idLivro = sessionStorage.ID_LIVRO;
     // Iniciado 1º
     if (condicao == "Iniciado") {
         condição = true;
         selectLendo();
         selectID_REGISTROIniciado();
-        selectLivroCadastrado();
         // Selecionar no gegistro se possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar
+        alert(typeof(idRegistroI))
+        if (idRegistroI != "null") {
+            continuar = false;
+            alert("Esse livro já foi iniciado");
 
-        // if (sessionStorage.ID_REGISTRO_I != null) {
-        //     continuar = false;
-
-        //     alert("Esse livro já foi iniciado");
-        // }else{
-        //     continuar = true;
-        // }
+        }else{
+            continuar = true;
+        }
 
 
         if (continuar == true) {
-            if (sessionStorage.ID_LIVRO == null || sessionStorage.ID_LIVRO == undefined) {
+            selectLivroCadastrado();
+            
+            if (idLivro == "null") {
                 alert(`${nomeLivro}, ${nomeAutor} , ${totalPaginas}`)
                 insertTabelaLivro();
-                // selectLendo();
-                // selectLivroCadastrado()
-
-            }else
-            if (sessionStorage.ID_LENDO != null || sessionStorage.ID_LIVRO != null) {
+                selectLivroCadastrado();
                 alert("A")
                 insertTabelaRegistroI();
+            }else{
+                selectLivroCadastrado();
+                alert("B")
+                insertTabelaRegistroI();
             }
+            
+            selectLendo();
             
         }
         
@@ -87,9 +96,8 @@ function InserirDados() {
     if (condicao == "Finalizado") {
         condição = true;
         selectLendo();
-        selectID_REGISTROIniciado();
         selectLivroCadastrado();
-
+        
         // selectLendo();
         if (sessionStorage.ID_LIVRO != sessionStorage.ID_LENDO) {
             alert(`O titulo do livro que está tentando registrar não corresponde ao livro que estava lendo. Precisa terminar concluir o livro em andamento para iniciar outro :) - O livro não concluido é ${sessionStorage.TITULO}`)
@@ -103,17 +111,17 @@ function InserirDados() {
             condicao = "f";
 
             insertTabelaRegistroF();
-            
+        
             updateCondicaoFinal();
 
             updateDataFinal();
-            sessionStorage.ID_LENDO = null;
-            sessionStorage.ID_LIVRO = null;
-            sessionStorage.TITULO = null;
-            sessionStorage.ID_REGISTRO_I = null;
-            sessionStorage.DATA_INICIAL = null;
-        
+            
         }
+        sessionStorage.ID_LENDO = null;
+        sessionStorage.TITULO = null;
+        sessionStorage.DATA_INICIAL = null;
+        selectID_REGISTROIniciado();
+        selectRegistrosNAOfinalizados(); 
         somaPaginas();
     }
     // alert(`${nomeLivro}, ${totalPaginas}, ${totalPagLidasHoje}, ${dia}, ${mes}, ${ano}, ${diaSemana}, ${condicao}`)
@@ -530,22 +538,23 @@ function selectLivrosExistentes() { //ATUALIZAR DATALIST DOS PONTOS
 // Tentativa de exibir no scroll
 function selectRegistrosNAOfinalizados() {
    var idUsuario = sessionStorage.ID_USUARIO;
-   var idLivro = sessionStorage.ID_LIVRO;
+   var idLivro = sessionStorage.ID_LENDO;
 
-    fetch(`/registros/listar/${idUsuario}/${idLivro}`).then(function (resposta) {
-        if (resposta.ok) {
-            if (resposta.status == 204) {
+    fetch(`/registros/listar/${idUsuario}/${idLivro}`).then(function (response) {
+        if (response.ok) {
+            alert(response.status);
+            if (response.status == 204) {
 
                 var feed = document.getElementById("registrando");
                 var mensagem = document.createElement("scroll-page");
                 
-                mensagem.innerHTML = "Nenhum resultado encontrado." //SE NÂO APARECER NADA, MUDAR AQUI
+                mensagem.innerHTML = "Inicie outro titulo." //SE NÂO APARECER NADA, MUDAR AQUI
                 feed.appendChild(mensagem);
                 
                 throw "Nenhum resultado encontrado!!";
             }
 
-            resposta.json().then(function (resposta) {
+            response.json().then(function (resposta) {
                 console.log("Dados recebidos: ", JSON.stringify(resposta));
                 // pontos = resposta;
 
@@ -566,10 +575,54 @@ function selectRegistrosNAOfinalizados() {
         } else {
             throw ("Houve um erro na API")
         }
-    }).catch(function (resposta) {
-        console.error(resposta);
+    }).catch(function (erro) {
+        console.error(erro);
     });
 }
+
+function selectRegistrosCONCLUIDOS() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+ 
+     fetch(`/registros/listarC/${idUsuario}`).then(function (response) {
+         if (response.ok) {
+             alert(response.status);
+             if (response.status == 204) {
+ 
+                 var feed = document.getElementById("registroDosConcluidos");
+                 var mensagem = document.createElement("scroll-page");
+                 
+                 mensagem.innerHTML = "Conclua um título." //SE NÂO APARECER NADA, MUDAR AQUI
+
+                 feed.appendChild(mensagem);
+                 
+                 throw "Nenhum resultado encontrado!!";
+             }
+ 
+             response.json().then(function (resposta) {
+                 console.log("Dados recebidos: ", JSON.stringify(resposta));
+                 // pontos = resposta;
+ 
+                 var feed = document.getElementById("registroDosConcluidos");
+                 feed.innerHTML = "";
+ 
+                 for (let i = 0; i < resposta.length; i++) {
+                     var publicacao = resposta[i];
+ 
+                     var registro = document.createElement("scroll-page");
+ 
+                     registro.innerHTML = `Título: ${publicacao.nome} - DATA: ${publicacao.dia}/${publicacao.mes}/${publicacao.ano} - ${publicacao.diaSemana} - ${publicacao.qtdPagDia} página(s) lida(s) - (${publicacao.qtdTotalPag});`;
+ 
+                     feed.appendChild(registro);
+                 }
+                
+             });
+         } else {
+             throw ("Houve um erro na API")
+         }
+     }).catch(function (erro) {
+         console.error(erro);
+     });
+ }
 // -----\\----
 function selectLivroCadastrado() {
     var nomeLivro = ipt_titulo.value;
@@ -592,7 +645,7 @@ function selectLivroCadastrado() {
             });
         } else {
             console.log("Houve um erro ao tentar realizar o SELECT!!!!!!!!!");
-
+            sessionStorage.ID_LIVRO = null;
             resposta.text().then(texto => {
                 console.error(texto);
             });
@@ -645,7 +698,7 @@ function selectLendo() {
 // ---\\---
 function selectID_REGISTROIniciado() {
     var idUsuario = sessionStorage.ID_USUARIO;
-    var idLivro = sessionStorage.ID_LIVRO;
+    var idLivro = sessionStorage.ID_LENDO;
 
     // var nomeAutor = ipt_autor.value;
     // var totalPaginas = ipt_totalPag.value;
@@ -666,7 +719,7 @@ function selectID_REGISTROIniciado() {
             });
         } else {
             console.log("Houve um erro ao tentar realizar o SELECT do idRegistro!!!!!!!!!");
-
+            sessionStorage.ID_REGISTRO_I = null;
             resposta.text().then(texto => {
                 console.error(texto);
             });

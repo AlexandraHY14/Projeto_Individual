@@ -7,8 +7,12 @@ var registroController = require("../controllers/registroController");
 //     registroController.testar(req, res);
 // });
 
-router.get("/listar", function (req, res) {
+router.get("/listar/:idUsuario/:idLivro", function (req, res) {
     registroController.listar(req, res);
+});
+
+router.get("/listarC/:idUsuario", function (req, res) {
+    registroController.listarC(req, res);
 });
 
 //Recebendo os dados do html e direcionando para a função cadastrar de registroController.js
