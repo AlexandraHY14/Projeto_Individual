@@ -64,7 +64,7 @@ function inserirRegistroF(idUsuario, idLivro, dia, mes, ano, diaSemana, totalPag
 }
 
 function updateDataFinal(idUsuario, idLivro, dia, mesNumerico, ano) {
-    var instrucao = ` UPDATE registro SET dataFinal = '${dia}-${mesNumerico}-${ano}' where condicao <> 'f' and fkUsuario = ${idUsuario} and fkLivro = ${idLivro};
+    var instrucao = ` UPDATE registro SET dataFinal = '${dia}-${mesNumerico}-${ano}' where condicao = 'f' and fkUsuario = ${idUsuario} and fkLivro = ${idLivro};
     `;
   
     console.log("Executando a instrução SQL: \n" + instrucao);

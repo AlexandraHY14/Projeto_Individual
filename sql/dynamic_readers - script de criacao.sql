@@ -55,9 +55,9 @@ insert into livro values (null, 'Tubarão', 'Peter Benchley', 335),
                          (null, 'A Guerra dos Tronos - 1',	'George R.R. Martin', 587),
 						 (null, 'O cortiço', 'Aluísio Azevedo', 292);
                          
-insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 75, 'i', '01-02-2020', '04-02-2020'),
-                               (null, 1, 1, 02, 'Fevereiro', 2020, 'Fim de Semana', 75, 'l', '01-02-2020', '04-02-2020'),
-                               (null, 1, 1, 03, 'Fevereiro', 2020, 'Segunda', 78, 'l', '01-02-2020', '04-02-2020'),
+insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 75, 'f', '01-02-2020', '04-02-2020'),
+                               (null, 1, 1, 02, 'Fevereiro', 2020, 'Fim de Semana', 75, 'f', '01-02-2020', '04-02-2020'),
+                               (null, 1, 1, 03, 'Fevereiro', 2020, 'Segunda', 78, 'f', '01-02-2020', '04-02-2020'),
                                (null, 1, 1, 04, 'Fevereiro', 2020, 'Terça', 78, 'f', '01-02-2020', '04-02-2020'),
                                
                                (null, 1, 2, 11, 'Maio', 2023, 'Quinta', 30, 'l', '10-05-2023', null),
@@ -82,7 +82,7 @@ insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 
                                SELECT * FROM livro WHERE nome = 'A' AND qtdTotalPag = 200 AND dataInicial = '2023-06-08';
                                
                                select * from registro where condicao <> 'f' and fkLivro = 2 and fkUsuario = 1;
-                               SELECT * FROM registro WHERE condicao = 'i' AND fkUsuario = 1 AND fkLivro = 3;
+                               SELECT * FROM registro WHERE condicao = 'i' AND fkUsuario = 1 AND fkLivro = 2;
                                
                                -- selectLivroNaoFinalizado();
                                select distinct(idlivro), nome, dataInicial from registro join livro on fkLivro = idLivro where condicao <> 'f' and fkUsuario = 1;
@@ -124,3 +124,5 @@ select avg(qtdPagDia) from registro where fkUsuario = 1 and diaSemana = 'Fim de 
 select round(avg(qtdPagDia),2) from registro where fkUsuario = 1 and mes = 'Fevereiro' and ano = 2020; 
 
 select distinct(nome) from registro join livro on fklivro = idLivro where fkusuario = 1;
+
+SELECT sum(qtdPagDia) as total_lido FROM registro where fkUsuario = 1;

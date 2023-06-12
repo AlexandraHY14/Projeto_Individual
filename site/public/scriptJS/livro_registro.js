@@ -1,9 +1,11 @@
+selectID_REGISTROIniciado();
 
 selectLivrosExistentes();
 selectRegistrosNAOfinalizados();
+
 selectLendo();
 
-selectID_REGISTROIniciado();
+
 
 function InserirDados() {
     // var nomeLivro = ipt_titulo.value;
@@ -22,8 +24,9 @@ function InserirDados() {
     // Iniciado 1º
     if (condicao == "Iniciado") {
         condição = true;
-        selectLivroCadastrado()
-
+        selectLendo();
+        selectID_REGISTROIniciado();
+        selectLivroCadastrado();
         // Selecionar no gegistro se possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar
 
         // if (sessionStorage.ID_REGISTRO_I != null) {
@@ -42,16 +45,14 @@ function InserirDados() {
                 // selectLendo();
                 // selectLivroCadastrado()
 
-            }
-            if (sessionStorage.ID_LENDO == null || sessionStorage.ID_LIVRO != null) {
+            }else
+            if (sessionStorage.ID_LENDO != null || sessionStorage.ID_LIVRO != null) {
                 alert("A")
                 insertTabelaRegistroI();
             }
             
         }
-        selectLendo();
-        selectID_REGISTROIniciado();
-        selectLivroCadastrado();
+        
     }
 
     // Lendo 2º
@@ -84,8 +85,10 @@ function InserirDados() {
     }
     // Finalizado 3º
     if (condicao == "Finalizado") {
-        selectLivroCadastrado();
         condição = true;
+        selectLendo();
+        selectID_REGISTROIniciado();
+        selectLivroCadastrado();
 
         // selectLendo();
         if (sessionStorage.ID_LIVRO != sessionStorage.ID_LENDO) {
@@ -100,23 +103,19 @@ function InserirDados() {
             condicao = "f";
 
             insertTabelaRegistroF();
-
-            // selectDataFinal;
-
-            // Fazer um UPDATE registro SET dataFinal = '${ano}-${mesNumerico}-${dia}' WHERE condicao <> 'f' AND idUsuario = ${idUsuario} AND idLivros = ${idLendo};
-            updateDataFinal();
-            // Depois fazer outro UPDATE registro SET condicao = 'f' WHERE condicao <> 'f' AND idUsuario = ${idusuario} AND idLivros = ${idLendo};
+            
             updateCondicaoFinal();
 
-            // selectLivroCadastrado();
+            updateDataFinal();
+            sessionStorage.ID_LENDO = null;
+            sessionStorage.ID_LIVRO = null;
+            sessionStorage.TITULO = null;
+            sessionStorage.ID_REGISTRO_I = null;
+            sessionStorage.DATA_INICIAL = null;
+        
         }
-        sessionStorage.ID_LENDO = null;
-        sessionStorage.ID_LIVRO = null;
-        sessionStorage.TITULO = null;
-        sessionStorage.ID_REGISTRO_I = null;
-        sessionStorage.DATA_INICIAL = null;
+        somaPaginas();
     }
-
     // alert(`${nomeLivro}, ${totalPaginas}, ${totalPagLidasHoje}, ${dia}, ${mes}, ${ano}, ${diaSemana}, ${condicao}`)
 
 
