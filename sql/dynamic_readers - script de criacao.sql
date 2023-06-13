@@ -84,11 +84,12 @@ insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 
                                select * from registro where condicao <> 'f' and fkLivro = 2 and fkUsuario = 1;
                                SELECT * FROM registro WHERE condicao = 'i' AND fkUsuario = 1 AND fkLivro = 2;
                                
+                               select distinct nome, dataInicial, dataFinal, qtdTotalPag from registro join livro on fkLivro = idLivro where condicao = 'f' and fkUsuario = 1;
                                -- selectLivroNaoFinalizado();
                                select distinct(idlivro), nome, dataInicial from registro join livro on fkLivro = idLivro where condicao <> 'f' and fkUsuario = 1;
                                
                                -- APARECER DEBAIXO DO FORMULÀRIO APÒS REGISTRO REALIZADO
-                               select * from registro join livro on fkLivro = idLivro where condicao <> 'f' and fkLivro = 3 and fkUsuario = 1;
+                               select * from registro join livro on fkLivro = idLivro where condicao <> 'f' and fkLivro = 2 and fkUsuario = 1;
                                -- se não houver a condição i para um determinado id\livro e id\usuario - emitir um alerta de que ainda não foi iniciado o livro, e não cadastrar;
                                
                                select * from registro where condicao = 'f' and fkLivro = 1 and fkUsuario = 1;
@@ -97,7 +98,7 @@ insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 
                                update registro set dataFinal = '04-02-2020' where condicao <> 'f' and  fkUsuario = 1 and fkLivro = 1;
                                update registro set condicao = 'f' where condicao <> 'f' and fkLivro = 1 and fkUsuario = 1;
                                -- 
-                                select * from registro where condicao = 'f';
+                                select * from registro where condicao = 'f' and fkUsuario = 1;
         ;
                                
 -- select para ver se o livro existe e caso exista não deixar inserir novamente o mesmo livro;
@@ -126,3 +127,17 @@ select round(avg(qtdPagDia),2) from registro where fkUsuario = 1 and mes = 'Feve
 select distinct(nome) from registro join livro on fklivro = idLivro where fkusuario = 1;
 
 SELECT sum(qtdPagDia) as total_lido FROM registro where fkUsuario = 1;
+
+-- ___________________________________________________________________________________________________________________
+
+select ano, mes, diaSemana, round(avg(qtdPagDia),2) as mediaPags from registro as reg
+	join usuario as u on reg.fkUsuario = u.idUsuario
+	where u.idUsuario = 1 and mes like 'Fevereiro' and ano = 2020
+    group by ano, mes, diaSemana;
+  
+  select * from registro;
+-- grafico pizza
+    select diaSemana, round(avg(qtdPagDia),2) as mediaPags from registro as reg
+	join usuario as u on reg.fkUsuario = u.idUsuario
+	where u.idUsuario = 1
+    group by diaSemana;

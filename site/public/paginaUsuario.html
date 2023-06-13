@@ -44,7 +44,7 @@
                     </div>
                     <div class="dados">
                         <span class="nomeUsuario" id="nomeDoUsuario">Nome Do usuário</span>
-                        <span>Mensagem <img class="img02" src="img/editar.png" alt=""></span>
+                        <span id="emailDoUsuario"> <img class="img02" src="img/editar.png" alt=""></span>
                     </div>
 
                 </div>
@@ -187,14 +187,15 @@
 
                 <div class="formRegistrar">
 
-                    <div class="tituloTexto">Título*: <input list="todosOsLivros" id="ipt_titulo"></div>
+                    <div class="tituloTexto">Título*: <input list="todosOsLivros" id="ipt_tituloNovo"></div>
 
-                    <div class="nomeAutor">Nome do autor: <input list="todosOsAutores" id="ipt_autor"></div>
+                    <div class="nomeAutor">Nome do autor: <input list="todosOsAutores" id="ipt_autorNovo"></div>
                    
 
                     <div class="paginas">Total de páginas*: <input id="ipt_totalPag"></div>
-                    <button style="width: 300px; height: 20px; font-size: 15px; margin-left: 20px;">Cadastrar um novo titulo</button>
-                    <b>---------------------------------------------------</b>
+
+                    <button style="width: 200px; height: 25px; font-size: 15px; margin-left: 95px;" onclick="insertTabelaLivro()">Cadastrar um novo título</button>
+                    <b>-----------------------------------------------------------</b>
                     <div class="tituloTexto">Título*: <input list="todosOsLivros" id="ipt_titulo"></div>
                     <datalist id="todosOsLivros"></datalist>
 
@@ -478,13 +479,15 @@
     // _________________________________________________________________________________
 
     //   function receberUserLogado(UsuarioLogado) {
-    var nomeUsuario = sessionStorage.NOME_USUARIO;
+   
     nomeDoUsuario.innerHTML = `${sessionStorage.NOME_USUARIO}`;
+    emailDoUsuario.innerHTML = `${sessionStorage.EMAIL_USUARIO}`;
     //   }
 
 
     function sair() {
         sessionStorage.ID_USUARIO = null;
+        sessionStorage.EMAIL_USUARIO = null;
         window.location = "index.html";
     }
 </script>

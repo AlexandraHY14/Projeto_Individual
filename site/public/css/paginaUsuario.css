@@ -544,6 +544,7 @@ width: 75px;
     align-items: flex-start;
     justify-content: flex-start;
     height: 100%;
+    margin: 10px 0;
     font-size: 18px;
 }
 

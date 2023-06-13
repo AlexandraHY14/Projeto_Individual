@@ -9,6 +9,8 @@ selectRegistrosNAOfinalizados();
 selectRegistrosCONCLUIDOS();
 
 
+    insertTabelaLivro();
+
 
 function InserirDados() {
     var nomeLivro = ipt_titulo.value;
@@ -49,7 +51,6 @@ function InserirDados() {
             
             if (idLivro == "null") {
                 alert(`${nomeLivro}, ${nomeAutor} , ${totalPaginas}`)
-                insertTabelaLivro();
                 selectLivroCadastrado();
                 alert("A")
                 insertTabelaRegistroI();
@@ -135,8 +136,8 @@ function InserirDados() {
 }
 
 function insertTabelaLivro() {
-    var nomeLivro = ipt_titulo.value;
-    var nomeAutor = ipt_autor.value;
+    var nomeLivro = ipt_tituloNovo.value;
+    var nomeAutor = ipt_autorNovo.value;
     var totalPaginas = ipt_totalPag.value;
 
     // Enviando o valor da nova input
@@ -545,7 +546,7 @@ function selectRegistrosNAOfinalizados() {
 
     fetch(`/registros/listar/${idUsuario}/${idLivro}`).then(function (response) {
         if (response.ok) {
-            alert(response.status);
+            // alert(response.status);
             if (response.status == 204) {
 
                 var feed = document.getElementById("registrando");
@@ -569,7 +570,7 @@ function selectRegistrosNAOfinalizados() {
 
                     var registro = document.createElement("scroll-page");
 
-                    registro.innerHTML = `Título: ${publicacao.nome} - DATA: ${publicacao.dia}/${publicacao.mes}/${publicacao.ano} - ${publicacao.diaSemana} - ${publicacao.qtdPagDia} página(s) lida(s) - (${publicacao.qtdTotalPag});`;
+                    registro.innerHTML = `+_+ Título: ${publicacao.nome} || Data: ${publicacao.dia}/${publicacao.mes}/${publicacao.ano} || ${publicacao.diaSemana} || ${publicacao.qtdPagDia} página(s) lida(s) (de ${publicacao.qtdTotalPag} pág(s));`;
 
                     feed.appendChild(registro);
                 }
@@ -588,7 +589,7 @@ function selectRegistrosCONCLUIDOS() {
  
      fetch(`/registros/listarC/${idUsuario}`).then(function (response) {
          if (response.ok) {
-             alert(response.status);
+            //  alert(response.status);
              if (response.status == 204) {
  
                  var feed = document.getElementById("registroDosConcluidos");

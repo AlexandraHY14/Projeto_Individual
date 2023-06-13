@@ -33,7 +33,7 @@ Os valores abaixo serão exibidos nos gráficos;
 
 -> a mensagem muda... -> if a media de cada dia do mês for a mesma -> nova mensagem: `Continue com o habito de ler ${quantia média} por dia!`;
 
-___________________________________________________________LEMBRAR_________________________________________________________
+___________________________________________________________LEMBRAR_______________________________________________
 
 NA PARTE DO GRÁFICO DE LINHAS - O INPUT DO ANO
 
@@ -43,3 +43,12 @@ adicionar classe a esse input e diminuir width: ;
 
 ---------------------------------------
 COLOCAR FOOTER NA PÁGINA DE CADASTRO, LOGIN, PAGINA DO USUARIO E RESUMO!!!!!!!
+
+
+
+
+-------------------------------------------
+
+- Ajustar o scroll de conlcuidos;
+- Ajustar funções dentro da função inserir dados;
+- Criar a página saiba mais - com o diagnóstico.
