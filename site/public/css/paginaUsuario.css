@@ -319,6 +319,7 @@ width: 75px;
     /* display: flex; */
     height: 60px;
     width: 60px;
+    cursor: pointer;
 }
 
 .tituloM {
@@ -699,4 +700,8 @@ width: 75px;
     display: flex;
     align-items: center;
    
+}
+
+button:hover{
+    transform: translateY(-4px)
 }

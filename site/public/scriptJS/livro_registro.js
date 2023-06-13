@@ -4,23 +4,22 @@ selectID_REGISTROIniciado();
 
 selectLendo();
 
-selectLivroCadastrado();
+// selectLivroCadastrado();
 selectRegistrosNAOfinalizados();
 selectRegistrosCONCLUIDOS();
 
 
-    insertTabelaLivro();
 
 
 function InserirDados() {
-    var nomeLivro = ipt_titulo.value;
-    var nomeAutor = ipt_autor.value;
-    var totalPaginas = ipt_totalPag.value;
-    var dia = ipt_dia.value;
-    var mes = messesR.value;
-    var ano = ipt_ano.value;
-    var totalPagLidasHoje = ipt_lidas.value;
-    var diaSemana = diasR.value;
+    // var nomeLivro = ipt_titulo.value;
+    // var nomeAutor = ipt_autor.value;
+    // var totalPaginas = ipt_totalPag.value;
+    // var dia = ipt_dia.value;
+    // var mes = messesR.value;
+    // var ano = ipt_ano.value;
+    // var totalPagLidasHoje = ipt_lidas.value;
+    // var diaSemana = diasR.value;
 
     var condicao = cond.value;
     
@@ -30,52 +29,48 @@ function InserirDados() {
     
     var idLivro = sessionStorage.ID_LIVRO;
 
-    selectLendo();
-    selectLivroCadastrado();
-    selectID_REGISTROIniciado();
+    
     // Iniciado 1º
     if (condicao == "Iniciado") {
+        selectLivroCadastrado();
         condição = true;
         // Selecionar no gegistro se possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar
         alert(typeof(idRegistroI))
         if (idRegistroI != "null") {
             continuar = false;
             alert("Esse livro já foi iniciado");
-
+            
         }else{
             continuar = true;
         }
-
-
+        
+        
         if (continuar == true) {
             
             if (idLivro == "null") {
-                alert(`${nomeLivro}, ${nomeAutor} , ${totalPaginas}`)
-                selectLivroCadastrado();
-                alert("A")
-                insertTabelaRegistroI();
+                alert("Livro não cadastrado")
             }else{
                 selectLivroCadastrado();
                 alert("B")
                 insertTabelaRegistroI();
             }
             
-            selectLendo();
-            
         }
-        selectRegistrosNAOfinalizados();
     }
-
+    selectID_REGISTROIniciado();
+    selectLendo();
+    
     // Lendo 2º
     if (condicao == "Lendo") {
-        
+        selectLivroCadastrado();
         condição = true;
+        // selectLendo();
         
         // Se o idRegistro for = null, é porque não possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar.
         // selectLendo();
         // selectID_REGISTROIniciado();
         // selectLivroCadastrado();
-       
+        
         if (sessionStorage.ID_LIVRO != sessionStorage.ID_LENDO) {
             alert(`O titulo do livro que está tentando registrar não corresponde ao livro que estava lendo. Precisa terminar concluir o livro em andamento para iniciar outro :) - O livro não concluido é ${sessionStorage.TITULO}`)
             continuar = false;
@@ -85,54 +80,58 @@ function InserirDados() {
             continuar = false;
         }
         // selectID_REGISTROIniciado();
-
+        
         if (continuar == true) {
             insertTabelaRegistroL();
-
+            
             // Utilizar idUsuario e idLlivro na condição lendo para adicionar a data inicial
             // X Fazer update no registro inserido para colocar data inicial - A data Inicial está sendo inserida junto com os outros dados, pois foi alocada em um session storage chamado DATA_INICIAL e passado pela função insertTabelaRegistroL(); - portanto não precia de update
         }
-
     }
-    // Finalizado 3º
-    if (condicao == "Finalizado") {
-        condição = true;
-        selectLendo();
-        selectLivroCadastrado();
-        
-        // selectLendo();
-        if (sessionStorage.ID_LIVRO != sessionStorage.ID_LENDO) {
-            alert(`O titulo do livro que está tentando registrar não corresponde ao livro que estava lendo. Precisa terminar concluir o livro em andamento para iniciar outro :) - O livro não concluido é ${sessionStorage.TITULO}`)
-            continuar = false;
-        }
-        if (sessionStorage.ID_LENDO == null || sessionStorage.ID_LENDO == undefined) {
-            alert(`esse titulo não foi iniciado para poder ser finalizado. Portanto não é possivel registrar sua conlusão:(`)
-            continuar = false;
-        }
-        if (continuar == true) {
-            condicao = "f";
-
-            insertTabelaRegistroF();
-        
-            updateCondicaoFinal();
-
-            updateDataFinal();
-            
-        }
-        sessionStorage.ID_LENDO = null;
-        sessionStorage.TITULO = null;
-        sessionStorage.DATA_INICIAL = null;
-        // selectID_REGISTROIniciado();
-        // selectRegistrosNAOfinalizados(); 
-        // somaPaginas();
-    }
+    
     // alert(`${nomeLivro}, ${totalPaginas}, ${totalPagLidasHoje}, ${dia}, ${mes}, ${ano}, ${diaSemana}, ${condicao}`)
-
-
+    
+    
+    selectRegistrosNAOfinalizados();
     ipt_titulo.value = '';
     cond.value = '';
 
 
+}
+function finalizar(){
+ // Finalizado 3º
+ var continuar = true;
+
+    selectLendo();
+    selectLivroCadastrado();
+    
+    // selectLendo();
+    if (sessionStorage.ID_LIVRO != sessionStorage.ID_LENDO) {
+        alert(`O titulo do livro que está tentando registrar não corresponde ao livro que estava lendo. Precisa terminar concluir o livro em andamento para iniciar outro :) - O livro não concluido é ${sessionStorage.TITULO}`)
+        continuar = false;
+    }
+    if (sessionStorage.ID_LENDO == null || sessionStorage.ID_LENDO == undefined) {
+        alert(`esse titulo não foi iniciado para poder ser finalizado. Portanto não é possivel registrar sua conlusão:(`)
+        continuar = false;
+    }
+    if (continuar == true) {
+        condicao = "f";
+
+        insertTabelaRegistroF();
+    
+        updateCondicaoFinal();
+
+        updateDataFinal();
+        
+    }
+    sessionStorage.ID_LENDO = null;
+    sessionStorage.TITULO = null;
+    sessionStorage.DATA_INICIAL = null;
+    // selectID_REGISTROIniciado();
+    // selectRegistrosNAOfinalizados(); 
+    // somaPaginas();
+    ipt_titulo.value = '';
+    cond.value = '';
 }
 
 function insertTabelaLivro() {
@@ -164,7 +163,8 @@ function insertTabelaLivro() {
 
             alert("Livro cadastrado com sucesso")
             // limparFormulario();
-            selectLivroCadastrado()
+            // selectLivroCadastrado()
+            selectLivrosExistentes();
 
         } else {
             throw ("Houve um erro ao tentar realizar o cadastro!");
@@ -172,6 +172,8 @@ function insertTabelaLivro() {
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
     });
+
+
 }
 
 function insertTabelaRegistroI() {
@@ -494,12 +496,12 @@ function selectLivrosExistentes() { //ATUALIZAR DATALIST DOS PONTOS
             if (resposta.status == 204) {
                 var feed = document.getElementById("todosOsLivros");
                 var mensagem = document.createElement("option");
-                var feed02 = document.getElementById("todosOsAutores");
-                var mensagem02 = document.createElement("option");
+                // var feed02 = document.getElementById("todosOsAutores");
+                // var mensagem02 = document.createElement("option");
                 mensagem.innerHTML = "Nenhum resultado encontrado." //SE NÂO APARECER NADA, MUDAR AQUI
                 feed.appendChild(mensagem);
-                mensagem02.innerHTML = "Nenhum resultado encontrado." //SE NÂO APARECER NADA, MUDAR AQUI
-                feed02.appendChild(mensagem02);
+                // mensagem02.innerHTML = "Nenhum resultado encontrado." //SE NÂO APARECER NADA, MUDAR AQUI
+                // feed02.appendChild(mensagem02);
                 throw "Nenhum resultado encontrado!!";
             }
 
@@ -508,9 +510,9 @@ function selectLivrosExistentes() { //ATUALIZAR DATALIST DOS PONTOS
                 // pontos = resposta;
 
                 var feed = document.getElementById("todosOsLivros");
-                var feed02 = document.getElementById("todosOsAutores");
+                // var feed02 = document.getElementById("todosOsAutores");
                 feed.innerHTML = "";
-                feed02.innerHTML = "";
+                // feed02.innerHTML = "";
 
                 for (let i = 0; i < resposta.length; i++) {
                     var publicacao = resposta[i];
@@ -521,15 +523,15 @@ function selectLivrosExistentes() { //ATUALIZAR DATALIST DOS PONTOS
 
                     feed.appendChild(opcao);
                 }
-                for (let i = 0; i < resposta.length; i++) {
-                    var publicacao = resposta[i];
+                // for (let i = 0; i < resposta.length; i++) {
+                //     var publicacao = resposta[i];
 
-                    var opcao = document.createElement("option");
+                //     var opcao = document.createElement("option");
 
-                    opcao.innerHTML = `${publicacao.nomeAutor}`;
+                //     opcao.innerHTML = `${publicacao.nomeAutor}`;
 
-                    feed02.appendChild(opcao);
-                }
+                //     feed02.appendChild(opcao);
+                // }
             });
         } else {
             throw ("Houve um erro na API")
@@ -570,7 +572,7 @@ function selectRegistrosNAOfinalizados() {
 
                     var registro = document.createElement("scroll-page");
 
-                    registro.innerHTML = `+_+ Título: ${publicacao.nome} || Data: ${publicacao.dia}/${publicacao.mes}/${publicacao.ano} || ${publicacao.diaSemana} || ${publicacao.qtdPagDia} página(s) lida(s) (de ${publicacao.qtdTotalPag} pág(s));`;
+                    registro.innerHTML = `📖 Título: ${publicacao.nome} || Data: ${publicacao.dia}/${publicacao.mes}/${publicacao.ano} || ${publicacao.diaSemana} || ${publicacao.qtdPagDia} página(s) lida(s) (de ${publicacao.qtdTotalPag} pág(s));`;
 
                     feed.appendChild(registro);
                 }
@@ -614,7 +616,7 @@ function selectRegistrosCONCLUIDOS() {
  
                      var registro = document.createElement("scroll-page");
  
-                     registro.innerHTML = `*Título: ${publicacao.nome} - Data Inicial: ${publicacao.dataInicial} - Data Final: ${publicacao.dataFinal} - (Total de Páginas do titulo: ${publicacao.qtdTotalPag});`;
+                     registro.innerHTML = `&#11088; Título: ${publicacao.nome} - Data Inicial: ${publicacao.dataInicial} - Data Final: ${publicacao.dataFinal} - (Total de Páginas do titulo: ${publicacao.qtdTotalPag});`;
  
                      feed.appendChild(registro);
                  }

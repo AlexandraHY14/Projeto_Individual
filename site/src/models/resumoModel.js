@@ -1,13 +1,9 @@
 var database = require("../database/config");
 
-function listar() {
-    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+function listar(idUsuario) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()", idUsuario);
     var instrucao = `
-        SELECT 
-            *
-        FROM resumo
-            INNER JOIN registro
-                ON fkRegistro = idRegistro;
+    SELECT max(idRegistro) as idRegistro, nome FROM livro INNER JOIN registro ON fkLivro = idLivro WHERE condicao = 'f' AND fkUsuario = ${idUsuario} group by nome;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
