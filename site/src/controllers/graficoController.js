@@ -8,7 +8,9 @@ var sessoes = [];
 // }
 
 function listar(req, res) {
-    graficoModel.listar()
+  var idUsuario = req.params.idUsuario;
+
+    graficoModel.listar(idUsuario)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);

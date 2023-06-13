@@ -7,7 +7,7 @@ var graficoController = require("../controllers/graficoController");
 //     graficoController.testar(req, res);
 // });
 
-router.get("/listar", function (req, res) {
+router.get("/listar/:idUsuario", function (req, res) {
     graficoController.listar(req, res);
 });
 

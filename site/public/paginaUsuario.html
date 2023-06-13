@@ -405,7 +405,51 @@
         return false;
     }
 
+    graficoPizza();
+    function graficoPizza() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+   
 
+    fetch(`/graficos/listar/${idUsuario}`).then(function (response) {
+        if (response.ok) {
+            // alert(response.status);
+            if (response.status == 204) {
+
+                // var feed = document.getElementById("registrando");
+                // var mensagem = document.createElement("scroll-page");
+                
+                mensagem.innerHTML = "Inicie um titulo." //SE NÂO APARECER NADA, MUDAR AQUI
+                feed.appendChild(mensagem);
+                
+                throw "Nenhum resultado encontrado!!";
+            }
+
+            response.json().then(function (resposta) {
+                console.log("Dados recebidos: ", JSON.stringify(resposta));
+                // pontos = resposta;
+
+                var feed = document.getElementById("registrando");
+                feed.innerHTML = "";
+                graficoSemana.data.datasets[0].data = [];
+                for (let i = 0; i < resposta.length; i++) {
+                    graficoSemana.data.datasets[0].data.push(resposta[i].mediaPags)
+                    var publicacao = resposta[i];
+
+                    // var registro = document.createElement("scroll-page");
+
+                    // registro.innerHTML = `+_+ Título: ${publicacao.nome} || Data: ${publicacao.dia}/${publicacao.mes}/${publicacao.ano} || ${publicacao.diaSemana} || ${publicacao.qtdPagDia} página(s) lida(s) (de ${publicacao.qtdTotalPag} pág(s));`;
+
+                    // feed.appendChild(registro);
+                }
+               
+            });
+        } else {
+            throw ("Houve um erro na API")
+        }
+    }).catch(function (erro) {
+        console.error(erro);
+    });
+    }
     // _______________________________________________________
 
     function consultar(params) {
@@ -413,7 +457,7 @@
         const ctx = document.getElementById('myChart');
 
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: ['Segundas', 'Terças', 'Quartas', 'Quintas', 'Sextas', 'FS'],
                 datasets: [

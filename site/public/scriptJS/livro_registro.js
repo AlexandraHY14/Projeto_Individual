@@ -510,7 +510,7 @@ function selectLivrosExistentes() { //ATUALIZAR DATALIST DOS PONTOS
                 var feed = document.getElementById("todosOsLivros");
                 var feed02 = document.getElementById("todosOsAutores");
                 feed.innerHTML = "";
-                feed02.innerHTML = "";
+                // feed02.innerHTML = "";
 
                 for (let i = 0; i < resposta.length; i++) {
                     var publicacao = resposta[i];
