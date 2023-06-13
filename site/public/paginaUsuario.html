@@ -187,7 +187,7 @@
 
                 <div class="formRegistrar">
 
-                    <div class="tituloTexto">Título*: <input list="todosOsLivros" id="ipt_tituloNovo"></div>
+                    <div class="tituloTexto">Novo Título*: <input id="ipt_tituloNovo"></div>
 
                     <div class="nomeAutor">Nome do autor: <input list="todosOsAutores" id="ipt_autorNovo"></div>
                    
@@ -244,7 +244,6 @@
                         <datalist id="condicao">
                             <option value="Iniciado">
                             <option value="Lendo">
-                            <option value="Finalizado">
                         </datalist>
                     </div>
                 </div>
@@ -256,14 +255,14 @@
             <div class="registroDiario">
 
                 <div class="concluidosI">
-                    <scroll-container id="registrando">
+            <scroll-container id="registrando">
                         <!-- <scroll-page> * Titulo: Nome do livro - Data: 06/Fevereiro/2023 - Fim de Semana - 10
                             páginas (faltam 180 páginas)</scroll-page> -->
 
                     </scroll-container>
 
                 </div>
-                <button class="btnConcluido">Adicionar em Concluídos</button>
+                <button class="btnConcluido" onclick="finalizar()">Adicionar em Concluídos</button>
             </div>
         </div>
 

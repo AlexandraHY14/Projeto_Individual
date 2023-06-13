@@ -1,12 +1,14 @@
-var avisoModel = require("../models/avisoModel");
+var resumoModel = require("../models/resumoModel");
 
 function testar(req, res) {
-    console.log("ENTRAMOS NO avisoController");
-    res.send("ENTRAMOS NO AVISO CONTROLLER");
+    console.log("ENTRAMOS NO resumoController");
+    res.send("ENTRAMOS NO resumo CONTROLLER");
 }
 
 function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
+    var idUsuario = req.params.idUsuario;
+
+    resumoModel.listar(idUsuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -14,7 +16,7 @@ function listar(req, res) {
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        console.log("Houve um erro ao buscar os resumos: ", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
@@ -22,7 +24,7 @@ function listar(req, res) {
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 
-    avisoModel.listarPorUsuario(idUsuario)
+    resumoModel.listarPorUsuario(idUsuario)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -36,7 +38,7 @@ function listarPorUsuario(req, res) {
             function (erro) {
                 console.log(erro);
                 console.log(
-                    "Houve um erro ao buscar os avisos: ",
+                    "Houve um erro ao buscar os resumos: ",
                     erro.sqlMessage
                 );
                 res.status(500).json(erro.sqlMessage);
@@ -47,7 +49,7 @@ function listarPorUsuario(req, res) {
 function pesquisarDescricao(req, res) {
     var descricao = req.params.descricao;
 
-    avisoModel.pesquisarDescricao(descricao)
+    resumoModel.pesquisarDescricao(descricao)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -59,7 +61,7 @@ function pesquisarDescricao(req, res) {
         ).catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+                console.log("Houve um erro ao buscar os resumos: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
@@ -77,7 +79,7 @@ function publicar(req, res) {
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
+        resumoModel.publicar(titulo, descricao, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -95,9 +97,9 @@ function publicar(req, res) {
 
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+    var idresumo = req.params.idresumo;
 
-    avisoModel.editar(novaDescricao, idAviso)
+    resumoModel.editar(novaDescricao, idresumo)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -114,9 +116,9 @@ function editar(req, res) {
 }
 
 function deletar(req, res) {
-    var idAviso = req.params.idAviso;
+    var idresumo = req.params.idresumo;
 
-    avisoModel.deletar(idAviso)
+    resumoModel.deletar(idresumo)
         .then(
             function (resultado) {
                 res.json(resultado);
