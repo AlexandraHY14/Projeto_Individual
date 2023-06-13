@@ -429,7 +429,7 @@ width: 75px;
 
 .conteudo02 {
     display: flex;
-    height: 760px;
+    height: 850px;
     width: 100%;
     justify-content: center;
 }
@@ -476,8 +476,8 @@ width: 75px;
     background-color: #c5fafb;
     padding: 10px;
     display: flex;
-    height: 200px;
-    width: 350px;
+    height: 300px;
+    width: 400px;
     flex-direction: column;
     /* width: 100%; */
     justify-content: center;

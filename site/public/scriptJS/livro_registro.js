@@ -1,11 +1,11 @@
 
 selectLivrosExistentes();
-selectRegistrosNAOfinalizados();
 selectID_REGISTROIniciado();
 
 selectLendo();
 
 selectLivroCadastrado();
+selectRegistrosNAOfinalizados();
 selectRegistrosCONCLUIDOS();
 
 
@@ -21,17 +21,19 @@ function InserirDados() {
     var diaSemana = diasR.value;
 
     var condicao = cond.value;
-
+    
     var continuar = true;
     
     var idRegistroI = sessionStorage.ID_REGISTRO_I; 
-
+    
     var idLivro = sessionStorage.ID_LIVRO;
+
+    selectLendo();
+    selectLivroCadastrado();
+    selectID_REGISTROIniciado();
     // Iniciado 1º
     if (condicao == "Iniciado") {
         condição = true;
-        selectLendo();
-        selectID_REGISTROIniciado();
         // Selecionar no gegistro se possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar
         alert(typeof(idRegistroI))
         if (idRegistroI != "null") {
@@ -44,7 +46,6 @@ function InserirDados() {
 
 
         if (continuar == true) {
-            selectLivroCadastrado();
             
             if (idLivro == "null") {
                 alert(`${nomeLivro}, ${nomeAutor} , ${totalPaginas}`)
@@ -70,9 +71,9 @@ function InserirDados() {
         condição = true;
         
         // Se o idRegistro for = null, é porque não possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar.
-        selectLendo();
-        selectID_REGISTROIniciado();
-        selectLivroCadastrado();
+        // selectLendo();
+        // selectID_REGISTROIniciado();
+        // selectLivroCadastrado();
        
         if (sessionStorage.ID_LIVRO != sessionStorage.ID_LENDO) {
             alert(`O titulo do livro que está tentando registrar não corresponde ao livro que estava lendo. Precisa terminar concluir o livro em andamento para iniciar outro :) - O livro não concluido é ${sessionStorage.TITULO}`)
@@ -120,16 +121,16 @@ function InserirDados() {
         sessionStorage.ID_LENDO = null;
         sessionStorage.TITULO = null;
         sessionStorage.DATA_INICIAL = null;
-        selectID_REGISTROIniciado();
-        selectRegistrosNAOfinalizados(); 
-        somaPaginas();
+        // selectID_REGISTROIniciado();
+        // selectRegistrosNAOfinalizados(); 
+        // somaPaginas();
     }
     // alert(`${nomeLivro}, ${totalPaginas}, ${totalPagLidasHoje}, ${dia}, ${mes}, ${ano}, ${diaSemana}, ${condicao}`)
 
 
     ipt_titulo.value = '';
     cond.value = '';
-selectRegistrosCONCLUIDOS();
+
 
 }
 
@@ -550,7 +551,7 @@ function selectRegistrosNAOfinalizados() {
                 var feed = document.getElementById("registrando");
                 var mensagem = document.createElement("scroll-page");
                 
-                mensagem.innerHTML = "Inicie outro titulo." //SE NÂO APARECER NADA, MUDAR AQUI
+                mensagem.innerHTML = "Inicie um titulo." //SE NÂO APARECER NADA, MUDAR AQUI
                 feed.appendChild(mensagem);
                 
                 throw "Nenhum resultado encontrado!!";

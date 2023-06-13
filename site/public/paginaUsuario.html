@@ -188,12 +188,18 @@
                 <div class="formRegistrar">
 
                     <div class="tituloTexto">Título*: <input list="todosOsLivros" id="ipt_titulo"></div>
-                    <datalist id="todosOsLivros"></datalist>
 
                     <div class="nomeAutor">Nome do autor: <input list="todosOsAutores" id="ipt_autor"></div>
-                    <datalist id="todosOsAutores"></datalist>
+                   
 
                     <div class="paginas">Total de páginas*: <input id="ipt_totalPag"></div>
+                    <button style="width: 300px; height: 20px; font-size: 15px; margin-left: 20px;">Cadastrar um novo titulo</button>
+                    <b>---------------------------------------------------</b>
+                    <div class="tituloTexto">Título*: <input list="todosOsLivros" id="ipt_titulo"></div>
+                    <datalist id="todosOsLivros"></datalist>
+
+                    <!-- <div class="nomeAutor">Nome do autor: <input list="todosOsAutores" id="ipt_autor"></div>
+                    <datalist id="todosOsAutores"></datalist> -->
 
                     <div class="paginas">Qtd páginas lidas hoje:<input id="ipt_lidas"></div>
 
@@ -265,7 +271,7 @@
         <div class="segunda_coluna02">
             <div class="livrosConcluidos">
 
-                <div class="tituloC">Lista de livros/folhetos concluídos</div>
+                <div class="tituloC">Lista de concluídos</div>
                 <!-- <nav>
                     <a href="#page-1">1</a>
                     <a href="#page-2">2</a>
@@ -360,8 +366,12 @@
     function maisDe5000() {
         alert("Você chegou a mais de 7000 páginas lidas.")
     }
+ 
 
     somaPaginas();
+    if (sessionStorage.TOTAL_LIDO == undefined || sessionStorage.TOTAL_LIDO == "null") {
+        sessionStorage.TOTAL_LIDO = 0;
+    }
     totalP.innerHTML = sessionStorage.TOTAL_LIDO;
     function somaPaginas() {
         var idUsuario = sessionStorage.ID_USUARIO;
