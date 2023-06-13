@@ -101,9 +101,8 @@ insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 
                                 select * from registro where condicao = 'f' and fkUsuario = 1;
         ;
                                
--- select para ver se o livro existe e caso exista não deixar inserir novamente o mesmo livro;
--- pode ser tratado no banco com o unique.
 
+SELECT max(idRegistro) as idRegistro, nome FROM livro INNER JOIN registro ON fkLivro = idLivro WHERE condicao = 'f' AND fkUsuario = 1 group by nome;
 							
 -- levar para a coluna de concluidos dos registros
 select * from usuario join registro on fkUsuario = idUsuario where condicao = "f" and fkUsuario = 1;
