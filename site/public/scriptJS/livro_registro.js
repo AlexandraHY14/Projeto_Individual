@@ -1,3 +1,5 @@
+selectRegistrosNAOfinalizados();
+selectRegistrosCONCLUIDOS();
 
 selectLivrosExistentes();
 selectID_REGISTROIniciado();
@@ -5,8 +7,6 @@ selectID_REGISTROIniciado();
 selectLendo();
 
 // selectLivroCadastrado();
-selectRegistrosNAOfinalizados();
-selectRegistrosCONCLUIDOS();
 
 
 
@@ -92,7 +92,7 @@ function InserirDados() {
     // alert(`${nomeLivro}, ${totalPaginas}, ${totalPagLidasHoje}, ${dia}, ${mes}, ${ano}, ${diaSemana}, ${condicao}`)
     
     
-    selectRegistrosNAOfinalizados();
+    // setInterval(selectRegistrosCONCLUIDOS, selectRegistrosNAOfinalizados, 1000);
     ipt_titulo.value = '';
     cond.value = '';
 
