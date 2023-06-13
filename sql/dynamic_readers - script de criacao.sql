@@ -67,7 +67,7 @@ insert into registro values(null, 1, 1, 01, 'Fevereiro', 2020, 'Fim de Semana', 
                                
                                (null, 2, 3, 04, 'Abril', 2023, 'Quinta', 10, 'i', '04-04-2023', null),
                                (null, 2, 3, 05, 'Abril', 2023, 'Sexta', 12, 'l', '04-04-2023', null),
-                               (null, 2, 3, 06, 'Abril', 2023, 'Sabado', 20, 'l', '04-04-2023', null),
+                               (null, 2, 3, 06, 'Abril', 2023, 'Fim de Semana', 20, 'l', '04-04-2023', null),
                                (null, 2, 3, 07, 'Abril', 2023, 'Fim de Semana', 25, 'l', '04-04-2023', null);
                                
                                select * from registro;
@@ -141,3 +141,34 @@ select ano, mes, diaSemana, round(avg(qtdPagDia),2) as mediaPags from registro a
 	join usuario as u on reg.fkUsuario = u.idUsuario
 	where u.idUsuario = 1
     group by diaSemana;
+    
+-- select que pega os meses que o usuario já registrou
+
+SELECT distinct mes FROM registro WHERE fkUsuario = 1;
+
+SELECT distinct ano FROM registro WHERE fkUsuario = 1;
+
+-- Ordenar dias da semana
+SELECT distinct diaSemana , round(avg(qtdPagDia),2) as mediaPags,
+case when diaSemana = 'Segunda' then '1'
+     when diaSemana = 'Terça' then '2'
+     when diaSemana = 'Quarta' then '3'
+     when diaSemana = 'Quinta' then '4'
+     when diaSemana = 'Sexta' then '5'
+     when diaSemana = 'Fim de Semana' then '6'
+     
+     end as diasOrdenados
+ FROM registro where fkUsuario = 1 group by diaSemana, diasOrdenados order by diasOrdenados;
+ 
+
+ 
+ SELECT distinct diaSemana , round(avg(qtdPagDia),2) as mediaPags, ano, mes,
+case when diaSemana = 'Segunda' then '1'
+     when diaSemana = 'Terça' then '2'
+     when diaSemana = 'Quarta' then '3'
+     when diaSemana = 'Quinta' then '4'
+     when diaSemana = 'Sexta' then '5'
+     when diaSemana = 'Fim de Semana' then '6'
+     
+     end as diasOrdenados
+ FROM registro where fkUsuario = 1  and mes like 'Fevereiro' and ano = 2020 group by diaSemana, diasOrdenados, ano, mes order by diasOrdenados;

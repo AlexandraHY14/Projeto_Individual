@@ -27,6 +27,69 @@ function listar(req, res) {
         );
 }
 
+function listarB(req, res) {
+  var idUsuario = req.params.idUsuario;
+  var campoMes = req.params.campoMes;
+  var campoAno = req.params.campoAno;
+
+    graficoModel.listarB(idUsuario, campoMes, campoAno)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function listarM(req, res) {
+  var idUsuario = req.params.idUsuario;
+
+    graficoModel.listarM(idUsuario)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function listarA(req, res) {
+  var idUsuario = req.params.idUsuario;
+
+    graficoModel.listarA(idUsuario)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+
 function pegarSomaPag(req, res) {
     var idUsuario = req.params.idUsuario;
   
@@ -59,5 +122,8 @@ function pegarSomaPag(req, res) {
 
 module.exports = {  
   pegarSomaPag,
-    listar
+    listar,
+    listarM,
+    listarA,
+    listarB
 }
