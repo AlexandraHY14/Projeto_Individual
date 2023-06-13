@@ -145,15 +145,15 @@
             <div class="conquistas">
                 <div class="tituloM">Conquistas</div>
                 <div class="medalhas" id="div_medalhas">
+                    <!-- <img src="img/star-medal.webp" alt="">
                     <img src="img/star-medal.webp" alt="">
-                    <img src="img/star-medal.webp" alt="">
-                    <img src="img/star-medal.webp" alt="">
+                    <img src="img/star-medal.webp" alt=""> -->
                 </div>
             </div>
 
             <div class="dica">
                 <div class="tituloD">Dica</div>
-                <div class="textoD">Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura, vá
+                <div class="textoD" id="dicas">Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura, vá
                     aumentando a velocidade que passa pelas linhas.
                 </div>
             </div>
@@ -274,9 +274,8 @@
 
                 <div class="concluidos">
                     <scroll-container id="registroDosConcluidos">
-                        <scroll-page> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final:
-                            08/Janeiro/2023 - total de páginas: 240.</scroll-page>
-
+                        <!-- <scroll-page> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final:
+                            08/Janeiro/2023 - total de páginas: 240.</scroll-page> -->
                     </scroll-container>
 
                 </div>
@@ -284,7 +283,7 @@
             <div class="totalPaginas">
                 <div class="qtdPag">
                     <div id="msg"></div>
-                    Total de páginas:<div id="totalP">500</div>
+                    Total de páginas:<div id="totalP"></div>
                 </div>
             </div>
         </div>
@@ -322,12 +321,45 @@
 </html>
 <script>
     oQueFazer();
+    conquistas();
+    quaisDicas();
+
+    function quaisDicas() {
+        var vt_dicas = ["Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura, vá aumentando a velocidade que passa pelas linhas.", "Procure audio do trecho, ou capítulo que está lendo, e tente ir aumentando a velocidade (leia no ritmo do áudio).", "Apesar do progresso ser medido pela quantia de páginas que você lê, foque em entender o que lê, antes de pensar no quanto"];
+        var NumSorteado = ((Math.random() * (3 - 1)) + 1).toFixed();
+        dicas.innerHTML = vt_dicas[NumSorteado - 1];
+    }
+
     function oQueFazer() {
         var vt_melhorar = ["Vejá o dia da semana em que lê menos e procure se desafiar a ler mais nesse dia.", "Vá checando seu progresso mensal, para ver sua evolução a cada mês"];
         var NumSorteado = ((Math.random() * (2 - 1)) + 1).toFixed();
         melhorar.innerHTML = vt_melhorar[NumSorteado - 1];
     }
 
+    function conquistas() {
+        if (sessionStorage.TOTAL_LIDO > 400) {
+            div_medalhas.innerHTML += `<img src="img/star-medal.webp" onclick="maisDe400()">`;
+        }
+        if (sessionStorage.TOTAL_LIDO > 1000) {
+            div_medalhas.innerHTML += `<img src="img/star-medal.webp" onclick="maisDe1000()">`;
+        }
+        if (sessionStorage.TOTAL_LIDO > 5000) {
+            div_medalhas.innerHTML += `<img src="img/star-medal.webp" onclick="maisDe5000()">`;
+        }
+    }
+
+    function maisDe400() {
+        alert("Você chegou a mais de 400 páginas lidas.")
+    }
+
+    function maisDe3000() {
+        alert("Você chegou a mais de 3000 páginas lidas.")
+
+    }
+    
+    function maisDe5000() {
+        alert("Você chegou a mais de 7000 páginas lidas.")
+    }
 
     somaPaginas();
     totalP.innerHTML = sessionStorage.TOTAL_LIDO;
@@ -362,9 +394,6 @@
         return false;
     }
 
-    function conquistas() {
-
-    }
 
     // _______________________________________________________
 

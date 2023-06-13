@@ -61,7 +61,7 @@ function InserirDados() {
             selectLendo();
             
         }
-        
+        selectRegistrosNAOfinalizados();
     }
 
     // Lendo 2º
@@ -129,6 +129,8 @@ function InserirDados() {
 
     ipt_titulo.value = '';
     cond.value = '';
+selectRegistrosCONCLUIDOS();
+
 }
 
 function insertTabelaLivro() {
@@ -610,7 +612,7 @@ function selectRegistrosCONCLUIDOS() {
  
                      var registro = document.createElement("scroll-page");
  
-                     registro.innerHTML = `Título: ${publicacao.nome} - DATA: ${publicacao.dia}/${publicacao.mes}/${publicacao.ano} - ${publicacao.diaSemana} - ${publicacao.qtdPagDia} página(s) lida(s) - (${publicacao.qtdTotalPag});`;
+                     registro.innerHTML = `*Título: ${publicacao.nome} - Data Inicial: ${publicacao.dataInicial} - Data Final: ${publicacao.dataFinal} - (Total de Páginas do titulo: ${publicacao.qtdTotalPag});`;
  
                      feed.appendChild(registro);
                  }
