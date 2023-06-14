@@ -99,6 +99,7 @@
         contunuar = true;
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            alert("Preencha todos os campos, para realizar o cadastro :)")
             contunuar = false;
         }
         if (contunuar == true) {
@@ -133,6 +134,7 @@
 
                 } else {
                     throw ("Houve um erro ao tentar realizar o cadastro!");
+                    alert("Houve um erro ao tentar realizar o cadastro!");
                 }
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);

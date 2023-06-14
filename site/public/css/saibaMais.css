@@ -70,3 +70,256 @@ li {
 
 /* Fim do Cabeçalho */
 /* ---------------------------------------------------------------------------------------------------------------------------------- */
+
+.box {
+    display: flex;
+    flex-direction: column;
+    background-color: #4C91D4;
+    width: 85%;
+    border-radius: 20px;
+    margin-top: 40px;
+    margin-left: 7.5%;
+    /* align-items: center; */
+    justify-content: space-evenly;
+    height: 700px;
+    font-size: 20px;
+    color: aliceblue;
+}
+
+.box .importante {
+    display: flex;
+    width: 90%;
+    /* justify-content: center; */
+    margin: auto;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    /* justify-content: space-around; */
+}
+
+.box .importante .titulo01 {
+    font-size: 25px;
+    color: rgb(142, 244, 245);
+    margin-bottom: 10px;
+}
+
+.box .beneficio {
+    display: flex;
+    width: 90%;
+    /* justify-content: center; */
+    margin: auto;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    /* justify-content: space-around; */
+}
+
+.teste {
+    display: flex;
+    background-color: rgb(127, 236, 255);
+    width: 60%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    margin-left: 20%;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    height: 100px;
+}
+
+.teste .textoCurto {
+    width: 90%;
+    text-align: center;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.box .beneficio .titulo02 {
+    font-size: 25px;
+    color: rgb(142, 244, 245);
+    margin-bottom: 10px;
+}
+
+.teste button {
+    height: 35px;
+    width: 100px;
+    border-radius: 20px;
+    border-style: none;
+    margin-left: 45%;
+    margin-top: 10px;
+    background-color: #34538D;
+    font-size: 20px;
+    color: white;
+}
+
+button:hover {
+    transform: translateY(-4px)
+}
+
+.conto {
+    display: flex;
+    flex-direction: column;
+    background-color: #fffffb;
+    border-radius: 20px;
+    height: 1000px;
+    width: 85%;
+    margin-left: 7.5%;
+    text-align: center;
+
+}
+
+.conto .tituloConto {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    font-size: 25px
+}
+
+.conto .textoLongo {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    text-align: justify;
+    font-size: 20px
+}
+
+.perguntas {
+    display: flex;
+    flex-direction: column;
+    background-color: #b1d8ff;
+    margin-top: 25px;
+    width: 85%;
+    margin-left: 7.5%;
+    /* justify-content: space-evenly; */
+    /* align-items: center; */
+    height: 1300px;
+    border-radius: 20px;
+    /* color:#fffffb; */
+
+}
+
+.perguntas div {
+    display: flex;
+    /* align-items: center; */
+    margin-left: 100px;
+    margin-top: 25px;
+    width: 90%;
+}
+
+.perguntas button {
+    display: flex;
+    /* align-items: center; */
+    margin-left: 100px;
+    margin-top: 25px;
+    /* width: 100%; */
+    border-style: none;
+    /* margin-top: 10px; */
+    background-color: #34538D;
+    font-size: 15px;
+    color: white;
+    border-radius: 15px;
+}
+
+div .instrucao {
+    display: flex;
+    font-size: 25px;
+    color: rgb(165, 16, 16);
+}
+
+.inputTempo{
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    margin-left: 12%;
+    /* background-color: rgb(232, 173, 173); */
+    border-radius: 15px;
+    height: 40px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.inputTempo button{
+    border-style: none;
+    background-color: #34538D;
+    font-size: 15px;
+    color: white;
+    border-radius: 15px;
+}
+
+.final{
+    display:flex;
+    width: 90%;
+    margin-left: 40px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Inicio do Footer */
+
+.footer{
+    display: flex;
+    background-color: #4C91D4;
+    height: 130px;
+    justify-content: space-around;
+}
+
+.footer .acessoRapido .lista{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+.footer .contato .lista{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+
+
+
+.footer .acessoRapido{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.footer .acessoRapido a{
+    color: white;
+}
+.footer .acessoRapido .coluna{
+    font-size: 25px;
+    color: white;
+
+}
+
+
+
+.footer .contato{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.footer .contato a{
+    color: white;
+}
+
+.footer .contato .coluna{
+    font-size: 25px;
+    color: white;
+}
+
+.footer .editar img{
+    height: 70px;
+}
+
+.footer .editar{
+    display: flex;
+    align-items: center;
+   
+}

@@ -19,6 +19,7 @@ function listar(req, res) {
             function (erro) {
                 console.log(erro);
                 console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                
                 res.status(500).json(erro.sqlMessage);
             }
         );
@@ -53,6 +54,7 @@ function entrar(req, res) {
                 function (erro) {
                     console.log(erro);
                     console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    
                     res.status(500).json(erro.sqlMessage);
                 }
             );

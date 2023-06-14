@@ -11,8 +11,8 @@ router.get("/listar/:idUsuario", function (req, res) {
     resumoController.listar(req, res);
 });
 
-router.get("/selecionar/:nome", function (req, res) {
-    livroController.selectIdRegistro(req, res);
+router.get("/selecionar/:idUsuario/:nome", function (req, res) {
+    livroController.selectIdRegistroF(req, res);
 });
 
 router.get("/listar/:idUsuario", function (req, res) {

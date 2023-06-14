@@ -9,6 +9,16 @@ function listar(idUsuario) {
     return database.executar(instrucao);
 }
 
+function selectIdRegistroF(idUsuario, titulo) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()", idUsuario, titulo);
+    var instrucao = `
+    SELECT max(idRegistro) as idRegistroF, nome FROM livro INNER JOIN registro ON fkLivro = idLivro WHERE condicao = 'f' AND nome = '${titulo}' AND fkUsuario = ${idUsuario} group by nome;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+// __________________________________________________________________________________
+
 function pesquisarDescricao(texto) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pesquisarDescricao()");
     var instrucao = `
@@ -66,6 +76,7 @@ function deletar(idAviso) {
 
 module.exports = {
     listar,
+    selectIdRegistroF,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,

@@ -21,6 +21,34 @@ function listar(req, res) {
     });
 }
 
+function selectIdRegistroF(req, res) {
+    var idUsuario = req.params.idUsuario;
+    var titulo = req.params.nomeLivro;
+  
+    resumoModel
+      .selectIdRegistroF(idUsuario, titulo)
+      .then(function (resultado) {
+        // console.log(`\nResultados encontrados: ${resultado.length}`);
+        // console.log(`Resultados: ${JSON.stringify(resultado)}`); //TRANSFORMA JSON EM STRING
+    
+          if (resultado.length == 1) {
+            console.log(resultado);
+            res.json(resultado[0]);
+          } else if (resultado.length == 0) {
+            res.status(403).send("Nome do Livro INVÁLIDO");
+          }
+        })
+        .catch(function (erro) {
+          console.log(erro);
+          console.log(
+              "\nHouve um erro ao selecionar o Livro! ERRO: ",
+            erro.sqlMessage
+          );
+          res.status(500).json(erro.sqlMessage);
+        });
+    }
+
+// ___________________________________________________________
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 
@@ -136,6 +164,7 @@ function deletar(req, res) {
 module.exports = {
     testar,
     listar,
+    selectIdRegistroF,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,

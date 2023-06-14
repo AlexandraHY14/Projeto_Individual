@@ -12,7 +12,9 @@ selectLendo();
 
 
 function InserirDados() {
-    // var nomeLivro = ipt_titulo.value;
+    var nomeLivro = ipt_titulo.value;
+    selectLivroCadastrado(nomeLivro);
+
     // var nomeAutor = ipt_autor.value;
     // var totalPaginas = ipt_totalPag.value;
     // var dia = ipt_dia.value;
@@ -22,55 +24,56 @@ function InserirDados() {
     // var diaSemana = diasR.value;
 
     var condicao = cond.value;
-    
+
     var continuar = true;
-    
-    var idRegistroI = sessionStorage.ID_REGISTRO_I; 
-    
+
+    var idRegistroI = sessionStorage.ID_REGISTRO_I;
+
     var idLivro = sessionStorage.ID_LIVRO;
 
-    
+
     // Iniciado 1º
     if (condicao == "Iniciado") {
         selectLivroCadastrado();
         condição = true;
         // Selecionar no gegistro se possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar
-        alert(typeof(idRegistroI))
+        alert(typeof (idRegistroI))
         if (idRegistroI != "null") {
             continuar = false;
             alert("Esse livro já foi iniciado");
-            
-        }else{
+
+        } else {
             continuar = true;
         }
-        
-        
+
+
         if (continuar == true) {
-            
+
             if (idLivro == "null") {
                 alert("Livro não cadastrado")
-            }else{
+            } else {
                 selectLivroCadastrado();
                 alert("B")
                 insertTabelaRegistroI();
+                window.location.reload()
             }
-            
+
         }
     }
     selectID_REGISTROIniciado();
     selectLendo();
-    
+
     // Lendo 2º
     if (condicao == "Lendo") {
         selectLivroCadastrado();
         condição = true;
         // selectLendo();
-        
+
         // Se o idRegistro for = null, é porque não possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar.
         // selectLendo();
         // selectID_REGISTROIniciado();
         // selectLivroCadastrado();
-        
+
         if (sessionStorage.ID_LIVRO != sessionStorage.ID_LENDO) {
             alert(`O titulo do livro que está tentando registrar não corresponde ao livro que estava lendo. Precisa terminar concluir o livro em andamento para iniciar outro :) - O livro não concluido é ${sessionStorage.TITULO}`)
             continuar = false;
@@ -80,31 +83,32 @@ function InserirDados() {
             continuar = false;
         }
         // selectID_REGISTROIniciado();
-        
+
         if (continuar == true) {
             insertTabelaRegistroL();
-            
+
             // Utilizar idUsuario e idLlivro na condição lendo para adicionar a data inicial
             // X Fazer update no registro inserido para colocar data inicial - A data Inicial está sendo inserida junto com os outros dados, pois foi alocada em um session storage chamado DATA_INICIAL e passado pela função insertTabelaRegistroL(); - portanto não precia de update
+            window.location.reload();
+            window.location.reload();
         }
     }
-    
+
     // alert(`${nomeLivro}, ${totalPaginas}, ${totalPagLidasHoje}, ${dia}, ${mes}, ${ano}, ${diaSemana}, ${condicao}`)
-    
-    
+
+
     // setInterval(selectRegistrosCONCLUIDOS, selectRegistrosNAOfinalizados, 1000);
     ipt_titulo.value = '';
     cond.value = '';
 
-
 }
-function finalizar(){
- // Finalizado 3º
- var continuar = true;
+function finalizar() {
+    // Finalizado 3º
+    var continuar = true;
 
     selectLendo();
     selectLivroCadastrado();
-    
+
     // selectLendo();
     if (sessionStorage.ID_LIVRO != sessionStorage.ID_LENDO) {
         alert(`O titulo do livro que está tentando registrar não corresponde ao livro que estava lendo. Precisa terminar concluir o livro em andamento para iniciar outro :) - O livro não concluido é ${sessionStorage.TITULO}`)
@@ -118,11 +122,11 @@ function finalizar(){
         condicao = "f";
 
         insertTabelaRegistroF();
-    
+
         updateCondicaoFinal();
 
         updateDataFinal();
-        
+
     }
     sessionStorage.ID_LENDO = null;
     sessionStorage.TITULO = null;
@@ -132,6 +136,8 @@ function finalizar(){
     // somaPaginas();
     ipt_titulo.value = '';
     cond.value = '';
+
+    window.location.reload()
 }
 
 function insertTabelaLivro() {
@@ -192,73 +198,97 @@ function insertTabelaRegistroI() {
     // Ajustar mes para numero para inserir na tabela registro
     var mesNumerico = '';
 
-    if (mes == "Janeiro") {
-        mesNumerico = "01";
-    } else if (mes == "Fevereiro") {
-        mesNumerico = "02";
-    } else if (mes == "Março") {
-        mesNumerico = "03";
-    } else if (mes == "Abril") {
-        mesNumerico = "04";
-    } else if (mes == "Maio") {
-        mesNumerico = "05";
-    } else if (mes == "Junho") {
-        mesNumerico = "06";
-    } else if (mes == "Julho") {
-        mesNumerico = "07";
-    } else if (mes == "Agosto") {
-        mesNumerico = "08";
-    } else if (mes == "Setembro") {
-        mesNumerico = "09";
-    } else if (mes == "Outubro") {
-        mesNumerico = "10";
-    } else if (mes == "Novembro") {
-        mesNumerico = "11";
-    } else if (mes == "Dezembro") {
-        mesNumerico = "12";
+    var prosseguir = true;
+
+    if (mes == "Janeiro" || mes == "Fevereiro" || mes == "Março" || mes == "Abril" || mes == "Maio" || mes == "Junho" || mes == "Julho" || mes == "Agosto" || mes == "Setembro" || mes == "Outubro" || mes == "Novembro" || mes == "Dezembro") {
+        
+        prosseguir = true;
+    }else{
+        alert("Mês inválido.")
+        prosseguir = false;
     }
 
-    // Enviando o valor da nova input
-    fetch("/registros/inserirRegistroI", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/livros.js
-            idUsuarioServer: idUsuario,
-            idLivroServer: idLivro,
-            diaServer: dia,
-            mesServer: mes,
-            anoServer: ano,
-            diaSemanaServer: diaSemana,
-            pagHojeServer: totalPagLidasHoje,
-            condicaoServer: condicao,
-            mesNumericoServer: mesNumerico
+    if (diaSemana == "Segunda" || diaSemana == "Terça" || diaSemana == "Quarta" || diaSemana == "Quinta" || diaSemana == "Sexta" || diaSemana == "Fim de Semana") {
+        prosseguir = true;;
+    } else {
+        alert("Dia da Semana inválido.")
+        prosseguir = false;
+    }
 
-        })
-    }).then(function (resposta) {
+    if (dia.length == 1) {
+        prosseguir = false;
+        alert("Favor inser 0 a esquerda, caso seja um dia de 1 a 9. EXEMPLO: 01, 02, 03...,09.")
+    }
 
-        console.log("resposta: ", resposta);
+    if (prosseguir == true) {
 
-        if (resposta.ok) {
-            // cardErro.style.display = "block";
-
-            alert("Registro realizado com sucesso!")
-            alert("O Registro Inicial foi realizado com sucesso;")
-            // limparFormulario();
-            // selectLivroCadastrado()
-
-        } else {
-            throw ("Houve um erro ao tentar realizar o cadastro!");
-            alert("Cofira se inseriu corretamente os dados nos campos. ATENÇÂO!!! para dias como 1, 2, 3, 4,...,9 FAVOR INSERIR UM '0' na frente. EXEMPLO: 01, 02,,03...,09.")
+        if (mes == "Janeiro") {
+            mesNumerico = "01";
+        } else if (mes == "Fevereiro") {
+            mesNumerico = "02";
+        } else if (mes == "Março") {
+            mesNumerico = "03";
+        } else if (mes == "Abril") {
+            mesNumerico = "04";
+        } else if (mes == "Maio") {
+            mesNumerico = "05";
+        } else if (mes == "Junho") {
+            mesNumerico = "06";
+        } else if (mes == "Julho") {
+            mesNumerico = "07";
+        } else if (mes == "Agosto") {
+            mesNumerico = "08";
+        } else if (mes == "Setembro") {
+            mesNumerico = "09";
+        } else if (mes == "Outubro") {
+            mesNumerico = "10";
+        } else if (mes == "Novembro") {
+            mesNumerico = "11";
+        } else if (mes == "Dezembro") {
+            mesNumerico = "12";
         }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
-}
 
+        // Enviando o valor da nova input
+        fetch("/registros/inserirRegistroI", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/livros.js
+                idUsuarioServer: idUsuario,
+                idLivroServer: idLivro,
+                diaServer: dia,
+                mesServer: mes,
+                anoServer: ano,
+                diaSemanaServer: diaSemana,
+                pagHojeServer: totalPagLidasHoje,
+                condicaoServer: condicao,
+                mesNumericoServer: mesNumerico
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                // cardErro.style.display = "block";
+
+                alert("Registro realizado com sucesso!")
+                alert("O Registro Inicial foi realizado com sucesso;")
+                // limparFormulario();
+                // selectLivroCadastrado()
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+                alert("Cofira se inseriu corretamente os dados nos campos. ATENÇÂO!!! para dias como 1, 2, 3, 4,...,9 FAVOR INSERIR UM '0' na frente. EXEMPLO: 01, 02,,03...,09.")
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+}
 // ---------------------------- Lendo 2º ---------------------------
 
 function insertTabelaRegistroL() {
@@ -275,51 +305,78 @@ function insertTabelaRegistroL() {
     var condicao = "l";
 
     var dataInicial = sessionStorage.DATA_INICIAL;
+    var prosseguir = true;
 
-    // Enviando o valor da nova input
-    fetch("/registros/inserirRegistroL", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/livros.js
-            idUsuarioServer: idUsuario,
-            idLivroServer: idLivro,
-            diaServer: dia,
-            mesServer: mes,
-            anoServer: ano,
-            diaSemanaServer: diaSemana,
-            pagHojeServer: totalPagLidasHoje,
-            condicaoServer: condicao,
-            dataInicialServer: dataInicial
+    if (mes == "Janeiro" || mes == "Fevereiro" || mes == "Março" || mes == "Abril" || mes == "Maio" || mes == "Junho" || mes == "Julho" || mes == "Agosto" || mes == "Setembro" || mes == "Outubro" || mes == "Novembro" || mes == "Dezembro") {
+        
+        prosseguir = true;
+    }else{
+        alert("Mês inválido.")
+        prosseguir = false;
+    }
 
-        })
-    }).then(function (resposta) {
+    if (diaSemana == "Segunda" || diaSemana == "Terça" || diaSemana == "Quarta" || diaSemana == "Quinta" || diaSemana == "Sexta" || diaSemana == "Fim de Semana") {
+        prosseguir = true;;
+    } else {
+        alert("Dia da Semana inválido.")
+        prosseguir = false;
+    }
 
-        console.log("resposta: ", resposta);
+    if (dia.length == 1) {
+        prosseguir = false;
+        alert("Favor inser 0 a esquerda, caso seja um dia de 1 a 9. EXEMPLO: 01, 02, 03...,09.")
+    }
 
-        if (resposta.ok) {
-            // cardErro.style.display = "block";
+    if (prosseguir == true) {
 
-            alert("Registro realizado com sucesso!")
-            alert("O Registro Lendo foi realizado com sucesso;")
-            // limparFormulario();
-            // selectLivroCadastrado()
+        // Enviando o valor da nova input
+        fetch("/registros/inserirRegistroL", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/livros.js
+                idUsuarioServer: idUsuario,
+                idLivroServer: idLivro,
+                diaServer: dia,
+                mesServer: mes,
+                anoServer: ano,
+                diaSemanaServer: diaSemana,
+                pagHojeServer: totalPagLidasHoje,
+                condicaoServer: condicao,
+                dataInicialServer: dataInicial
 
-        } else {
-            throw ("Houve um erro ao tentar realizar o cadastro!");
-            alert("Cofira se inseriu corretamente os dados nos campos. ATENÇÂO!!! para dias como 1, 2, 3, 4,...,9 FAVOR INSERIR UM '0' na frente. EXEMPLO: 01, 02,,03...,09.")
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                // cardErro.style.display = "block";
+
+                alert("Registro realizado com sucesso!")
+                alert("O Registro Lendo foi realizado com sucesso;")
+                // limparFormulario();
+                // selectLivroCadastrado()
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+                alert("Cofira se inseriu corretamente os dados nos campos. ATENÇÂO!!! para dias como 1, 2, 3, 4,...,9 FAVOR INSERIR UM '0' na frente. EXEMPLO: 01, 02,,03...,09.")
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
 }
 
 // ---------------------------- Finalizado 3º ---------------------------
 
 function insertTabelaRegistroF() {
+
+    var prosseguir = true;
+
     var idUsuario = sessionStorage.ID_USUARIO;
     var idLivro = sessionStorage.ID_LIVRO;
 
@@ -336,76 +393,98 @@ function insertTabelaRegistroF() {
 
     // Ajustar mes para numero para inserir na tabela registro
     var mesNumerico = '';
+    if (mes == "Janeiro" || mes == "Fevereiro" || mes == "Março" || mes == "Abril" || mes == "Maio" || mes == "Junho" || mes == "Julho" || mes == "Agosto" || mes == "Setembro" || mes == "Outubro" || mes == "Novembro" || mes == "Dezembro") {
 
-    if (mes == "Janeiro") {
-        mesNumerico = "01";
-    } else if (mes == "Fevereiro") {
-        mesNumerico = "02";
-    } else if (mes == "Março") {
-        mesNumerico = "03";
-    } else if (mes == "Abril") {
-        mesNumerico = "04";
-    } else if (mes == "Maio") {
-        mesNumerico = "05";
-    } else if (mes == "Junho") {
-        mesNumerico = "06";
-    } else if (mes == "Julho") {
-        mesNumerico = "07";
-    } else if (mes == "Agosto") {
-        mesNumerico = "08";
-    } else if (mes == "Setembro") {
-        mesNumerico = "09";
-    } else if (mes == "Outubro") {
-        mesNumerico = "10";
-    } else if (mes == "Novembro") {
-        mesNumerico = "11";
-    } else if (mes == "Dezembro") {
-        mesNumerico = "12";
+        prosseguir = true;
+    }else{
+        alert("Mês inválido.")
+        prosseguir = false;
     }
 
-    // Ajustar mes para numero para inserir na tabela registro
-    var dataInicial = sessionStorage.DATA_INICIAL;
+    if (diaSemana == "Segunda" || diaSemana == "Terça" || diaSemana == "Quarta" || diaSemana == "Quinta" || diaSemana == "Sexta" || diaSemana == "Fim de Semana") {
+        prosseguir = true;;
+    } else {
+        alert("Dia da Semana inválido.")
+        prosseguir = false;
+    }
 
-    // Enviando o valor da nova input
-    fetch("/registros/inserirRegistroF", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/livros.js
-            idUsuarioServer: idUsuario,
-            idLivroServer: idLivro,
-            diaServer: dia,
-            mesServer: mes,
-            anoServer: ano,
-            diaSemanaServer: diaSemana,
-            pagHojeServer: totalPagLidasHoje,
-            condicaoServer: condicao,
-            dataInicialServer: dataInicial,
-            mesNumericoServer: mesNumerico
+    if (dia.length == 1) {
+        prosseguir = false;
+        alert("Favor inser 0 a esquerda, caso seja um dia de 1 a 9. EXEMPLO: 01, 02, 03...,09.")
+    }
 
-        })
-    }).then(function (resposta) {
+    if (prosseguir == true) {
 
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-            // cardErro.style.display = "block";
-
-            alert("Registro realizado com sucesso!")
-            alert("O Registro Final foi realizado com sucesso;")
-            // limparFormulario();
-            // selectLivroCadastrado()
-
-        } else {
-            throw ("Houve um erro ao tentar realizar o cadastro!");
-            alert("Cofira se inseriu corretamente os dados nos campos. ATENÇÂO!!! para dias como 1, 2, 3, 4,...,9 FAVOR INSERIR UM '0' na frente. EXEMPLO: 01, 02,,03...,09.")
+        if (mes == "Janeiro") {
+            mesNumerico = "01";
+        } else if (mes == "Fevereiro") {
+            mesNumerico = "02";
+        } else if (mes == "Março") {
+            mesNumerico = "03";
+        } else if (mes == "Abril") {
+            mesNumerico = "04";
+        } else if (mes == "Maio") {
+            mesNumerico = "05";
+        } else if (mes == "Junho") {
+            mesNumerico = "06";
+        } else if (mes == "Julho") {
+            mesNumerico = "07";
+        } else if (mes == "Agosto") {
+            mesNumerico = "08";
+        } else if (mes == "Setembro") {
+            mesNumerico = "09";
+        } else if (mes == "Outubro") {
+            mesNumerico = "10";
+        } else if (mes == "Novembro") {
+            mesNumerico = "11";
+        } else if (mes == "Dezembro") {
+            mesNumerico = "12";
         }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
+
+        // Ajustar mes para numero para inserir na tabela registro
+        var dataInicial = sessionStorage.DATA_INICIAL;
+
+        // Enviando o valor da nova input
+        fetch("/registros/inserirRegistroF", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/livros.js
+                idUsuarioServer: idUsuario,
+                idLivroServer: idLivro,
+                diaServer: dia,
+                mesServer: mes,
+                anoServer: ano,
+                diaSemanaServer: diaSemana,
+                pagHojeServer: totalPagLidasHoje,
+                condicaoServer: condicao,
+                dataInicialServer: dataInicial,
+                mesNumericoServer: mesNumerico
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                // cardErro.style.display = "block";
+
+                alert("Registro realizado com sucesso!")
+                alert("O Registro Final foi realizado com sucesso;")
+                // limparFormulario();
+                // selectLivroCadastrado()
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+                alert("Cofira se inseriu corretamente os dados nos campos. ATENÇÂO!!! para dias como 1, 2, 3, 4,...,9 FAVOR INSERIR UM '0' na frente. EXEMPLO: 01, 02,,03...,09.")
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
 }
 
 function updateDataFinal() {
@@ -543,8 +622,8 @@ function selectLivrosExistentes() { //ATUALIZAR DATALIST DOS PONTOS
 
 // Tentativa de exibir no scroll
 function selectRegistrosNAOfinalizados() {
-   var idUsuario = sessionStorage.ID_USUARIO;
-   var idLivro = sessionStorage.ID_LENDO;
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var idLivro = sessionStorage.ID_LENDO;
 
     fetch(`/registros/listar/${idUsuario}/${idLivro}`).then(function (response) {
         if (response.ok) {
@@ -553,10 +632,10 @@ function selectRegistrosNAOfinalizados() {
 
                 var feed = document.getElementById("registrando");
                 var mensagem = document.createElement("scroll-page");
-                
+
                 mensagem.innerHTML = "Inicie um titulo." //SE NÂO APARECER NADA, MUDAR AQUI
                 feed.appendChild(mensagem);
-                
+
                 throw "Nenhum resultado encontrado!!";
             }
 
@@ -576,7 +655,7 @@ function selectRegistrosNAOfinalizados() {
 
                     feed.appendChild(registro);
                 }
-               
+
             });
         } else {
             throw ("Houve um erro na API")
@@ -588,47 +667,47 @@ function selectRegistrosNAOfinalizados() {
 
 function selectRegistrosCONCLUIDOS() {
     var idUsuario = sessionStorage.ID_USUARIO;
- 
-     fetch(`/registros/listarC/${idUsuario}`).then(function (response) {
-         if (response.ok) {
-            //  alert(response.status);
-             if (response.status == 204) {
- 
-                 var feed = document.getElementById("registroDosConcluidos");
-                 var mensagem = document.createElement("scroll-page");
-                 
-                 mensagem.innerHTML = "Conclua um título." //SE NÂO APARECER NADA, MUDAR AQUI
 
-                 feed.appendChild(mensagem);
-                 
-                 throw "Nenhum resultado encontrado!!";
-             }
- 
-             response.json().then(function (resposta) {
-                 console.log("Dados recebidos: ", JSON.stringify(resposta));
-                 // pontos = resposta;
- 
-                 var feed = document.getElementById("registroDosConcluidos");
-                 feed.innerHTML = "";
- 
-                 for (let i = 0; i < resposta.length; i++) {
-                     var publicacao = resposta[i];
- 
-                     var registro = document.createElement("scroll-page");
- 
-                     registro.innerHTML = `&#11088; Título: ${publicacao.nome} - Data Inicial: ${publicacao.dataInicial} - Data Final: ${publicacao.dataFinal} - (Total de Páginas do titulo: ${publicacao.qtdTotalPag});`;
- 
-                     feed.appendChild(registro);
-                 }
-                
-             });
-         } else {
-             throw ("Houve um erro na API")
-         }
-     }).catch(function (erro) {
-         console.error(erro);
-     });
- }
+    fetch(`/registros/listarC/${idUsuario}`).then(function (response) {
+        if (response.ok) {
+            //  alert(response.status);
+            if (response.status == 204) {
+
+                var feed = document.getElementById("registroDosConcluidos");
+                var mensagem = document.createElement("scroll-page");
+
+                mensagem.innerHTML = "Conclua um título." //SE NÂO APARECER NADA, MUDAR AQUI
+
+                feed.appendChild(mensagem);
+
+                throw "Nenhum resultado encontrado!!";
+            }
+
+            response.json().then(function (resposta) {
+                console.log("Dados recebidos: ", JSON.stringify(resposta));
+                // pontos = resposta;
+
+                var feed = document.getElementById("registroDosConcluidos");
+                feed.innerHTML = "";
+
+                for (let i = 0; i < resposta.length; i++) {
+                    var publicacao = resposta[i];
+
+                    var registro = document.createElement("scroll-page");
+
+                    registro.innerHTML = `&#11088; Título: ${publicacao.nome} - Data Inicial: ${publicacao.dataInicial} - Data Final: ${publicacao.dataFinal} - (Total de Páginas do titulo: ${publicacao.qtdTotalPag});`;
+
+                    feed.appendChild(registro);
+                }
+
+            });
+        } else {
+            throw ("Houve um erro na API")
+        }
+    }).catch(function (erro) {
+        console.error(erro);
+    });
+}
 // -----\\----
 function selectLivroCadastrado() {
     var nomeLivro = ipt_titulo.value;
