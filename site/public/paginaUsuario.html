@@ -413,15 +413,6 @@
         })
         return false;
     }
-    function consultar() {
-        var campoMes = messes.value;
-        var campoAno = anos.value;
-
-        tituloGrafico01.innerHTML = "Grafico do mês de " + campoMes + " de " + campoAno;
-        graficoBarra();
-        // window.location.reload();
-
-    }
     
     function graficoBarra() {
         var idUsuario = sessionStorage.ID_USUARIO;
@@ -466,10 +457,10 @@
 
                     }
                     graficoMes.update();
-
+                    
                     // alert(mediaPaginas.toFixed(2)) 
-
-
+                    
+                    
                 });
             } else {
                 throw ("Houve um erro na API")
@@ -477,6 +468,16 @@
         }).catch(function (erro) {
             console.error(erro);
         });
+    }
+
+    function consultar() {
+        var campoMes = messes.value;
+        var campoAno = anos.value;
+
+        tituloGrafico01.innerHTML = "Grafico do mês de " + campoMes + " de " + campoAno;
+        graficoBarra();
+        // window.location.reload();
+
     }
     // _______________________________________________________
 
@@ -559,6 +560,6 @@
         sessionStorage.ID_USUARIO = null;
         sessionStorage.EMAIL_USUARIO = null;
         window.location = "index.html";
-        window.location.reload()
+        // window.location.reload()
     }
 </script>

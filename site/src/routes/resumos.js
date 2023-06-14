@@ -7,12 +7,16 @@ router.get("/", function (req, res) {
     resumoController.testar(req, res);
 });
 
-router.get("/listar/:idUsuario", function (req, res) {
-    resumoController.listar(req, res);
+// router.get("/listar/:idUsuario", function (req, res) {
+//     resumoController.listar(req, res);
+// });
+
+router.get("/selecionar/:idUsuario/:nomeLivro", function (req, res) {
+    resumoController.selectIdRegistroF(req, res);
 });
 
-router.get("/selecionar/:idUsuario/:nome", function (req, res) {
-    livroController.selectIdRegistroF(req, res);
+router.get("/listarA/:idUsuario", function (req, res) {
+    resumoController.listarA(req, res);
 });
 
 router.get("/listar/:idUsuario", function (req, res) {
@@ -23,7 +27,7 @@ router.get("/pesquisar/:descricao", function (req, res) {
     resumoController.pesquisarDescricao(req, res);
 });
 
-router.post("/publicar/:idUsuario", function (req, res) {
+router.post("/publicar/:idRegistroF", function (req, res) {
     resumoController.publicar(req, res);
 });
 

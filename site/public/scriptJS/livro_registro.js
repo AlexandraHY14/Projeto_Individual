@@ -1,5 +1,5 @@
-selectRegistrosNAOfinalizados();
 selectRegistrosCONCLUIDOS();
+selectRegistrosNAOfinalizados();
 
 selectLivrosExistentes();
 selectID_REGISTROIniciado();
@@ -12,8 +12,11 @@ selectLendo();
 
 
 function InserirDados() {
+    // selectLivroCadastrado();
+
     var nomeLivro = ipt_titulo.value;
     selectLivroCadastrado(nomeLivro);
+    // window.location.reload();
 
     // var nomeAutor = ipt_autor.value;
     // var totalPaginas = ipt_totalPag.value;
@@ -35,6 +38,9 @@ function InserirDados() {
     // Iniciado 1º
     if (condicao == "Iniciado") {
         selectLivroCadastrado();
+        selectID_REGISTROIniciado();
+        window.location.reload();
+
         condição = true;
         // Selecionar no gegistro se possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar
         alert(typeof (idRegistroI))
@@ -53,9 +59,9 @@ function InserirDados() {
                 alert("Livro não cadastrado")
             } else {
                 selectLivroCadastrado();
-                alert("B")
+                // alert("B")
                 insertTabelaRegistroI();
-                window.location.reload()
+                // window.location.reload();
             }
 
         }
@@ -67,7 +73,7 @@ function InserirDados() {
     if (condicao == "Lendo") {
         selectLivroCadastrado();
         condição = true;
-        // selectLendo();
+        selectLendo();
 
         // Se o idRegistro for = null, é porque não possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar.
         // selectLendo();
@@ -98,8 +104,8 @@ function InserirDados() {
 
 
     // setInterval(selectRegistrosCONCLUIDOS, selectRegistrosNAOfinalizados, 1000);
-    ipt_titulo.value = '';
-    cond.value = '';
+    // ipt_titulo.value = '';
+    // cond.value = '';
 
 }
 function finalizar() {

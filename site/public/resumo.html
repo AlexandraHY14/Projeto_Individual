@@ -16,7 +16,7 @@
 </head>
 
 <!-- onload="validarSessao(), atualizarFeed()" -->
-<body 
+<body onload="atualizarFeed()"
 style="background-color: rgb(206, 244, 255)">
     <!-- <body onload="validarSessao()"> -->
     <!-- Inicio do Cabeçalho -->
@@ -46,7 +46,7 @@ style="background-color: rgb(206, 244, 255)">
                     <label>
                         Título:
                         <br>
-                        <input name="titulo" id="titulo" maxlength="100" list="todosOsLivrosF">
+                        <input id="titulo" maxlength="100" list="todosOsLivrosF">
                         <datalist id="todosOsLivrosF">
                             <!-- <option value="O cortiço"></option> -->
                         </datalist>
@@ -55,7 +55,7 @@ style="background-color: rgb(206, 244, 255)">
                     <label>
                         Descrição (máximo de 1500 caracteres):
                         <br>
-                        <textarea name="descricao" id="textarea_descricao" maxlength="1500" rows="5"></textarea>
+                        <textarea id="textarea_resumo" maxlength="1500" rows="5"></textarea>
                     </label>
                     <br>
                     <button onclick="publicar()">Enviar</button>
@@ -135,7 +135,7 @@ style="background-color: rgb(206, 244, 255)">
 
                     var opcao = document.createElement("option");
 
-                    opcao.innerHTML = `${publicacao.nome}`;
+                    opcao.innerHTML = `${publicacao.nomeLivro}`;
 
                     feed.appendChild(opcao);
                 }
@@ -167,6 +167,7 @@ style="background-color: rgb(206, 244, 255)">
                 console.log(JSON.stringify(json));
 
                 sessionStorage.ID_REGISTRO_RESUMO = json.idRegistroF;
+                sessionStorage.NOME_LIVRO_RF = json.nome;
             });
         } else {
             console.log("Houve um erro ao tentar realizar o SELECT!!!!!!!!!");
@@ -183,42 +184,39 @@ style="background-color: rgb(206, 244, 255)">
 
 // ____________________________________________________________________________
     function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
         selectIdRegistroParaResumo();
-    //     selectIdRegistroParaResumo();
-    //     var idRegistroF = sessionStorage.ID_REGISTRO_RESUMO
 
-    //     var corpo = {
-    //         titulo: form_postagem.titulo.value,
-    //         descricao: form_postagem.descricao.value
-    //     }
+        var idRegistroF = sessionStorage.ID_REGISTRO_RESUMO;
 
-    //     fetch(`/resumos/publicar/${idUsuario}`, {
-    //         method: "post",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(corpo)
-    //     }).then(function (resposta) {
+        var corpo = {
+            // titulo: form_postagem.titulo.value,
+            resumo: form_postagem.resumo.value
+        }
 
-    //         console.log("resposta: ", resposta);
+        fetch(`/resumos/publicar/${idRegistroF}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
 
-    //         if (resposta.ok) {
-    //             window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-    //             window.location = "/dashboard/mural.html";
-    //             limparFormulario();
-    //             finalizarAguardar();
-    //         } else if (resposta.status == 404) {
-    //             window.alert("Deu 404!");
-    //         } else {
-    //             throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-    //         }
-    //     }).catch(function (resposta) {
-    //         console.log(`#ERRO: ${resposta}`);
-    //         // finalizarAguardar();
-    //     });
+            console.log("resposta: ", resposta);
 
-    //     return false;
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuario de idRegistro: " + idRegistroF + "!");
+                window.location = "/resumo.html";
+                limparFormulario();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
 
     }
 
@@ -254,7 +252,7 @@ style="background-color: rgb(206, 244, 255)">
 
     function atualizarFeed() {
         //aguardar();
-        fetch("/avisos/listar").then(function (resposta) {
+        fetch("/resumos/listarA").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
@@ -277,7 +275,7 @@ style="background-color: rgb(206, 244, 255)">
                         var spanID = document.createElement("span");
                         var spanTitulo = document.createElement("span");
                         var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
+                        var divResumo = document.createElement("div");
                         var divButtons = document.createElement("div");
                         var btnEditar = document.createElement("button");
                         var btnDeletar = document.createElement("button");
@@ -286,7 +284,7 @@ style="background-color: rgb(206, 244, 255)">
                         spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                        divResumo.innerHTML = "Descrição: <b>" + publicacao.resumo + "</b>";
                         btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
 
@@ -294,7 +292,7 @@ style="background-color: rgb(206, 244, 255)">
                         spanTitulo.id = "inputNumero" + publicacao.idAviso;
                         spanNome.className = "publicacao-nome";
                         spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
+                        divResumo.className = "publicacao-resumo";
 
                         divButtons.className = "div-buttons"
 
@@ -309,21 +307,20 @@ style="background-color: rgb(206, 244, 255)">
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
+                        divPublicacao.appendChild(divResumo);
                         divPublicacao.appendChild(divButtons);
                         divButtons.appendChild(btnEditar);
                         divButtons.appendChild(btnDeletar);
                         feed.appendChild(divPublicacao);
                     }
 
-                    finalizarAguardar();
+                    
                 });
             } else {
                 throw ('Houve um erro na API!');
             }
         }).catch(function (resposta) {
             console.error(resposta);
-            finalizarAguardar();
         });
     }
 
@@ -334,8 +331,8 @@ style="background-color: rgb(206, 244, 255)">
 
         // var divResultado = document.getElementById("div_feed");
 
-        // divResultado.appendChild(document.createTextNode(formulario.get("descricao")));
-        // divResultado.innerHTML = formulario.get("descricao");
+        // divResultado.appendChild(document.createTextNode(formulario.get("Resumo")));
+        // divResultado.innerHTML = formulario.get("Resumo");
 
         // finalizarAguardar();
 
