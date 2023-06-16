@@ -170,7 +170,9 @@ case when diaSemana = 'Segunda' then '1'
      when diaSemana = 'Fim de Semana' then '6'
      
      end as diasOrdenados
- FROM registro where fkUsuario = 2  and mes like 'Junho' and ano = 2020 group by diaSemana, diasOrdenados, ano, mes order by diasOrdenados;
+ FROM registro where fkUsuario = 3  and mes like 'Junho' and ano = 2023 group by diaSemana, diasOrdenados, ano, mes order by diasOrdenados;
  
  
  select distinct max(idRegistro), nome from registro join livro on fkLivro = idLivro where fkUsuario = 1 and condicao = 'f' group by idRegistro;
+ 
+ SELECT max(idRegistro) as idRegistroF, nome FROM livro INNER JOIN registro ON fkLivro = idLivro WHERE condicao = 'f' AND nome = 'Tubarão' AND fkUsuario = 1 group by nome;

@@ -14,8 +14,7 @@ selectLendo();
 function InserirDados() {
     // selectLivroCadastrado();
 
-    var nomeLivro = ipt_titulo.value;
-    selectLivroCadastrado(nomeLivro);
+    selectLivroCadastrado();
     // window.location.reload();
 
     // var nomeAutor = ipt_autor.value;
@@ -39,7 +38,6 @@ function InserirDados() {
     if (condicao == "Iniciado") {
         selectLivroCadastrado();
         selectID_REGISTROIniciado();
-        window.location.reload();
 
         condição = true;
         // Selecionar no gegistro se possui uma condição 'i', caso possua, não deixar iniciar novamente, e caso não pussua, não deixar inserir como lendo, antes de iniciar
@@ -93,20 +91,12 @@ function InserirDados() {
         if (continuar == true) {
             insertTabelaRegistroL();
 
-            // Utilizar idUsuario e idLlivro na condição lendo para adicionar a data inicial
-            // X Fazer update no registro inserido para colocar data inicial - A data Inicial está sendo inserida junto com os outros dados, pois foi alocada em um session storage chamado DATA_INICIAL e passado pela função insertTabelaRegistroL(); - portanto não precia de update
-            window.location.reload();
-            window.location.reload();
+
         }
     }
 
-    // alert(`${nomeLivro}, ${totalPaginas}, ${totalPagLidasHoje}, ${dia}, ${mes}, ${ano}, ${diaSemana}, ${condicao}`)
-
-
-    // setInterval(selectRegistrosCONCLUIDOS, selectRegistrosNAOfinalizados, 1000);
-    // ipt_titulo.value = '';
-    // cond.value = '';
-
+    window.location.reload();
+     
 }
 function finalizar() {
     // Finalizado 3º

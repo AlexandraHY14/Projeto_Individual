@@ -428,9 +428,9 @@
                     // var feed = document.getElementById("registrando");
                     // var mensagem = document.createElement("scroll-page");
 
-                    mensagem.innerHTML = "0" //SE NÂO APARECER NADA, MUDAR AQUI
-                    feed.appendChild(mensagem);
-
+                    // mensagem.innerHTML = "0" //SE NÂO APARECER NADA, MUDAR AQUI
+                    // feed.appendChild(mensagem);
+                    alert("Nenhum resultado encontrado")
                     throw "Nenhum resultado encontrado!!";
                 }
 
@@ -446,7 +446,7 @@
                     var cont = 0;
 
                     for (let i = 1; i <= 6; i++) {
-                        if (i == resposta[cont].diasOrdenados) {
+                        if (cont < resposta.length && i == resposta[cont].diasOrdenados) {
                             let mediaPaginas = Number(resposta[cont].mediaPags);
                             graficoMes.data.datasets[0].data.push(mediaPaginas.toFixed(2));
                             cont++;
@@ -477,6 +477,8 @@
         tituloGrafico01.innerHTML = "Grafico do mês de " + campoMes + " de " + campoAno;
         graficoBarra();
         // window.location.reload();
+        messes.value = '';
+        anos.value = '';
 
     }
     // _______________________________________________________
