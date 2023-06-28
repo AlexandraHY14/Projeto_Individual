@@ -16,7 +16,7 @@ DICA
 
 ____________________________________________________________________________________
 
-KPI
+KPI - Desejavel
 
 acima do gráfico pie -> KPI pega o dia da semana que lê menos e incentiva que reforce o habito de ler nesse dia -> 
 Os valores abaixo serão exibidos nos gráficos;
