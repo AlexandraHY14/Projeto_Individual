@@ -3,9 +3,9 @@ first text file
 ----------------------------------------------------------------------------------------
 - Fazer uma estrutura de decisão no campo conquistar - com select da soma total de páginas lidas
 
-1ª medalha -> quando um usuário tiver registrado que leu (sum(qtdPagDia)) == 1000 páginas no total;
+1ª medalha -> quando um usuário tiver registrado que leu (sum(qtdPagDia)) >= 400 páginas no total;
 
-2ª medalha -> quando um usuario tiver concluido (cont(finalizado = 's')) == 30 livros;
+2ª medalha -> quando um usuario tiver concluido (cont(finalizado = 's')) >= 5000 páginas no total;
 
 3ª medalha -> quando o usuario atinge mais de (sum(qtdPagDia)) == 10.000 páginas e concluí mais de (cont(finalizado = 's')) == 40 livros.
 
@@ -16,7 +16,7 @@ DICA
 
 ____________________________________________________________________________________
 
-KPI
+KPI - Desejavel
 
 acima do gráfico pie -> KPI pega o dia da semana que lê menos e incentiva que reforce o habito de ler nesse dia -> 
 Os valores abaixo serão exibidos nos gráficos;
@@ -34,21 +34,3 @@ Os valores abaixo serão exibidos nos gráficos;
 -> a mensagem muda... -> if a media de cada dia do mês for a mesma -> nova mensagem: `Continue com o habito de ler ${quantia média} por dia!`;
 
 ___________________________________________________________LEMBRAR_______________________________________________
-
-NA PARTE DO GRÁFICO DE LINHAS - O INPUT DO ANO
-
-<input list="ano" id="anos" name="anos">
-
-adicionar classe a esse input e diminuir width: ;
-
----------------------------------------
-COLOCAR FOOTER NA PÁGINA DE CADASTRO, LOGIN, PAGINA DO USUARIO E RESUMO!!!!!!!
-
-
-
-
--------------------------------------------
-
-- Ajustar o scroll de conlcuidos;
-- Ajustar funções dentro da função inserir dados;
-- Criar a página saiba mais - com o diagnóstico.

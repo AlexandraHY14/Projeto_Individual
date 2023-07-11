@@ -22,7 +22,7 @@
                 <img src="Img/tubarãozinho.png" alt="logo com um tubarãozinho lendo">
                 <div class="titulo">Dynamic Readers</div></div>
             <ul>
-                <li><a href="">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li>||</li>
                 <li><a href="cadastro.html">Cadastro</a></li>
                 <li>||</li>
@@ -30,23 +30,24 @@
             </ul>
         </div>
     </div>
-
-    <div>
-        <div>Até onde pode chegar com a leitura dinâmica?</div>
-        <div>Primeiramente, o design de nossos olhos e sistema nervoso define alguns limites físicos para a leitura
-            dinâmica. Ao contrario do que voce possa imaginar, nossos olhos não mexem suavemente sobre cada linha de
+    
+    <div class="box">
+    <div class="importante">
+        <div class="titulo01">Até onde pode chegar com a leitura dinâmica?</div>
+        <div class="paragrafoUm">Primeiramente, o design de nossos olhos e sistema nervoso define alguns limites físicos para a leitura
+            dinâmica. Ao contrário do que voce possa imaginar, nossos olhos não mexem suavemente sobre cada linha de
             palavras. Caso queira verificar essa propriedade de nossos olhos, preste atenção aos olhos de alguém que
             está lendo algum material. Durante a leitura, nossos olhos fazem pequenos saltos, ou "fixações". O número
             máximo de fixaç~ções físicas que o olho pode fazer é de 300 por minuto. Em leitores dinâmicos(eficientes), a
             distância entre cada fixação é de aproximadamente uma polegada. Isso significa que eles conseguém ver e
             registrar, aproximadamente 3 palavras por fixação.</div>
-        <div>Essa é a principal razão pela qual sérios especialistas costumam estimar que a maior velocidade de leitura
+        <div class="paragrafoDois">Essa é a principal razão pela qual sérios especialistas costumam estimar que a maior velocidade de leitura
             possível, com total compreensão e sem pular palavras, é de 900 palavras por minuto.</div>
 
     </div>
-    <div>
-        <div>Porque ler de forma mais fluida e rápida?</div>
-        <div>Além de te trazer o beneficio de te ajudar a ampliar o seu repertório e vocabulário, ler é uma atividade
+    <div class="beneficio">
+        <div class="titulo02">Porque ler de forma mais fluida e rápida?</div>
+        <div class="paragrafoTres">Além de te trazer o beneficio de te ajudar a ampliar o seu repertório e vocabulário, ler é uma atividade
             autonoma que aumenta os níveis de concentração no dia a dia. O hábito de ler todos os dias, nem que seja
             pouco, é um exercicio extremamente benéfico para os olhos e para nosso cerébro. É como colocar as
             ingrenagens para rodar dentro do oceano infinito que sua mente pode alcançar através da leitura. quando nos
@@ -56,19 +57,22 @@
             fácil e você não percebe que as técnicas serviram apenas para dar um impulso inicial, você para de usalas e
             nota o quão eficiente foram para em um determinado período de tempo.</div>
     </div>
+</div>
 
-
-<div>
-    <div>Agora que você entende a importância da leitura dinâmica, vamos fazer um teste para que você consiga avaliar o seu nível como leitor ;)</div>
-
+    
+    <div class="teste" id="inicio" style="display: block;">
+        <div class="textoCurto">Agora que você entende a importância da leitura dinâmica, vamos fazer um teste para que você consiga avaliar o seu nível como leitor ;) <b>ATENÇÃO! você precisará de um cronometrô.</b></div>
+        
     <button onclick="exibir()">Avaliação</button>
 </div>
 
 
 
-    <div>
-        <div> <div>Continuidade dos parques - Julio Cortázar</div>
-
+    <div class="conto" id="textoAvaliativo" style="display: none;">
+       <b style="color: red;">inicie o cronometrô aqui!</b>
+        <div class="tituloConto">Continuidade dos parques - Julio Cortázar</div>
+        
+        <div class="textoLongo"> 
             Tinha começado a ler o romance uns dias antes. Abandonou-o por conta de
             negócios urgentes, voltou a abri-lo quando regressava de trem à casa de campo;
             deixava-se interessar lentamente pela trama, pelo desenho dos personagens.
@@ -111,8 +115,198 @@
             lendo um romance.
         </div>
 
-        <div>Tradução	de	Samuel	Titan	Jr</div>
+        <div class="rodape">Tradução	de	Samuel	Titan	Jr</div>
+        <b style="color: red;">Dê um stop no cronometrô!</b>
+    </div>
+
+    <div>
+        <div class="inputTempo" id="campoTempo" style="display: none;">
+           <div>
+            Preencha o campo com o tempo final registrado no cronometrô(nº inteiro): <input id="ipt_tempo" maxlength="2">
+               <button onclick="exibirPerguntas()">Perguntas e Respostas</button>
+           </div>
+        </div>
+
+        <div class="perguntas" id="perguntas" style="display: none;">
+            <div class="instrucao">Tome nota das alternativas que escolher.</div><br>
+            <div>
+                1.Qual o título do conto?<br>
+                a) De volta ao romance. <br>
+                b) Continuidade dos Parques. <br>
+                c) De volta a minha poltrona. <br>
+                d) Continuidade dos Amantes. <br>
+                e) De volta ao meu conto. <br>
+            </div>
+
+            <div>
+                2.Qual o nome do Escritor? <br>
+                a) Julia Córner. <br>
+                b) Edgar Alan Poe. <br>
+                c) Guy de Mau Passant. <br>
+                d) Julio Cortázar. <br>
+                e) Liev Toltói. <br>
+            </div>
+
+            <div>
+                3.Como a mulher estava? <br>
+                a) Cansada. <br>
+                b) Culpada. <br>
+                c) Receosa. <br>
+                d) Indiferente. <br>
+            </div>
+
+            <div>
+                4.O conto propõe um: <br>
+                a) final fechado. <br>
+                b) looping mental. <br>
+                c) final em aberto. <br>
+                d) dejavú. <br>
+            </div>
+
+            <div>
+                5. Qual era a cor da poltrona de veludo: <br>
+                a) Azul. <br>
+                b) Vermelha. <br>
+                c) Verde. <br>
+                d) Vinho. <br>
+            </div>
+
+            <div>
+                6.O homem sentado na poltrona é: <br>
+                a) Bem afortunado. <br>
+                b) Com poucos recursos. <br>
+                c) Sempre sem muitos afazeres. <br>
+                d) O Amante. <br>
+            </div>
+
+            <div>
+                7. Qual o nome do tradutor do conto? <br>
+                a) Claudio Ribeiro. <br>
+                b) Antonio Faustini. <br>
+                c) Samuel Titan. <br>
+                d) Josue Marques. <br>
+            </div>
+            <button onclick="respostas()">Respostas</button>
+            <div class="respostas" id="res" style="display: none;">
+               1.b <br>
+               2.d <br>
+               3.c <br>
+               4.b <br>
+               5.c <br>
+               6.a <br>
+               7.c <br>
+               Insira o numero de acertos: <input id="ipt_acertos" maxlength="1"> 
+               <button onclick="resultado()">Resultado</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="final" id="div_msg"></div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="acessoRapido">
+            <span class="coluna">Acesso Rápido</span>
+            <span class="lista">
+                <span class="itemListado"><a href="paginaInicial.html">Home Page</a></span>
+                <span class="itemListado"><a href="saibaMais.html">Saiba Mais</a></span>
+                <span class="itemListado"><a href="cadastro.html">Cadastrar</a></span>
+                <span class="itemListado"><a href="login.html">Login</a></span>
+            </span>
+
+        </div>
+
+        <div class="editar"><img src="img/conhecimento.png" alt=""></div>
+
+        <div class="contato">
+            <span class="coluna">Acesso Rápido</span>
+            <span class="lista">
+                <span class="itemListado"><a href="">E-mail</a></span>
+                <span class="itemListado"><a href="">Github</a></span>
+            </span>
+        </div>
+
     </div>
 </body>
 
 </html>
+
+<script>
+    function exibir() {
+        textoAvaliativo.style.display = 'block';
+        campoTempo.style.display = 'block';
+        perguntas.style.display = 'none';
+        res.style.display = 'none';
+
+        alert("Leia como costuma fazer naturalmente, apenas 1 vez.")
+    }
+
+    function exibirPerguntas() {
+        var continuar = true;
+        var tempoF = Number(ipt_tempo.value);
+        if (tempoF == '') {
+            alert("Preencha o campo para proseguir.")
+            continuar = false;
+        }
+
+        if(tempoF <= 0 || tempoF > 25){
+            alert("O tempo deve ser maior que 0 e menor que 20 min.")
+            continuar = false;
+        }else if(tempoF > 0 && tempoF <= 25){
+            continuar = true
+        }
+        if (continuar == true) {
+            
+            textoAvaliativo.style.display = 'none';
+            campoTempo.style.display = 'none';
+            perguntas.style.display = 'block';
+            res.style.display = 'none';
+        }
+    }
+
+    function respostas() {
+        textoAvaliativo.style.display = 'block';
+        campoTempo.style.display = 'none';
+        perguntas.style.display = 'block';
+        res.style.display = 'block';
+    }
+
+    function resultado() {
+
+        textoAvaliativo.style.display = 'none';
+        campoTempo.style.display = 'none';
+        perguntas.style.display = 'none';
+        inicio.style.display = 'none'
+        res.style.display = 'none';
+        var continuar = true;
+        
+        var tempoF = Number(ipt_tempo.value);
+        var acertos = Number(ipt_acertos.value);
+        if (acertos == '') {
+            alert("Insira um valor no campo.")
+        }
+        if(acertos == 0 || acertos == 1 || acertos == 2 || acertos == 3 || acertos == 4 || acertos == 5 || acertos == 6 || acertos == 7){
+
+            continuar = true;
+
+        }else{
+            continuar = false;
+            alert("O número de acerto só vai de 0 a 7.")
+        }
+        
+        var totalDePalavras = 490;
+
+        if (continuar == true) {
+        var ppm = totalDePalavras/tempoF;
+        var percentual = (acertos/7)*100;
+        var pcm = (ppm * percentual)/100;
+
+            div_msg.innerHTML = `Numero de palavras: ${totalDePalavras} palavras. <br> Tempo: ${tempoF} min. <br> Acertos: ${acertos}. <br> Palavras lidas por min(PPM): ${ppm}. <br> Percentual de Compreensão: ${percentual.toFixed(2)}% de compreensão do texto. <br> Palavras compreendidas por min(PCM): ${pcm} palavras compreendidas por min.`;
+            
+
+        }
+        // alert(tempoF);
+        // alert(acertos);
+    }
+
+</script>

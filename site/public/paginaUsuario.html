@@ -81,7 +81,7 @@
                         <datalist id="todosOsAnos">
                             <!-- <option value="2023"> -->
                         </datalist>
-                        <button onclick="consultar()">conssultar</button>
+                        <button onclick="consultar()">consultar</button>
                     </div>
 
                     <div class="grafico01">
@@ -264,7 +264,7 @@
                     </scroll-container>
 
                 </div>
-                <button class="btnConcluido">Adicionar em Concluídos</button>
+                <button class="btnConcluido" onclick="finalizar()">Adicionar em Concluídos</button>
             </div>
         </div>
 
@@ -304,7 +304,7 @@
             <span class="coluna">Acesso Rápido</span>
             <span class="lista">
                 <span class="itemListado"><a href="paginaInicial.html">Home Page</a></span>
-                <span class="itemListado"><a href="">Saiba Mais</a></span>
+                <span class="itemListado"><a href="saibaMais.html">Saiba Mais</a></span>
                 <span class="itemListado"><a href="cadastro.html">Cadastrar</a></span>
                 <span class="itemListado"><a href="login.html">Login</a></span>
             </span>
@@ -329,15 +329,20 @@
 
 </html>
 <script>
+<<<<<<< HEAD
     
     selectRegistrosNAOfinalizados();
+=======
+// window.location.reload()
+    selectRegistrosNAOfinalizados()
+>>>>>>> 80e9ed2e9589942549ffeaa9612b322f03939e10
     // selectRegistrosCONCLUIDOS();
 
     oQueFazer();
     conquistas();
     quaisDicas();
 
-   
+
 
     function quaisDicas() {
         var vt_dicas = ["Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura, vá aumentando a velocidade que passa pelas linhas.", "Procure audio do trecho, ou capítulo que está lendo, e tente ir aumentando a velocidade (leia no ritmo do áudio).", "Apesar do progresso ser medido pela quantia de páginas que você lê, foque em entender o que lê, antes de pensar no quanto"];
@@ -399,7 +404,7 @@
 
                     sessionStorage.TOTAL_LIDO = json.total_lido;
                 });
-                
+
             } else {
                 console.log("Houve um erro ao tentar realizar o SELECT!!!!!!!!!");
 
@@ -412,100 +417,107 @@
         })
         return false;
     }
-
-    function graficoBarra() {
-    var idUsuario = sessionStorage.ID_USUARIO;
-    var campoMes = messes.value;
-    var campoAno = anos.value;
-
-
-    fetch(`/graficos/listarB/${idUsuario}/${campoMes}/${campoAno}`).then(function (response) {
-        if (response.ok) {
-            // alert(response.status);
-            if (response.status == 204) {
-
-                // var feed = document.getElementById("registrando");
-                // var mensagem = document.createElement("scroll-page");
-
-                mensagem.innerHTML = "0." //SE NÂO APARECER NADA, MUDAR AQUI
-                feed.appendChild(mensagem);
-
-                throw "Nenhum resultado encontrado!!";
-            }
-
-            response.json().then(function (resposta) {
-                console.log("Dados recebidos: ", JSON.stringify(resposta));
-                // pontos = resposta;
-
-                var feed = document.getElementById("registrando");
-                feed.innerHTML = "";
-
-                graficoMes.data.datasets[0].data = [];
-
-                var cont = 0;
     
-                for (let i = 1; i <= 6; i++) {
-                    if (i == resposta[cont].diasOrdenados) {
-                        let mediaPaginas = Number(resposta[cont].mediaPags);
-                        graficoMes.data.datasets[0].data.push(mediaPaginas.toFixed(2));
-                        cont ++;
-                    }else{
-                        graficoMes.data.datasets[0].data.push(0);
-                    }
+    function graficoBarra() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var campoMes = messes.value;
+        var campoAno = anos.value;
 
 
+        fetch(`/graficos/listarB/${idUsuario}/${campoMes}/${campoAno}`).then(function (response) {
+            if (response.ok) {
+                // alert(response.status);
+                if (response.status == 204) {
+
+                    // var feed = document.getElementById("registrando");
+                    // var mensagem = document.createElement("scroll-page");
+
+                    // mensagem.innerHTML = "0" //SE NÂO APARECER NADA, MUDAR AQUI
+                    // feed.appendChild(mensagem);
+                    alert("Nenhum resultado encontrado")
+                    throw "Nenhum resultado encontrado!!";
                 }
 
-                // alert(somaDasMedias.toFixed(2)) 
+                response.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+                    // pontos = resposta;
 
-                
-                graficoMes.update();
-            });
-        } else {
-            throw ("Houve um erro na API")
-        }
-    }).catch(function (erro) {
-        console.error(erro);
-    });
-}
-    // _______________________________________________________
-    
+                    // var feed = document.getElementById("registrando");
+                    // feed.innerHTML = "";
+
+                    graficoMes.data.datasets[0].data = [];
+
+                    var cont = 0;
+
+                    for (let i = 1; i <= 6; i++) {
+                        if (cont < resposta.length && i == resposta[cont].diasOrdenados) {
+                            let mediaPaginas = Number(resposta[cont].mediaPags);
+                            graficoMes.data.datasets[0].data.push(mediaPaginas.toFixed(2));
+                            cont++;
+                        } else {
+                            graficoMes.data.datasets[0].data.push(0);
+                        }
+
+
+                    }
+                    graficoMes.update();
+                    
+                    // alert(mediaPaginas.toFixed(2)) 
+                    
+                    
+                });
+            } else {
+                throw ("Houve um erro na API")
+            }
+        }).catch(function (erro) {
+            console.error(erro);
+        });
+    }
+
     function consultar() {
         var campoMes = messes.value;
-    var campoAno = anos.value;
-        graficoBarra();
-    
-    }
-        const ctx = document.getElementById("graficoMes");
-var graficoMes = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Segundas', 'Terças', 'Quartas', 'Quintas', 'Sextas', 'FS'],
-                datasets: [
-                    {
-                        label: 'Total de páginas',
-                        backgroundColor: 'rgb(50,153,204)',
-                        borderColor: 'rgb(50,153,204)',
-                        data: [],
-                        borderWidth: 2
-                    }
-                ]
-            }
-            // ,
+        var campoAno = anos.value;
 
-            //     options: {
-            //         scales: {
-            //             y: {
-            //                 min: 20,
-            //                 max: 90,
-            //                 ticks: {
-            //                     stepSize: 10
-            //                 }
-            //             }
-            //         }
-            //     }
-        });
-    
+        tituloGrafico01.innerHTML = "Grafico do mês de " + campoMes + " de " + campoAno;
+        graficoBarra();
+        // window.location.reload();
+        messes.value = '';
+        anos.value = '';
+
+    }
+    // _______________________________________________________
+
+
+    const ctx = document.getElementById("graficoMes");
+    var graficoMes = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Segundas', 'Terças', 'Quartas', 'Quintas', 'Sextas', 'FS'],
+            datasets: [
+                {
+                    label: 'Média de páginas',
+                    backgroundColor: 'rgb(50,153,204)',
+                    borderColor: 'rgb(50,153,204)',
+                    data: [],
+                    borderWidth: 2
+                }
+            ]
+        }
+        // ,
+
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 min: 20,
+        //                 max: 90,
+        //                 ticks: {
+        //                     stepSize: 10
+        //                 }
+        //             }
+        //         }
+        //     }
+    });
+
 
     // Gráfico Pie ou pizza
 
@@ -554,5 +566,6 @@ var graficoMes = new Chart(ctx, {
         sessionStorage.ID_USUARIO = null;
         sessionStorage.EMAIL_USUARIO = null;
         window.location = "index.html";
+        // window.location.reload()
     }
 </script>

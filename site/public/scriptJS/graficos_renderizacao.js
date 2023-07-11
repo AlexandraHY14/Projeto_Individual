@@ -39,8 +39,8 @@ function graficoPizza() {
                 // alert(somaDasMedias.toFixed(2)) 
 
                 for (let i = 0; i < resposta.length; i++) {
-                    var mediaIndividualPags = resposta[i].mediaPags;
-                    var porcentagem = ((mediaIndividualPags / somaDasMedias) * 100).toFixed(2);
+                    let mediaIndividualPags = resposta[i].mediaPags;
+                    let porcentagem = ((mediaIndividualPags / somaDasMedias) * 100).toFixed(2);
                     // alert(porcentagem.toFixed(2));
 
                     graficoSemana.data.datasets[0].data.push(porcentagem);

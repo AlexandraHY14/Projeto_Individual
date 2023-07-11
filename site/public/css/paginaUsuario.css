@@ -701,7 +701,9 @@ width: 75px;
     align-items: center;
    
 }
-
+button{
+    transition: 0.5s;
+}
 button:hover{
     transform: translateY(-4px)
 }
