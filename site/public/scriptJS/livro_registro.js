@@ -621,6 +621,10 @@ function selectRegistrosNAOfinalizados() {
     var idUsuario = sessionStorage.ID_USUARIO;
     var idLivro = sessionStorage.ID_LENDO;
 
+    if (idLivro == undefined) {
+        console.log("Nenhum livro iniciado")
+    } else {
+
     fetch(`/registros/listar/${idUsuario}/${idLivro}`).then(function (response) {
         if (response.ok) {
             // alert(response.status);
@@ -659,6 +663,7 @@ function selectRegistrosNAOfinalizados() {
     }).catch(function (erro) {
         console.error(erro);
     });
+}
 }
 
 function selectRegistrosCONCLUIDOS() {
@@ -783,11 +788,15 @@ function selectID_REGISTROIniciado() {
 
     // var nomeAutor = ipt_autor.value;
     // var totalPaginas = ipt_totalPag.value;
+    
+    if (idLivro == undefined) {
+        console.log("Nenhum livro iniciado")
+    } else {
 
     fetch(`/registros/pegarId/${idUsuario}/${idLivro}`, {
         cache: "no-store",
     }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO selectID_REGISTROIniciado()!!!!!!!!!!!")
+        console.log("ESTOU NO THEN DO selectID_REGISTROIniciado()!")
 
         if (resposta.ok) {
             console.log(resposta);
@@ -809,4 +818,6 @@ function selectID_REGISTROIniciado() {
         console.log(erro);
     })
     return false;
+}
+
 }

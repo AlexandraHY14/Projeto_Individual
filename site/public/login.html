@@ -131,9 +131,8 @@
                 });
 
             } else {
-
                 console.log("Houve um erro ao tentar realizar o login!");
-                alert("Email ou senha inválido.");
+                alert("E-mail ou senha incorreto.");
                 resposta.text().then(texto => {
                     console.error(texto);
                 });
@@ -141,6 +140,7 @@
             
         }).catch(function (erro) {
             console.log(erro);
+            
         })
         
         return false;

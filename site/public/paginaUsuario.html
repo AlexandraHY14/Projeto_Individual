@@ -329,13 +329,8 @@
 
 </html>
 <script>
-<<<<<<< HEAD
     
     selectRegistrosNAOfinalizados();
-=======
-// window.location.reload()
-    selectRegistrosNAOfinalizados()
->>>>>>> 80e9ed2e9589942549ffeaa9612b322f03939e10
     // selectRegistrosCONCLUIDOS();
 
     oQueFazer();
@@ -345,6 +340,7 @@
 
 
     function quaisDicas() {
+
         var vt_dicas = ["Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura, vá aumentando a velocidade que passa pelas linhas.", "Procure audio do trecho, ou capítulo que está lendo, e tente ir aumentando a velocidade (leia no ritmo do áudio).", "Apesar do progresso ser medido pela quantia de páginas que você lê, foque em entender o que lê, antes de pensar no quanto"];
         var NumSorteado = ((Math.random() * (3 - 1)) + 1).toFixed();
         dicas.innerHTML = vt_dicas[NumSorteado - 1];
@@ -383,17 +379,20 @@
 
 
     somaPaginas();
+
     if (sessionStorage.TOTAL_LIDO == undefined || sessionStorage.TOTAL_LIDO == "null") {
         sessionStorage.TOTAL_LIDO = 0;
     }
     totalP.innerHTML = sessionStorage.TOTAL_LIDO;
+
+
     function somaPaginas() {
         var idUsuario = sessionStorage.ID_USUARIO;
 
         fetch(`/graficos/pegarSomaPag/${idUsuario}`, {
             cache: "no-store",
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO SELECT selectLendo()!!!!!!!!!!!")
+            console.log("ESTOU NO THEN DO SELECT somaPaginas()!")
 
             if (resposta.ok) {
                 console.log(resposta);
