@@ -6,75 +6,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Readers | resumo</title>
+    <title>Pefil | resumo</title>
 
-    <link rel="stylesheet" href="css/resumo.css">
+    <link rel="stylesheet" href="./resumo.css">
     <script src="../js/funcoes.js"></script>
-    <script src="./alerta.js"></script>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
 
 </head>
 
-<!-- onload="validarSessao(), atualizarFeed()" -->
-<body 
-style="background-color: rgb(206, 244, 255)">
+<body onload="validarSessao(), atualizarFeed()">
     <!-- <body onload="validarSessao()"> -->
-    <!-- Inicio do Cabeçalho -->
+
+    <div class="janela">
+
+
+         <!-- Inicio do Cabeçalho -->
     <div class="header">
         <div class="container">
             <span class="inicio">
                 <img src="Img/tubarãozinho.png" alt="logo com um tubarãozinho lendo">
                 <span class="titulo">Dynamic Readers</span></span>
             <ul>
-                <li><a href="paginaUsuario.html">Perfil</a></li>
+                <li><a href="paginaUsuario.html">Pefil</a></li>
                 <li>||</li>
-                <li onclick="sair()">Sair</a></li>
+                <li><a href="paginaInicial.html">Sair</a></li>
             </ul>
         </div>
     </div>
+
     <!-- Final do Cabeçalho -->
-    <div class="janela">
+
+        <div class="dash-right">
 
 
-        <div class="container01">
-
-            <h1>Resumos</h1>
-
-            <div class="div-form">
-                <form id="form_postagem" method="post" onsubmit="return publicar()">
-                    <label>
-                        Título:
-                        <br>
-                        <input name="titulo" id="titulo" maxlength="100" list="todosOsLivrosF">
-                        <datalist id="todosOsLivrosF"></datalist>
-                    </label>
-                    <br>
-                    <label>
-                        Descrição (máximo de 1500 caracteres):
-                        <br>
-                        <textarea name="descricao" id="textarea_descricao" maxlength="1500" rows="5"></textarea>
-                    </label>
-                    <br>
-                    <button>Enviar</button>
-                </form>
-            </div>
-
-            <h1>Resumos</h1>
-
-            <div class="div-results">
-                <div id="feed_container" class="feed-container">
+            <div class="avisos">
+                <div id="alerta">
                 </div>
+                
+                <div class="container">
+                    <h1>Publicar um resumo</h1>
+                    <div class="div-form">
+                        <form id="form_postagem" method="post" onsubmit="return publicar()">
+                            <!-- <label>
+                                Título:
+                                <br>
+                                <input name="titulo" id="titulo" maxlength="100" type="text">
+                            </label> -->
 
+                            <label for="messes">Livros concluídos:</label>
+                        <input list="mes" id="messes" name="messes">
+
+                        <datalist id="mes">
+                            <option value="Janeiro">
+                            <option value="Fevereiro">
+                            <option value="Março">
+                            <option value="Abril">
+                            <option value="Maio">
+                        </datalist>
+                            <br>
+                            <label>
+                                Descrição (máximo de 1000 caracteres):
+                                <br>
+                                <textarea name="descricao" id="textarea_descricao" maxlength="1000" rows="5"></textarea>
+                            </label>
+                            <br>
+                            <button>Publicarr</button>
+                        </form>
+                    </div>
+                    <h1>Resumos publicados</h1>
+                    <div class="div-results">
+                        <div id="feed_container" class="feed-container">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
 
 
 
-    <!-- MODAL -->
-    <!-- <div id="div_modal" class="div-modal">
+            <!-- MODAL -->
+            <!-- <div id="div_modal" class="div-modal">
                 <div id="modal_backdrop" onclick="fecharModal()" class="modal-backdrop">
                 </div>
                 <div id="modal_container" class="modal-container">
@@ -82,12 +92,12 @@ style="background-color: rgb(206, 244, 255)">
                 </div>
             </div> -->
 
-    <!-- AGUARDAR -->
-    <!-- <div id="div_aguardar" class="div-aguardar">
+            <!-- AGUARDAR -->
+            <!-- <div id="div_aguardar" class="div-aguardar">
                 <img src="./assets/aguarde-pink3.gif" id="img_aguarde">
             </div>  -->
 
-    </div>
+        </div>
     </div>
 
 
@@ -98,87 +108,13 @@ style="background-color: rgb(206, 244, 255)">
 </html>
 
 <script>
-
+    
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
 
-    selectRegistrosFinalizados();
-
-    function selectRegistrosFinalizados(){
-        var idUsuario = sessionStorage.ID_USUARIO;
-
-    fetch(`/resumos/listar/${idUsuario}`).then(function (resposta) {
-        if (resposta.ok) {
-            if (resposta.status == 204) {
-                var feed = document.getElementById("todosOsLivrosF");
-                var mensagem = document.createElement("option");
-                mensagem.innerHTML = "Nenhum resultado encontrado." //SE NÂO APARECER NADA, MUDAR AQUI
-                feed.appendChild(mensagem);
-                throw "Nenhum resultado encontrado!!";
-            }
-
-            resposta.json().then(function (resposta) {
-                console.log("Dados recebidos: ", JSON.stringify(resposta));
-               
-
-                var feed = document.getElementById("todosOsLivrosF");
-                
-                feed.innerHTML = "";
-
-                for (let i = 0; i < resposta.length; i++) {
-                    var publicacao = resposta[i];
-
-                    var opcao = document.createElement("option");
-
-                    opcao.innerHTML = `${publicacao.nome}`;
-
-                    feed.appendChild(opcao);
-                }
-            });
-        } else {
-            throw ("Houve um erro na API")
-        }
-    }).catch(function (resposta) {
-        console.error(resposta);
-    });
-}
-   
-    
-    
-    function selectIdRegistroParaResumo() {
-        var idUsuario = sessionStorage.ID_USUARIO;
-        var nomeLivro = titulo.value;
-
-    fetch(`/resumos/selecionar/${idUsuario}/${nomeLivro}`, {
-        cache: "no-store",
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO SELECT LivroCadastrado()!!!!!!!!!!!")
-
-        if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-
-                sessionStorage.ID_REGISTRO_RESUMO = json.idRegistro;
-            });
-        } else {
-            console.log("Houve um erro ao tentar realizar o SELECT!!!!!!!!!");
-            // sessionStorage.ID_LIVRO = null;
-            resposta.text().then(texto => {
-                console.error(texto);
-            });
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-    })
-    return false;
-}
-    
     function publicar() {
         var idUsuario = sessionStorage.ID_USUARIO;
 
@@ -187,7 +123,7 @@ style="background-color: rgb(206, 244, 255)">
             descricao: form_postagem.descricao.value
         }
 
-        fetch(`/resumos/publicar/${idUsuario}`, {
+        fetch(`/avisos/publicar/${idUsuario}`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
@@ -209,7 +145,7 @@ style="background-color: rgb(206, 244, 255)">
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
+            finalizarAguardar();
         });
 
         return false;

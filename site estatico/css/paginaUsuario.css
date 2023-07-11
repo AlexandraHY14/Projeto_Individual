@@ -154,7 +154,12 @@ li {
     width: 90%;
     flex-direction: column;
 }
-
+.ipt_anoGL{
+width: 75px;
+}
+.ipt_mesGL{
+    width: 85px;
+    }
 .conteudo01 .primeira_coluna .graficoLinha .tituloProgresso {
     /* B */
     display: flex;
@@ -167,7 +172,7 @@ li {
 .conteudo01 .primeira_coluna details {
     /* B */
     font-size: 12px;
-    width: 500px;
+    width: 300px;
     margin-bottom: 10px;
 }
 
@@ -314,6 +319,7 @@ li {
     /* display: flex; */
     height: 60px;
     width: 60px;
+    cursor: pointer;
 }
 
 .tituloM {
@@ -424,7 +430,7 @@ li {
 
 .conteudo02 {
     display: flex;
-    height: 700px;
+    height: 850px;
     width: 100%;
     justify-content: center;
 }
@@ -437,6 +443,10 @@ li {
     justify-content: space-around;
     flex-direction: column;
     /* justify-content: center; */
+    border-right-width: 2px;
+    border-right-style:dashed;
+    border-right-color: #19c1de;
+
 }
 
 .conteudo02 .primeira_coluna02 .progressoDiario {
@@ -467,8 +477,8 @@ li {
     background-color: #c5fafb;
     padding: 10px;
     display: flex;
-    height: 200px;
-    width: 350px;
+    height: 300px;
+    width: 400px;
     flex-direction: column;
     /* width: 100%; */
     justify-content: center;
@@ -515,7 +525,7 @@ li {
     background-color: #34538D;
     font-size: 20px;
     color: white;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 }
 .concluidosI scroll-container {
     display: flex;
@@ -535,6 +545,7 @@ li {
     align-items: flex-start;
     justify-content: flex-start;
     height: 100%;
+    margin: 10px 0;
     font-size: 18px;
 }
 
@@ -623,6 +634,74 @@ li {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    height: 100%;
+    margin: 10px 0;
     font-size: 20px;
+}
+
+/* Inicio do Footer */
+
+.footer{
+    display: flex;
+    background-color: #4C91D4;
+    height: 130px;
+    justify-content: space-around;
+}
+
+.footer .acessoRapido .lista{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+.footer .contato .lista{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+
+
+
+.footer .acessoRapido{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.footer .acessoRapido a{
+    color: white;
+}
+.footer .acessoRapido .coluna{
+    font-size: 25px;
+    color: white;
+
+}
+
+
+
+.footer .contato{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.footer .contato a{
+    color: white;
+}
+
+.footer .contato .coluna{
+    font-size: 25px;
+    color: white;
+}
+
+.footer .editar img{
+    height: 70px;
+}
+
+.footer .editar{
+    display: flex;
+    align-items: center;
+   
+}
+
+button:hover{
+    transform: translateY(-4px)
 }

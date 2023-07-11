@@ -6,10 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
+    <link rel="shortcut icon" href="img/tubarãozinho.png" type="image/x-icon">
+
     <link rel="stylesheet" href="css/paginaUsuario.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
+<!-- onload="validarSessao(), atualizacaoPeriodica()" -->
+<!-- onload="carregarUserLogado() , receberUserLogado(usuarioLogado)" -->
 
 <body>
     <!-- Inicio do Cabeçalho -->
@@ -21,7 +25,7 @@
             <ul>
                 <li><a href="resumo.html">Resumo</a></li>
                 <li>||</li>
-                <li><a href="paginaInicial.html">Sair</a></li>
+                <li onclick="sair()">Sair</a></li>
             </ul>
         </div>
     </div>
@@ -39,8 +43,8 @@
                         <img src="img/foto_usuario.png" alt="">
                     </div>
                     <div class="dados">
-                        <span class="nomeUsuario">Nome Do usuário</span>
-                        <span>Mensagem <img class="img02" src="img/editar.png" alt=""></span>
+                        <span class="nomeUsuario" id="nomeDoUsuario">Nome Do usuário</span>
+                        <span id="emailDoUsuario"> <img class="img02" src="img/editar.png" alt=""></span>
                     </div>
 
                 </div>
@@ -52,7 +56,7 @@
                 Você pode visualizar aqui sua evolução mensal de acordo com os registros que fizer.
                 obs: FS = Finais de Semana
             </details>
-            
+
             <div class="graficoLinha">
 
                 <div class="tituloProgresso">Progresso
@@ -62,28 +66,29 @@
 
                     <div class="camposDatalist">
                         <label for="messes">Mês:</label>
-                        <input list="mes" id="messes" name="messes">
+                        <input list="todosOsMesses" id="messes" name="messes" class="ipt_mesGL">
 
-                        <datalist id="mes">
-                            <option value="Janeiro">
+                        <datalist id="todosOsMesses">
+                            <!-- <option value="Janeiro">
                             <option value="Fevereiro">
                             <option value="Março">
                             <option value="Abril">
-                            <option value="Maio">
+                            <option value="Maio"> -->
                         </datalist>
 
                         <label for="anos">Ano:</label>
-                        <input list="ano" id="anos" name="anos">
-                        <datalist id="ano">
-                            <option value="2023">
+                        <input list="todosOsAnos" id="anos" name="anos" class="ipt_anoGL">
+                        <datalist id="todosOsAnos">
+                            <!-- <option value="2023"> -->
                         </datalist>
                         <button onclick="consultar()">conssultar</button>
                     </div>
 
                     <div class="grafico01">
                         <div id="tituloGrafico01">Gráfico do mês de </div>
+
                         <div class="chart-container01">
-                            <canvas id="myChart"></canvas>
+                            <canvas id="graficoMes"></canvas>
                         </div>
                         <!-- <div id="graficos">
                 <div id="grafico1" class="display-block">
@@ -110,9 +115,7 @@
             <div class="aviso">
                 <div class="card">
                     <b>Você pode melhorar!</b>
-                    <span class="text">Você está menos habituado a ler nas segunda, se esforce para passar de 8 páginas
-                        todas
-                        as segundas do mês. Você consegue!</span>
+                    <span class="text" id="melhorar"></span>
                 </div>
 
 
@@ -122,7 +125,7 @@
             </div>
             <details>
                 <summary>?</summary>
-                Aqui verá a media de páginas que lê em cada dia da semana.
+                Aqui verá a porcentagem(%) da média de páginas que lê em cada dia da semana.
                 <br>
             </details>
             <div class="graficoPizza">
@@ -141,14 +144,17 @@
 
             <div class="conquistas">
                 <div class="tituloM">Conquistas</div>
-                <div class="medalhas"><img src="img/star-medal.webp" alt=""><img src="img/star-medal.webp" alt=""><img
-                        src="img/star-medal.webp" alt="">
+                <div class="medalhas" id="div_medalhas">
+                    <!-- <img src="img/star-medal.webp" alt="">
+                    <img src="img/star-medal.webp" alt="">
+                    <img src="img/star-medal.webp" alt=""> -->
                 </div>
             </div>
 
             <div class="dica">
                 <div class="tituloD">Dica</div>
-                <div class="textoD">Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura, vá
+                <div class="textoD" id="dicas">Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura,
+                    vá
                     aumentando a velocidade que passa pelas linhas.
                 </div>
             </div>
@@ -178,22 +184,32 @@
     <div class="conteudo02">
         <div class="primeira_coluna02">
             <div class="progressoDiario">
-                <div class="tituloPD">Insira aqui o seu progresso diário</div>
+                <div class="tituloPD">Insira abaixo o seu progresso diário</div>
 
                 <div class="formRegistrar">
 
-                    <div class="tituloTexto">Título: <input id="ipt_titulo"></div>
+                    <div class="tituloTexto">Título*: <input list="todosOsLivros" id="ipt_tituloNovo"></div>
 
-                    <div class="nomeAutor">Nome do autor:<input id="ipt_autor"></div>
+                    <div class="nomeAutor">Nome do autor: <input list="todosOsAutores" id="ipt_autorNovo"></div>
 
-                    <div class="paginas">Total de páginas:<input id="ipt_totalPag"></div>
+
+                    <div class="paginas">Total de páginas*: <input id="ipt_totalPag"></div>
+
+                    <button style="width: 200px; height: 25px; font-size: 15px; margin-left: 95px;"
+                        onclick="insertTabelaLivro()">Cadastrar um novo título</button>
+                    <b>-----------------------------------------------------------</b>
+                    <div class="tituloTexto">Título*: <input list="todosOsLivros" id="ipt_titulo"></div>
+                    <datalist id="todosOsLivros"></datalist>
+
+                    <!-- <div class="nomeAutor">Nome do autor: <input list="todosOsAutores" id="ipt_autor"></div>
+                    <datalist id="todosOsAutores"></datalist> -->
 
                     <div class="paginas">Qtd páginas lidas hoje:<input id="ipt_lidas"></div>
 
-                    <div class="data">Data: <input id="ipt_dia" maxlength="2">
+                    <div class="data">Data*: <input id="ipt_dia" maxlength="2">
 
                         <input list="mesR" id="messesR" name="messesR">
-                         
+
                         <datalist id="mesR">
                             <option value="Janeiro">
                             <option value="Fevereiro">
@@ -210,10 +226,10 @@
                         </datalist>
 
                         <input id="ipt_ano" maxlength="4">
-                        
+
                     </div>
 
-                    <div class="diaSemana">Dia da semana
+                    <div class="diaSemana">Dia da semana*:
                         <input list="diaR" id="diasR" name="diasR">
 
                         <datalist id="diaR">
@@ -225,9 +241,15 @@
                             <option value="Fim de Semana">
                         </datalist>
                     </div>
-
+                    <div>
+                        Status da leitura*: <input list="condicao" id="cond" name="cond">
+                        <datalist id="condicao">
+                            <option value="Iniciado">
+                            <option value="Lendo">
+                        </datalist>
+                    </div>
                 </div>
-                <button class="btnAdicionar">Adicionar +</button>
+                <button class="btnAdicionar" onclick="InserirDados()">Adicionar +</button>
 
             </div>
 
@@ -235,10 +257,9 @@
             <div class="registroDiario">
 
                 <div class="concluidosI">
-                    <scroll-container>
-                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data: 06/Fevereiro/2023 - Fim de Semana - 10 páginas (faltam 180 páginas)</scroll-page>
-                        <scroll-page id="page-2"> * Titulo: Nome do livro - Data: 07/Fevereiro/2023 - Segunda - 10 páginas (faltam 180 páginas)</scroll-page>
-                        <scroll-page id="page-3"> * Titulo: Nome do livro - Data: 08/Fevereiro/2023 - Terça - 10 páginas (faltam 180 páginas)</scroll-page>
+                    <scroll-container id="registrando">
+                        <!-- <scroll-page> * Titulo: Nome do livro - Data: 06/Fevereiro/2023 - Fim de Semana - 10
+                            páginas (faltam 180 páginas)</scroll-page> -->
 
                     </scroll-container>
 
@@ -252,40 +273,212 @@
         <div class="segunda_coluna02">
             <div class="livrosConcluidos">
 
-                <div class="tituloC">Lista de livros/folhetos concluídos</div>
+                <div class="tituloC">Lista de concluídos</div>
                 <!-- <nav>
                     <a href="#page-1">1</a>
                     <a href="#page-2">2</a>
                     <a href="#page-3">3</a>
                   </nav> -->
-                <div class="concluidos">
-                    <scroll-container>
-                        <scroll-page id="page-1"> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final: 08/Janeiro/2023 - total de páginas: 240.</scroll-page>
-                        <scroll-page id="page-2">2</scroll-page>
-                        <scroll-page id="page-3">3</scroll-page>
 
+                <div class="concluidos">
+                    <scroll-container id="registroDosConcluidos">
+                        <!-- <scroll-page> * Titulo: Nome do livro - Data Inicial: 01/01/2023 - Data Final:
+                            08/Janeiro/2023 - total de páginas: 240.</scroll-page> -->
                     </scroll-container>
 
                 </div>
             </div>
             <div class="totalPaginas">
                 <div class="qtdPag">
-                    Total de páginas:<div id="totalP">500</div>
+                    <div id="msg"></div>
+                    Total de páginas:<div id="totalP"></div>
                 </div>
             </div>
         </div>
 
     </div>
 
+    <!-- Footer -->
+    <div class="footer">
+        <div class="acessoRapido">
+            <span class="coluna">Acesso Rápido</span>
+            <span class="lista">
+                <span class="itemListado"><a href="paginaInicial.html">Home Page</a></span>
+                <span class="itemListado"><a href="">Saiba Mais</a></span>
+                <span class="itemListado"><a href="cadastro.html">Cadastrar</a></span>
+                <span class="itemListado"><a href="login.html">Login</a></span>
+            </span>
+
+        </div>
+
+        <div class="editar"><img src="img/conhecimento.png" alt=""></div>
+
+        <div class="contato">
+            <span class="coluna">Acesso Rápido</span>
+            <span class="lista">
+                <span class="itemListado"><a href="">E-mail</a></span>
+                <span class="itemListado"><a href="">Github</a></span>
+            </span>
+        </div>
+
+    </div>
+
 </body>
+<script src="scriptJS/livro_registro.js"></script>
+<script src="scriptJS/graficos_renderizacao.js"></script>
+
+</html>
 <script>
+    
+    selectRegistrosNAOfinalizados();
+    // selectRegistrosCONCLUIDOS();
 
-    function consultar(params) {
+    oQueFazer();
+    conquistas();
+    quaisDicas();
 
-        const ctx = document.getElementById('myChart');
+   
 
-        new Chart(ctx, {
-            type: 'line',
+    function quaisDicas() {
+        var vt_dicas = ["Tente usar um lápis ou uma régua para guiar seus olhos durante a leitura, vá aumentando a velocidade que passa pelas linhas.", "Procure audio do trecho, ou capítulo que está lendo, e tente ir aumentando a velocidade (leia no ritmo do áudio).", "Apesar do progresso ser medido pela quantia de páginas que você lê, foque em entender o que lê, antes de pensar no quanto"];
+        var NumSorteado = ((Math.random() * (3 - 1)) + 1).toFixed();
+        dicas.innerHTML = vt_dicas[NumSorteado - 1];
+    }
+
+    function oQueFazer() {
+        var vt_melhorar = ["Vejá o dia da semana em que lê menos e procure se desafiar a ler mais nesse dia.", "Vá checando seu progresso mensal, para ver sua evolução a cada mês"];
+        var NumSorteado = ((Math.random() * (2 - 1)) + 1).toFixed();
+        melhorar.innerHTML = vt_melhorar[NumSorteado - 1];
+    }
+
+    function conquistas() {
+        if (sessionStorage.TOTAL_LIDO > 400) {
+            div_medalhas.innerHTML += `<img src="img/star-medal.webp" onclick="maisDe400()">`;
+        }
+        if (sessionStorage.TOTAL_LIDO > 1000) {
+            div_medalhas.innerHTML += `<img src="img/star-medal.webp" onclick="maisDe1000()">`;
+        }
+        if (sessionStorage.TOTAL_LIDO > 5000) {
+            div_medalhas.innerHTML += `<img src="img/star-medal.webp" onclick="maisDe5000()">`;
+        }
+    }
+
+    function maisDe400() {
+        alert("Você chegou a mais de 400 páginas lidas.")
+    }
+
+    function maisDe3000() {
+        alert("Você chegou a mais de 3000 páginas lidas.")
+
+    }
+
+    function maisDe5000() {
+        alert("Você chegou a mais de 7000 páginas lidas.")
+    }
+
+
+    somaPaginas();
+    if (sessionStorage.TOTAL_LIDO == undefined || sessionStorage.TOTAL_LIDO == "null") {
+        sessionStorage.TOTAL_LIDO = 0;
+    }
+    totalP.innerHTML = sessionStorage.TOTAL_LIDO;
+    function somaPaginas() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch(`/graficos/pegarSomaPag/${idUsuario}`, {
+            cache: "no-store",
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO SELECT selectLendo()!!!!!!!!!!!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.TOTAL_LIDO = json.total_lido;
+                });
+                
+            } else {
+                console.log("Houve um erro ao tentar realizar o SELECT!!!!!!!!!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
+
+    function graficoBarra() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var campoMes = messes.value;
+    var campoAno = anos.value;
+
+
+    fetch(`/graficos/listarB/${idUsuario}/${campoMes}/${campoAno}`).then(function (response) {
+        if (response.ok) {
+            // alert(response.status);
+            if (response.status == 204) {
+
+                // var feed = document.getElementById("registrando");
+                // var mensagem = document.createElement("scroll-page");
+
+                mensagem.innerHTML = "0." //SE NÂO APARECER NADA, MUDAR AQUI
+                feed.appendChild(mensagem);
+
+                throw "Nenhum resultado encontrado!!";
+            }
+
+            response.json().then(function (resposta) {
+                console.log("Dados recebidos: ", JSON.stringify(resposta));
+                // pontos = resposta;
+
+                var feed = document.getElementById("registrando");
+                feed.innerHTML = "";
+
+                graficoMes.data.datasets[0].data = [];
+
+                var cont = 0;
+    
+                for (let i = 1; i <= 6; i++) {
+                    if (i == resposta[cont].diasOrdenados) {
+                        let mediaPaginas = Number(resposta[cont].mediaPags);
+                        graficoMes.data.datasets[0].data.push(mediaPaginas.toFixed(2));
+                        cont ++;
+                    }else{
+                        graficoMes.data.datasets[0].data.push(0);
+                    }
+
+
+                }
+
+                // alert(somaDasMedias.toFixed(2)) 
+
+                
+                graficoMes.update();
+            });
+        } else {
+            throw ("Houve um erro na API")
+        }
+    }).catch(function (erro) {
+        console.error(erro);
+    });
+}
+    // _______________________________________________________
+    
+    function consultar() {
+        var campoMes = messes.value;
+    var campoAno = anos.value;
+        graficoBarra();
+    
+    }
+        const ctx = document.getElementById("graficoMes");
+var graficoMes = new Chart(ctx, {
+            type: 'bar',
             data: {
                 labels: ['Segundas', 'Terças', 'Quartas', 'Quintas', 'Sextas', 'FS'],
                 datasets: [
@@ -293,40 +486,41 @@
                         label: 'Total de páginas',
                         backgroundColor: 'rgb(50,153,204)',
                         borderColor: 'rgb(50,153,204)',
-                        data: [80, 82, 80, 85, 80, 83],
+                        data: [],
                         borderWidth: 2
                     }
                 ]
-            },
-
-            options: {
-                scales: {
-                    y: {
-                        min: 20,
-                        max: 90,
-                        ticks: {
-                            stepSize: 10
-                        }
-                    }
-                }
             }
+            // ,
+
+            //     options: {
+            //         scales: {
+            //             y: {
+            //                 min: 20,
+            //                 max: 90,
+            //                 ticks: {
+            //                     stepSize: 10
+            //                 }
+            //             }
+            //         }
+            //     }
         });
-    }
+    
 
     // Gráfico Pie ou pizza
 
     const modelos = [
-        "Segundas",
-        "Terças",
-        "Quartas",
-        "Quintas",
-        "Sextas",
-        "Fins de Semana",
+        "Segunda",
+        "Terça",
+        "Quarta",
+        "Quinta",
+        "Sexta",
+        "Fim de Semana",
     ]
     const dadosSemana = {
         labels: modelos,
         datasets: [{
-            data: [6, 5, 4, 3, 2, 1],
+            data: [],
             backgroundColor: ['#6CE5E8', '#41B8D5', '#2D8BBA', '#2F5F98', '#31356E', '#A66C98']
         }
         ]
@@ -346,6 +540,19 @@
         document.getElementById("graficoSemana"),
         configGraficoSemana
     );
-</script>
 
-</html>
+    // _________________________________________________________________________________
+
+    //   function receberUserLogado(UsuarioLogado) {
+
+    nomeDoUsuario.innerHTML = `${sessionStorage.NOME_USUARIO}`;
+    emailDoUsuario.innerHTML = `${sessionStorage.EMAIL_USUARIO}`;
+    //   }
+
+
+    function sair() {
+        sessionStorage.ID_USUARIO = null;
+        sessionStorage.EMAIL_USUARIO = null;
+        window.location = "index.html";
+    }
+</script>

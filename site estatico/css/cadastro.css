@@ -132,3 +132,66 @@ align-self: center;
     flex-direction: column;
 }
 
+/* Inicio do Footer */
+
+.footer{
+    display: flex;
+    background-color: #4C91D4;
+    height: 130px;
+    justify-content: space-around;
+}
+
+.footer .acessoRapido .lista{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+.footer .contato .lista{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+
+
+
+.footer .acessoRapido{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.footer .acessoRapido a{
+    color: white;
+}
+.footer .acessoRapido .coluna{
+    font-size: 25px;
+    color: white;
+
+}
+
+
+
+.footer .contato{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.footer .contato a{
+    color: white;
+}
+
+.footer .contato .coluna{
+    font-size: 25px;
+    color: white;
+}
+
+.footer .editar img{
+    height: 70px;
+}
+
+.footer .editar{
+    display: flex;
+    align-items: center;
+   
+}

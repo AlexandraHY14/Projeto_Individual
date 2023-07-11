@@ -17,7 +17,7 @@
                 <img src="Img/tubarãozinho.png" alt="logo com um tubarãozinho lendo">
                 <span class="titulo">Dynamic Readers</span></span>
             <ul>
-                <li><a href="paginaInicial.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li>||</li>
                 <li><a href="login.html">Login</a></li>
             </ul>
@@ -48,8 +48,8 @@
                             <input id="confirmacao_senha_input" type="password" placeholder="*******">
                         </div>
 
-                            <button onclick="cadastrar()">Cadastrar</button>
-                            <a href="login.html">Já possuo uma conta cadastrada.</a>
+                        <button onclick="cadastrar()">Cadastrar</button>
+                        <a href="login.html">Já possuo uma conta cadastrada.</a>
                     </div>
 
                 </div>
@@ -57,71 +57,88 @@
             <!-- FIM do Formulário de Cadastro -->
         </div>
     </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="acessoRapido">
+            <span class="coluna">Acesso Rápido</span>
+            <span class="lista">
+                <span class="itemListado"><a href="paginaInicial.html">Home Page</a></span>
+                <span class="itemListado"><a href="">Saiba Mais</a></span>
+                <span class="itemListado"><a href="cadastro.html">Cadastrar</a></span>
+                <span class="itemListado"><a href="login.html">Login</a></span>
+            </span>
+
+        </div>
+
+        <div class="editar"><img src="img/conhecimento.png" alt=""></div>
+
+        <div class="contato">
+            <span class="coluna">Contato</span>
+            <span class="lista">
+                <span class="itemListado"><a href="">E-mail</a></span>
+                <span class="itemListado"><a href="">Github</a></span>
+            </span>
+        </div>
+
+    </div>
 </body>
 
 </html>
 <script>
-function cadastrar() {
-    
+    function cadastrar() {
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-    if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-        cardErro.style.display = "block"
-        mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-      
-        return false;
-    }
-    else {
-        setInterval(sumirMensagem, 5000)
-    }
+        contunuar = true;
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            nomeServer: nomeVar,
-            emailServer: emailVar,
-            senhaServer: senhaVar
-        })
-    }).then(function (resposta) {
-
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-            cardErro.style.display = "block";
-
-            mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-            setTimeout(() => {
-                window.location = "login.html";
-            }, "2000")
-
-            limparFormulario();
-           
-        } else {
-            throw ("Houve um erro ao tentar realizar o cadastro!");
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            contunuar = false;
         }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
+        if (contunuar == true) {
 
-    return false;
-}
+            // Enviando o valor da nova input
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nomeVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
 
-function sumirMensagem() {
-    cardErro.style.display = "none"
-}
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    // cardErro.style.display = "block";
+
+                    alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...")
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000")
+
+                    limparFormulario();
+
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+    }
+
 
 </script>
